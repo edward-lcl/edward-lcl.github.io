@@ -130,6 +130,11 @@
   background: rgba(126, 184, 247, 0.025);
 }
 
+a.timeline-card:hover {
+  border-color: rgba(126, 184, 247, 0.15);
+  background: rgba(126, 184, 247, 0.03);
+}
+
 .timeline-card-featured {
   border-left: 2px solid rgba(126, 184, 247, 0.3) !important;
 }
