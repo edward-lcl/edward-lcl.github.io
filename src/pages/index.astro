@@ -9,6 +9,14 @@ const statusClass: Record<string, string> = {
   STEALTH: "badge-stealth",
   COMPLETED: "badge-completed",
 };
+
+const dotColor: Record<string, string> = {
+  PUBLISHED: "#c9a84c",
+  RESEARCH: "#7eb8f7",
+  ACTIVE: "#5cc8b0",
+  STEALTH: "#3d3d50",
+  COMPLETED: "#5a5a70",
+};
 ---
 
 <Layout title="Edward Lue Chee Lip">
@@ -79,7 +87,7 @@ const statusClass: Record<string, string> = {
         const cardClasses = `relative mb-8 last:mb-0 reveal timeline-card ${project.featured ? 'timeline-card-featured' : ''}`;
         const cardContent = (
           <>
-            <div class="timeline-dot"></div>
+            <div class="timeline-dot" style={`background: ${dotColor[project.status] || "#7eb8f7"}; box-shadow: 0 0 6px ${dotColor[project.status] || "#7eb8f7"}40;`}></div>
             <div class="flex items-baseline gap-3 mb-2 flex-wrap">
               <span class={`font-mono text-base font-medium ${project.status === "STEALTH" ? "text-stealth" : "text-white"}`}>
                 {project.name}
