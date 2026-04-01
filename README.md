@@ -1,42 +1,32 @@
 # Edward Lue Chee Lip - Personal Website
 
-A clean, minimal personal website built with plain HTML/CSS/JavaScript. Designed to work seamlessly with GitHub Pages.
+A clean, minimal personal website built with Astro + Tailwind CSS. Designed to work seamlessly with GitHub Pages.
 
 ## Features
 
-- **Dark theme** with gradient accents
+- **Dark theme** with electric blue accent (#00d4ff)
 - **Responsive design** that works on all devices
-- **Smooth animations** and transitions
-- **Minimalist aesthetic** with personality
-- **Fast loading** (no frameworks, just vanilla JS)
-- **GitHub Pages ready** (just push to `main` branch)
+- **Animated SVG grid** hero background
+- **Data-driven project timeline** from src/data/projects.json
+- **Fast loading** — static Astro output, no client JS
+- **GitHub Pages ready** — auto-deploys on push to `main`
 
-## Structure
+## Tech Stack
 
-- `index.html` - Main website
-- `css/style.css` - All styles
-- `js/main.js` - Interactive features
-- `images/` - Image assets (currently placeholder)
-- `.nojekyll` - Disables Jekyll processing
+- Astro (static output)
+- Tailwind CSS v4
+- JetBrains Mono + Inter fonts
 
 ## Local Development
 
 1. Clone the repository
-2. Open `index.html` in a browser
-3. That's it! No build process needed.
+2. `npm install`
+3. `npm run dev` — starts dev server at localhost:4321
+4. `npm run build` — builds to `./dist/`
 
 ## Deployment
 
-This site is configured for GitHub Pages. Simply push to the `main` branch and GitHub Pages will automatically deploy it to `https://edward-lcl.github.io`.
-
-## Design Philosophy
-
-The website reflects Edward's identity as a self-taught systems builder:
-- **Clean & minimal** but with personality
-- **Authentic, not academic** tone
-- **Shows what he builds** and why he builds it
-- **Tells the self-directed path** from Trinidad to Colorado
-- **Interdisciplinary approach** to AI safety, biotech, and systems thinking
+Push to `main` and GitHub Actions will build and deploy to `https://edward-lcl.github.io`.
 
 ## License
 

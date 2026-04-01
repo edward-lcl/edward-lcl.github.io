@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Factor(UT): Untrusted Decomposer",
+    "slug": "factor-ut",
+    "year": 2026,
+    "description": "AAAI 2026 workshop paper. Separation of task decomposition and implementation to detect deceptive AI planning. Implementation-level monitoring achieves AUROC 0.96 vs. 0.52 for plan-only monitoring.",
+    "tags": ["AI Safety", "Python", "Research", "InspectAI"],
+    "domain": "AI Safety",
+    "status": "PUBLISHED",
+    "url": "https://arxiv.org/abs/2512.14745",
+    "featured": true
+  },
+  {
+    "name": "DeceptionScoop",
+    "slug": "deceptionscoop",
+    "year": 2025,
+    "description": "Side-channel profiler for deceptive LLM intent. Detects the cognitive cost of lying via latency spikes, token entropy shifts, and GPU power variance. Task-adaptive suspicion model, not a brittle classifier.",
+    "tags": ["AI Safety", "Python", "FastAPI", "Anomaly Detection"],
+    "domain": "AI Safety",
+    "status": "RESEARCH",
+    "url": "https://github.com/edward-lcl/DeceptionScoop",
+    "featured": true
+  },
+  {
+    "name": "Node:Zero",
+    "slug": "node-zero",
+    "year": 2025,
+    "description": "Details confidential.",
+    "tags": ["Systems"],
+    "domain": "Operational Intelligence",
+    "status": "STEALTH",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "Talos",
+    "slug": "talos",
+    "year": 2025,
+    "description": "Details confidential.",
+    "tags": ["Enterprise AI"],
+    "domain": "Enterprise AI",
+    "status": "STEALTH",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "Flux",
+    "slug": "flux",
+    "year": 2025,
+    "description": "Details confidential.",
+    "tags": ["DeFi", "Trading"],
+    "domain": "DeFi + Trading",
+    "status": "STEALTH",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "Levi",
+    "slug": "levi",
+    "year": 2025,
+    "description": "Details confidential.",
+    "tags": ["AI Infra"],
+    "domain": "Personal AI OS",
+    "status": "ACTIVE",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "POP2 Protein Expression",
+    "slug": "pop2",
+    "year": 2025,
+    "description": "735 μg POP2 expression yield in yeast and E. coli using AI-assisted parameter search, plasmid design heuristics, and iterative lab protocols. CURC Highest Honors. Led 10-person team at CSU United in STEMM.",
+    "tags": ["Biotech", "AI-Assisted Research"],
+    "domain": "Biotech + AI",
+    "status": "COMPLETED",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "CryoProtect",
+    "slug": "cryoprotect",
+    "year": 2025,
+    "description": "Computational cryoprotectant discovery workflow. PostgreSQL database of 9,495 molecules with RDKit fingerprint similarity search (Numba-optimized), ETL from PubChem/ChEMBL, and DreaMS-style transformer embedding architecture.",
+    "tags": ["Biotech", "Python", "PostgreSQL", "RDKit"],
+    "domain": "Biotech + AI",
+    "status": "RESEARCH",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "Control Technologies Ltd",
+    "slug": "ctl",
+    "year": 2024,
+    "description": "P&ID design for automated brewery control. CCTV-PLC monitoring for compliance. Industrial automation workflow optimization.",
+    "tags": ["Systems Engineering", "AutoCAD"],
+    "domain": "Industrial Systems",
+    "status": "COMPLETED",
+    "url": null,
+    "featured": false
+  },
+  {
+    "name": "LAS Retail",
+    "slug": "las-retail",
+    "year": 2023,
+    "description": "Founded and operated the first specialty retail smoke shop in Trinidad. Mapped U.S. 2018 Farm Bill regulations onto a local legal gray zone. End-to-end operations: supplier sourcing, compliance, inventory, customer acquisition. Clean shutdown and exit to relocate internationally.",
+    "tags": ["Entrepreneurship", "Operations"],
+    "domain": "Entrepreneurship",
+    "status": "COMPLETED",
+    "url": null,
+    "featured": false
+  }
+]
