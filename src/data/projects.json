@@ -55,11 +55,11 @@
     "featured": false
   },
   {
-    "name": "Node:Zero",
+    "name": "Node Zero",
     "slug": "node-zero",
     "year": 2026,
-    "description": "Foundational operational intelligence platform. Systems-level infrastructure for orchestrating autonomous agents, ontology-driven context, and decision support across domains.",
-    "tags": ["Systems", "Ontology", "Operational Intelligence"],
+    "description": "Foundational operational intelligence layer — ontology-driven infrastructure for context management, agent orchestration, and decision support across systems. The base substrate beneath Talos and Levi.",
+    "tags": ["Systems", "Ontology", "Operational Intelligence", "Infrastructure"],
     "domain": "Operational Intelligence",
     "status": "STEALTH",
     "url": null,
@@ -80,7 +80,7 @@
     "name": "CryoProtect",
     "slug": "cryoprotect",
     "year": 2025,
-    "description": "Cryoprotectants keep biological material alive during freezing — used in organ preservation, fertility, cosmetics, and food science. We built a computational discovery pipeline: a database of 9,495 candidate molecules with similarity search, toxicity scoring, and property filtering. Originally built for a Colorado biotech lab. Dataset remains proprietary.",
+    "description": "Computational R&D pipeline for cryoprotectant discovery. Curated molecular database of 9,400+ compounds with RDKit-powered similarity search, cheminformatics scoring, and property filtering. Built for a Colorado biotech lab. Archived R&D with future potential — core dataset and codebase remain private.",
     "tags": ["Biotech", "Python", "PostgreSQL", "RDKit", "Cheminformatics"],
     "domain": "Biotech + AI",
     "status": "RESEARCH",
