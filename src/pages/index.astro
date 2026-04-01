@@ -93,13 +93,9 @@ const statusClass: Record<string, string> = {
               )}
             </div>
 
-            {project.status !== "STEALTH" ? (
-              <p class="text-[#6a6a80] text-sm leading-relaxed mb-3 max-w-2xl">
-                {project.description}
-              </p>
-            ) : (
-              <p class="text-[#3d3d50] text-sm italic mt-1 mb-3">Details confidential.</p>
-            )}
+            <p class={`text-sm leading-relaxed mb-3 max-w-2xl ${project.status === "STEALTH" ? "text-[#4a4a60]" : "text-[#6a6a80]"}`}>
+              {project.description}
+            </p>
 
             <div class="flex flex-wrap gap-x-3 gap-y-1">
               {project.tags.map((tag: string) => (
