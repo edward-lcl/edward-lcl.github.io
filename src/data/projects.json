@@ -66,21 +66,10 @@
     "featured": false
   },
   {
-    "name": "Ongoing Research",
-    "slug": "ongoing-research",
-    "year": 2026,
-    "description": "Active research collaboration — paper in progress, targeting publication within Q3 2026. Details confidential until release.",
-    "tags": ["Research", "AI"],
-    "domain": "AI Research",
-    "status": "ACTIVE",
-    "url": null,
-    "featured": false
-  },
-  {
     "name": "POP2 Protein Expression",
     "slug": "pop2",
     "year": 2025,
-    "description": "POP2 is a human enzyme involved in RNA processing. We developed lab protocols to express it in yeast and E. coli, achieving 735 μg/mL yield quantified via spectrophotometry. AI-assisted workflow design let an undergraduate team operate at graduate-level throughput. CURC Highest Honors. Led 10-person team at CSU United in STEMM.",
+    "description": "POP2 is a human enzyme involved in RNA processing. We used AI throughout the workflow to help bridge technical gaps: supporting literature review, lab calculations, protocol refinement, parameter selection, experimental design, and troubleshooting. The result was 735 μg/mL expression yield in yeast and E. coli, with a 10-person undergraduate team operating at graduate-level throughput. CURC Highest Honors.",
     "tags": ["Biotech", "Lab Research", "CSU", "Process Design"],
     "domain": "Biotech",
     "status": "COMPLETED",
@@ -102,7 +91,7 @@
     "name": "Control Technologies Ltd",
     "slug": "ctl",
     "year": 2024,
-    "description": "Service engineering internship in Trinidad. Designed P&ID diagrams for automated brewery control in AutoCAD, implemented CCTV-PLC monitoring for regulatory compliance, and conducted site visits for WASA (Water and Sewage Authority) infrastructure projects.",
+    "description": "Service engineering internship in Trinidad. Designed P&ID diagrams for automated brewery control in AutoCAD, implemented CCTV-PLC monitoring for regulatory compliance, and supported industrial site work tied to process and infrastructure operations.",
     "tags": ["Systems Engineering", "AutoCAD", "P&ID", "Industrial"],
     "domain": "Industrial Systems",
     "status": "COMPLETED",
