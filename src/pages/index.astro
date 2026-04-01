@@ -85,7 +85,7 @@ const dotColor: Record<string, string> = {
       <div class="timeline-line"></div>
 
       {projects.map((project, i) => {
-        const isClickable = project.url && project.status !== "STEALTH";
+        const isClickable = !!project.url;
         const cardClasses = `relative mb-8 last:mb-0 reveal timeline-card ${project.featured ? 'timeline-card-featured' : ''}`;
         const cardContent = (
           <>
