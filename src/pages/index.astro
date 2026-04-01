@@ -10,11 +10,13 @@ const statusClass: Record<string, string> = {
   COMPLETED: "badge-completed",
 };
 
+// Dot color = activity/momentum signal (independent of visibility)
+// STEALTH projects are also active — teal dot signals momentum, dark badge signals privacy
 const dotColor: Record<string, string> = {
   PUBLISHED: "#c9a84c",
   RESEARCH: "#7eb8f7",
   ACTIVE: "#5cc8b0",
-  STEALTH: "#3d3d50",
+  STEALTH: "#5cc8b0",   // active momentum, private visibility
   COMPLETED: "#5a5a70",
 };
 ---
