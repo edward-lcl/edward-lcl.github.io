@@ -58,7 +58,7 @@
     "name": "Node Zero",
     "slug": "node-zero",
     "year": 2026,
-    "description": "Foundational operational intelligence layer — ontology-driven infrastructure for context management, agent orchestration, and decision support across systems. Node Zero is the substrate beneath Talos and Levi: the layer that holds structure, propagates context, and coordinates autonomous components across the full stack.",
+    "description": "Foundational operational intelligence layer — ontology-driven infrastructure for context management, agent orchestration, and decision support across systems. Node Zero is the substrate beneath Talos, Levi, and Flux: the layer that holds structure, propagates context, and coordinates autonomous components across the full stack.",
     "tags": ["Systems", "Ontology", "Operational Intelligence", "Infrastructure"],
     "domain": "Operational Intelligence",
     "status": "STEALTH",
