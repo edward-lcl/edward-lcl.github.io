@@ -154,11 +154,6 @@ const statusClass: Record<string, string> = {
       title — it's a bias toward high-impact work and a way of thinking across
       domains.
     </p>
-    <div class="flex flex-wrap gap-6 reveal">
-      <a href="https://github.com/edward-lcl" target="_blank" rel="noopener" class="accent-link font-mono text-sm">GitHub</a>
-      <a href="https://arxiv.org/abs/2512.14745" target="_blank" rel="noopener" class="accent-link font-mono text-sm">arXiv</a>
-      <a href="https://linkedin.com/in/edward-lue-chee-lip" target="_blank" rel="noopener" class="accent-link font-mono text-sm">LinkedIn</a>
-    </div>
   </section>
 
   <!-- ═══════════ HOW I BUILD ═══════════ -->
@@ -176,9 +171,13 @@ const statusClass: Record<string, string> = {
 
   <!-- ═══════════ FOOTER ═══════════ -->
   <footer class="max-w-3xl mx-auto px-6 py-14 section-divider">
-    <p class="font-mono text-[11px] text-[#3d3d50] text-center tracking-wide">
-      Edward Lue Chee Lip&ensp;·&ensp;eluecheelip@gmail.com&ensp;·&ensp;Built with Astro
-    </p>
+    <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] text-[#3d3d50] text-center tracking-wide">
+      <span>Edward Lue Chee Lip</span>
+      <span>·</span>
+      <a href="mailto:eluecheelip@gmail.com" class="accent-link">eluecheelip@gmail.com</a>
+      <span>·</span>
+      <span>Built with Astro</span>
+    </div>
   </footer>
 
 </Layout>
