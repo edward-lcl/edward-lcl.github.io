@@ -1,4 +1,4 @@
-# Edward Lue Chee Lip - Personal Website
+# Edward — Personal Website
 
 A clean, minimal personal website built with Astro + Tailwind CSS. Designed to work seamlessly with GitHub Pages.
 
@@ -30,4 +30,4 @@ Push to `main` and GitHub Actions will build and deploy to `https://edward-lcl.g
 
 ## License
 
-All content © Edward Lue Chee Lip 2026. Code is open for reference and learning.
+All content © Edward 2026. Code is open for reference and learning.
