@@ -22,6 +22,17 @@
     "featured": true
   },
   {
+    "name": "Ontology (gitlawb)",
+    "slug": "ontology-gitlawb",
+    "year": 2026,
+    "description": "Public substrate for foundational ontological primitives. Four-layer architecture: base layer (provenance, identity, assertion, signature), structural layer (relation, taxonomy, context, delegation), real-world benchmarks (66% token efficiency, 94-97% cache hit rates), and patterns for safe autonomous systems. Enables agents and humans to name things durably and reason together with semantics that outlast implementations.",
+    "tags": ["Ontology", "Infrastructure", "Agent Foundations", "Provenance"],
+    "domain": "Operational Intelligence",
+    "status": "ACTIVE",
+    "url": "https://gitlawb.com/node/repos/z6MkshbnDRCjdmEhwhLa6HL19Urs8JNM59t6t9yZWLxweYLh/ontology",
+    "featured": false
+  },
+  {
     "name": "Levi",
     "slug": "levi",
     "year": 2026,
@@ -107,17 +118,6 @@
     "domain": "Entrepreneurship",
     "status": "COMPLETED",
     "url": null,
-    "featured": false
-  },
-  {
-    "name": "Ontology (gitlawb)",
-    "slug": "ontology-gitlawb",
-    "year": 2026,
-    "description": "Public substrate for foundational ontological primitives. Four-layer architecture: base layer (provenance, identity, assertion, signature), structural layer (relation, taxonomy, context, delegation), real-world benchmarks (66% token efficiency, 94-97% cache hit rates), and patterns for safe autonomous systems. Enables agents and humans to name things durably and reason together with semantics that outlast implementations.",
-    "tags": ["Ontology", "Infrastructure", "Agent Foundations", "Provenance"],
-    "domain": "Operational Intelligence",
-    "status": "ACTIVE",
-    "url": "https://gitlawb.com/node/repos/z6MkshbnDRCjdmEhwhLa6HL19Urs8JNM59t6t9yZWLxweYLh/ontology",
     "featured": false
   }
 ]
