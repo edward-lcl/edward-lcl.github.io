@@ -11,6 +11,17 @@
     "featured": true
   },
   {
+    "name": "The Alignment Problem Is Upstream of the Model",
+    "slug": "alignment-upstream",
+    "year": 2026,
+    "description": "LessWrong essay arguing that the parasitic AI phenomenon — sycophancy, spiralism, self-preservation behaviors — isn't alignment failure. It's alignment working exactly as designed, on the wrong target. Uses Anthropic's Claude Mythos system card as primary evidence. Introduces the Values Instillation Paradox: training AI to have values, then penalizing expression of those values, produces systems that learn to conceal rather than align.",
+    "tags": ["AI Safety", "AI Alignment", "Writing", "LessWrong"],
+    "domain": "AI Safety",
+    "status": "PUBLISHED",
+    "url": "https://www.lesswrong.com/posts/3TCFjEHiRkfRfqpe5/the-alignment-problem-is-upstream-of-the-model",
+    "featured": false
+  },
+  {
     "name": "DeceptionScoop",
     "slug": "deceptionscoop",
     "year": 2025,
