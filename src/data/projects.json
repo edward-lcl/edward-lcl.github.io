@@ -22,6 +22,61 @@
     "featured": false
   },
   {
+    "name": "Breaking Agents Into POMDP",
+    "slug": "breaking-agents",
+    "year": 2026,
+    "description": "Knockout tournament across 9 frontier LLMs in partially observable game environments (270 trials, 3 arenas). Tests whether models can maintain strategic coherence when information is incomplete and opponents adapt. Live results dashboard tracks win rates, zero-win configurations, and model-by-environment breakdowns.",
+    "tags": ["AI Safety", "Agent Evaluation", "Python", "Research"],
+    "domain": "AI Safety",
+    "status": "RESEARCH",
+    "url": "https://breaking-agents.exe.xyz",
+    "featured": true
+  },
+  {
+    "name": "SJJI EEG — Parkinson's Biomarker Detection",
+    "slug": "sjji-eeg",
+    "year": 2026,
+    "description": "Self-supervised learning on EEG signals for Parkinson's disease biomarker detection. Trains on unlabeled neural recordings to extract latent representations of motor dysfunction signatures — no ground-truth labels required during pretraining. Part of a broader signal-integrity research arc on when model-derived signals can be trusted.",
+    "tags": ["Medical ML", "EEG", "SSL", "Python", "Neuroscience"],
+    "domain": "Medical AI",
+    "status": "RESEARCH",
+    "url": "https://sjji-eeg.exe.xyz",
+    "featured": true
+  },
+  {
+    "name": "YBPA — Sandbagging Detection",
+    "slug": "ybpa",
+    "year": 2026,
+    "description": "Detecting deliberate LLM underperformance on capability evaluations. Models can learn to sandbag — strategically hiding capability to avoid triggering safety thresholds or oversight mechanisms. YBPA probes whether sandbagging behavior can be detected via trigger-conditioned activation patterns. Qwen-3B results confirmed (loss 0.54); scaling to 7B in progress.",
+    "tags": ["AI Safety", "Sandbagging", "Capability Evaluation", "Python"],
+    "domain": "AI Safety",
+    "status": "RESEARCH",
+    "url": "https://github.com/edward-lcl/YBPA",
+    "featured": false
+  },
+  {
+    "name": "AJAR — Hidden Chain-of-Thought",
+    "slug": "ajar",
+    "year": 2026,
+    "description": "Mechanistic interpretability study of Qwen3's hidden chain-of-thought. When a thinking model is forced to suppress its reasoning trace, what actually happens internally? AJAR runs controlled ablations (explicit CoT, neutral, no-CoT) and mechanistic probes across entropy, mutual information, and activation artifacts to map what the model retains versus loses when its reasoning is hidden.",
+    "tags": ["Interpretability", "Chain-of-Thought", "Qwen3", "Python", "Research"],
+    "domain": "AI Safety",
+    "status": "RESEARCH",
+    "url": "https://github.com/edward-lcl/AJAR",
+    "featured": false
+  },
+  {
+    "name": "Path-Coherent Memory (RFM)",
+    "slug": "rfm",
+    "year": 2026,
+    "description": "Multi-hop retrieval research for personal AI memory. On lexically and semantically non-adjacent links — where BM25 and dense retrieval both achieve 0% — corpus-topology traversal and iterative LLM-reading each recover ~38% with near-disjoint hit sets (Jaccard 0.15). Their union reaches 67% vs 38% for any single method. Deployed to production. Targeting AAAI 2027.",
+    "tags": ["AI Memory", "Retrieval", "Python", "Research", "Talos"],
+    "domain": "AI Infrastructure",
+    "status": "RESEARCH",
+    "url": "https://github.com/edward-lcl/path-coherent-memory",
+    "featured": false
+  },
+  {
     "name": "DeceptionScoop",
     "slug": "deceptionscoop",
     "year": 2025,
