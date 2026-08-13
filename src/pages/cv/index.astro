@@ -1,0 +1,231 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { links } from "../../data/site";
+
+const statusDate = "13 Aug 2026";
+
+const publications = [
+  {
+    title: "Factor-UT: Controlling Untrusted AI Decomposers in Code Generation Settings",
+    authors: "Edward Lue Chee Lip · Anthony Channg · Diana Kim · Aaron Sandoval · Kevin Zhu",
+    venue: "AAAI 2026 · Trustworthy Agentic AI Workshop",
+    status: "Accepted",
+    role: "First author",
+    link: { label: "arXiv:2512.14745", url: "https://arxiv.org/abs/2512.14745" },
+  },
+  {
+    title: "The Recall Debt: Flat Memory Schemas Structurally Fail Multi-Hop Retrieval",
+    authors: "Edward Lue Chee Lip · Sean Wu",
+    venue: "COLM 2026 · Context Beyond the Window Workshop",
+    status: "Accepted poster",
+    role: "First author",
+    link: { label: "digest", url: "/research/recall-debt/" },
+  },
+  {
+    title: "A Benchmark Audit of Site Confounds: Calibration and Self-Supervision in Cross-Dataset Parkinson’s EEG Detection",
+    authors: "Edward Lue Chee Lip · Van Mai · Saanvi Neema · Alexander Jameson · Karolina Torbus · Jithin Suresh",
+    venue: "MICCAI 2026 · AMAI Workshop",
+    status: "Accepted full paper · poster",
+    role: "First author",
+    link: { label: "code", url: "https://github.com/edward-lcl/sjji-eeg" },
+  },
+  {
+    title: "Before You Scale: The Cost of Supervision Mismatch in PRM Distillation",
+    authors: "Saksham Kapoor · Henry Tran · Edward Lue Chee Lip · Charlotte Le",
+    venue: "COLM 2026 · Efficient Reasoning Workshop",
+    status: "Accepted",
+    role: "Co-author",
+    link: { label: "code", url: "https://github.com/edward-lcl/feedback-distillation" },
+  },
+  {
+    title: "Diagnosing Agent Capabilities Through Information-Axis Knockouts",
+    authors: "Kaaustaaub Shankar · Edward Lue Chee Lip · Joshua Liu · Benjamin J. Smith",
+    venue: "COLM 2026 · Agent Behavior Workshop",
+    status: "Accepted poster",
+    role: "Co-author",
+    link: { label: "code", url: "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP" },
+  },
+  {
+    title: "Detecting Hidden Chain-of-Thought in Large Language Models with Linguistic, Behavioral, and Mechanistic Indicators",
+    authors: "Armaan Singh · Ryan Trinh Le · Jasmine Kaur · Edward Lue Chee Lip · Kiran Nijjer · Adnan Ahmed · Vasu Sharma",
+    venue: "ICML 2026 · Workshop",
+    status: "Accepted",
+    role: "Co-author",
+  },
+  {
+    title: "Adversarial Co-Evolution as a Measurement Framework for Sandbagging Detection",
+    authors: "Group project · stepped in as project lead and mentor mid-project",
+    venue: "COLM 2026 · Workshop",
+    status: "Under review",
+    role: "Lead / mentor",
+  },
+];
+
+const experience = [
+  {
+    org: "Algoverse",
+    role: "Research Engineer · multi-role",
+    when: "Jun 2025 – present · remote",
+    bullets: [
+      "First author of Factor-UT (AAAI 2026 Trustworthy Agentic AI Workshop) — a control protocol for untrusted AI decomposers in code generation. Led a four-person team across evaluation design (AUROC, attack success rate, audit thresholds on BigCodeBench / Inspect AI) and the full write-up.",
+      "Concurrent implementation, SOP development, and experiment coverage for 4–5 active research groups — agentic chains, eval harnesses, prompt scaffolds, statistical analysis, and paper polish, based on what each group needs to ship.",
+      "Beyond first-author work, operate as research lead and mentor: authored The Recall Debt (accepted, COLM 2026 workshop) and carried the sandbagging-detection group paper to submission after the original lead was sidelined by injury.",
+    ],
+  },
+  {
+    org: "Control Technologies Limited",
+    role: "Sole AI Engineer · Talos & Node Zero",
+    when: "2025 – present · Trinidad & Tobago",
+    bullets: [
+      "Sole AI engineer for a 26-year government infrastructure contractor — building Talos, an internal platform that automates proposal generation, tracks assets, and forecasts procurement across a contract pipeline carrying roughly US$25M in annual flow.",
+      "Built the shared data and orchestration layer beneath it (Node Zero), pulling fragmented instrumentation, inventory, and procurement records into one queryable source that the AI tools and dashboards run on.",
+      "Turned the company’s full operational history, previously locked in spreadsheets and instrumentation logs, into structured queryable data — making forecasting and efficiency analysis possible for the first time.",
+    ],
+  },
+  {
+    org: "Biotechnology startup",
+    role: "Research Advisor",
+    when: "Jan – May 2025 · Fort Collins, CO",
+    bullets: [
+      "Built a cryoprotectant discovery workflow over a 9,495-molecule PostgreSQL database with RDKit fingerprint similarity (Numba-accelerated; Tanimoto, Dice, cosine), with multi-layer scoring across toxicity, physicochemical properties, and permeability.",
+      "Integrated transformer-based molecular embeddings with vector similarity search to surface structurally novel candidates beyond plain fingerprint matches; automated ingestion from PubChem and ChEMBL.",
+    ],
+  },
+  {
+    org: "Colorado State University",
+    role: "Student Researcher · United in STEMM",
+    when: "Sep 2024 – Jun 2025 · Fort Collins, CO",
+    bullets: [
+      "Led a 10-person team on a human protein expression project; awarded CURC Highest Honors for innovative parameter search and workflow design.",
+      "Built AI-assisted parameter-search and process-heuristic workflows that let an undergraduate team operate at graduate-level experimental throughput.",
+    ],
+  },
+  {
+    org: "Earlier roles — engineering, operations, founder",
+    role: "",
+    when: "2021 – 2024",
+    bullets: [
+      "Control Technologies Limited, Service Engineer Intern (Jun – Aug 2024): P&ID systems for automated brewery control; CCTV-PLC monitoring for compliance and traceability. Re-engaged in 2025 to build Talos & Node Zero.",
+      "LAS Retail, Founder & Operator (2021 – 2023): founded and operated the first specialty cannabis accessories retail concept in Trinidad & Tobago; reached early commercial traction and executed a clean exit on relocation.",
+    ],
+  },
+];
+
+const skills = [
+  ["AI evaluation & safety", "Inspect AI · BigCodeBench · factored cognition · untrusted decomposers · agent monitoring · adversarial evaluation · sandbagging detection · activation probing · multi-hop retrieval and memory"],
+  ["Engineering", "Python · FastAPI · PostgreSQL · pgvector · SQLite · REST · RDKit · inference pipelines · Claude Code · Codex · AutoCAD · Fusion 360"],
+  ["Methods & math", "ROC analysis · bootstrap CI · Cohen’s d · hypothesis testing · Wilson intervals · linear algebra · probability"],
+  ["Applied research", "Experiment design and data collection in messy real environments — molecular workflows, process validation, parameter search"],
+];
+---
+
+<Layout
+  title="CV — Edward Lue Chee Lip"
+  description="Curriculum vitae of Edward Lue Chee Lip: AI researcher and systems builder — publications, research and engineering experience, education."
+>
+  <header class="site-header cv-chrome">
+    <div class="shell nav-inner">
+      <a class="site-name" href="/"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+      <p class="header-status"><span></span> The boring artifact, kept honest</p>
+      <nav aria-label="CV navigation">
+        <a href="/">← notebook</a>
+        <a href="javascript:window.print()">Print / PDF</a>
+        <a href={links.email}>Email ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="cv-page shell">
+    <header class="cv-head">
+      <h1>Edward Lue Chee Lip</h1>
+      <p class="cv-tagline">
+        I study where intelligent systems lose information, control, and evidence between layers —
+        and build the infrastructure that makes those losses inspectable. In practice that spans
+        agentic evaluation and AI control, memory, medical-AI benchmarking, and solo-built systems
+        for a capital-intensive industrial operator.
+      </p>
+      <p class="cv-contact">
+        Trinidad &amp; Tobago · open to relocation
+        · <a href={links.email}>eluecheelip@gmail.com</a>
+        · <a href={links.github}>github/edward-lcl</a>
+        · <a href={links.linkedin}>linkedin/edward-lue-chee-lip</a>
+        · <a href="https://edward-lcl.github.io/">edward-lcl.github.io</a>
+      </p>
+    </header>
+
+    <section class="cv-section">
+      <h2>Publications · 2026</h2>
+      <div class="cv-pubs">
+        {publications.map((pub) => (
+          <article class="cv-pub">
+            <div class="cv-pub-main">
+              <strong>{pub.title}</strong>
+              <p>{pub.authors}</p>
+              <p class="cv-pub-venue">
+                {pub.venue} · {pub.status}
+                {pub.link && <> · <a href={pub.link.url}>{pub.link.label} ↗</a></>}
+              </p>
+            </div>
+            <span class:list={["cv-role", pub.role === "First author" && "cv-role-first"]}>{pub.role}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="cv-section">
+      <h2>Research &amp; engineering experience</h2>
+      {experience.map((job) => (
+        <article class="cv-job">
+          <div class="cv-job-head">
+            <strong>{job.org}{job.role && <span> — {job.role}</span>}</strong>
+            <span>{job.when}</span>
+          </div>
+          <ul>
+            {job.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+        </article>
+      ))}
+    </section>
+
+    <section class="cv-section">
+      <h2>Skills &amp; methods</h2>
+      <dl class="cv-skills">
+        {skills.map(([label, body]) => (
+          <div><dt>{label}</dt><dd>{body}</dd></div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="cv-section">
+      <h2>Education &amp; awards</h2>
+      <div class="cv-job-head">
+        <strong>Xi’an Jiaotong-Liverpool University — Artificial Intelligence (Intelligent Systems)</strong>
+        <span>2026 –</span>
+      </div>
+      <div class="cv-job-head">
+        <strong>Colorado State University — B.S. Fermentation Science</strong>
+        <span>on leave</span>
+      </div>
+      <div class="cv-job-head">
+        <strong>CURC Highest Honors — Colorado University Research Conference</strong>
+        <span>Jun 2025</span>
+      </div>
+    </section>
+
+    <p class="cv-footnote">
+      Statuses current as of {statusDate}. The living version of this record — with per-paper
+      provenance — is <a href="https://edward-lcl.github.io/">edward-lcl.github.io</a>.
+    </p>
+  </main>
+
+  <footer class="site-footer cv-chrome">
+    <div class="shell footer-inner">
+      <div>
+        <p class="footer-title">Edward Lue Chee Lip</p>
+        <p>A public notebook about intelligent systems,<br />their instruments, and the worlds around them.</p>
+      </div>
+      <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
+      <div class="footer-links"><a href="/">Home</a><a href="/notes/">Notes</a></div>
+    </div>
+  </footer>
+</Layout>
