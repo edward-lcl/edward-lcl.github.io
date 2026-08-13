@@ -3548,6 +3548,25 @@ a.system-card .system-link {
   color: var(--blue);
 }
 
+.notes-elsewhere {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.notes-elsewhere .notes-list {
+  margin-top: 0.9rem;
+}
+
+.notes-elsewhere .notes-index {
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.notes-elsewhere .notes-row {
+  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+}
+
 .notes-footnote {
   margin: 2.5rem 0 0;
   color: var(--quiet);

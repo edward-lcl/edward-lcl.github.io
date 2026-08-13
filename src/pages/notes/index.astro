@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { links, researchArcs } from "../../data/site";
+import { links, publishedElsewhere, researchArcs } from "../../data/site";
 ---
 
 <Layout
@@ -43,6 +43,24 @@ import { links, researchArcs } from "../../data/site";
         </li>
       ))}
     </ol>
+
+    <section class="notes-elsewhere" aria-label="Published elsewhere">
+      <p class="collab-label">Published elsewhere</p>
+      <ol class="notes-list">
+        {publishedElsewhere.map((essay) => (
+          <li>
+            <a class="notes-row" href={essay.url} target="_blank" rel="noopener">
+              <span class="notes-index">{essay.venue}</span>
+              <span class="notes-copy">
+                <strong>{essay.title}</strong>
+                <span>{essay.body}</span>
+              </span>
+              <span class="notes-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
 
     <p class="notes-footnote">
       The research digests carry the measured claims; these notes carry the questions that produced them.

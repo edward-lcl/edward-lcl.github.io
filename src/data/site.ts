@@ -693,6 +693,16 @@ export const selectedSystems = [
   },
 ] as const;
 
+// Writing published on external venues: indexed from /notes/ so the notebook stays complete.
+export const publishedElsewhere = [
+  {
+    title: "The Alignment Problem Is Upstream of the Model",
+    body: "Alignment is decided by layers around and upstream of the weights. The published essay that seeded the notebook’s harness-and-layers framing.",
+    venue: "EA Forum",
+    url: "https://forum.effectivealtruism.org/posts/xBjgTH3tXmeECERGR/the-alignment-problem-is-upstream-of-the-model",
+  },
+];
+
 // Accepted work without a digest page yet: shown in the homepage rows and on the CV.
 export const additionalPapers = [
   {
