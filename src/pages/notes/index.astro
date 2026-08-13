@@ -1,0 +1,63 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { links, researchArcs } from "../../data/site";
+---
+
+<Layout
+  title="Field notes — Edward Lue Chee Lip"
+  description="The full index of Edward's field notes: living questions about memory, evaluation, control, and the institutions around intelligent systems."
+>
+  <header class="site-header">
+    <div class="shell nav-inner">
+      <a class="site-name" href="/"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+      <p class="header-status"><span></span> Field notes / index</p>
+      <nav aria-label="Notes navigation">
+        <a href="/">← home</a>
+        <a href="/#research">Research</a>
+        <a href={links.email}>Discuss ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="notes-page shell">
+    <header class="notes-hero">
+      <p class="overline"><span class="status-dot"></span>The notebook index</p>
+      <h1>Field notes</h1>
+      <p class="notes-lead">
+        Living questions, continuously revised. Each note is an entry point into the same underlying
+        problem: keeping information, control, and evidence intact as they cross layers.
+      </p>
+    </header>
+
+    <ol class="notes-list">
+      {researchArcs.map((arc) => (
+        <li>
+          <a class="notes-row" href={arc.url}>
+            <span class="notes-index">{arc.index}</span>
+            <span class="notes-copy">
+              <strong>{arc.title}</strong>
+              <span>{arc.body}</span>
+            </span>
+            <span class="notes-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+
+    <p class="notes-footnote">
+      The research digests carry the measured claims; these notes carry the questions that produced them.
+      <a href="/#research">Back to the papers →</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div>
+        <p class="footer-title">Edward Lue Chee Lip</p>
+        <p>A public notebook about intelligent systems,<br />their instruments, and the worlds around them.</p>
+      </div>
+      <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
+      <div class="footer-links"><a href="/">Home</a><a href="/zh/">中文</a></div>
+    </div>
+  </footer>
+</Layout>

@@ -211,7 +211,7 @@ export const acceptedPapers = [
     title: "Factor(U,T)",
     subtitle: "Controlling Untrusted AI by Monitoring Their Plans",
     venue: "AAAI 2026 · TrustAgent",
-    note: "Accepted · first author",
+    note: "Accepted",
     role: "First author",
     authors: "Edward Lue Chee Lip · Anthony Channg · Diana Kim · Aaron Sandoval · Kevin Zhu",
     publicationDate: "Accepted · 2026",

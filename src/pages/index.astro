@@ -1,18 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EvidenceSketch from "../components/EvidenceSketch.astro";
-import StrangeLoop from "../components/StrangeLoop.astro";
 import { acceptedPapers, links, researchArcs, selectedSystems } from "../data/site";
 
 const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
+const flagshipSlugs = ["recall-debt", "factor-ut"];
+const flagships = flagshipSlugs
+  .map((slug) => acceptedPapers.find((paper) => paper.slug === slug))
+  .filter((paper) => paper !== undefined);
+const collaborations = acceptedPapers.filter((paper) => !flagshipSlugs.includes(paper.slug));
 const featuredArcSlugs = [
   "a-zero-needs-adjudication",
   "where-does-the-model-end",
-  "the-frontier-is-funded",
   "verification-must-touch-reality",
 ];
 const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => arc.slug === slug)).filter(Boolean);
-const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slug));
 ---
 
 <Layout title="Edward Lue Chee Lip — AI Research & Systems">
@@ -23,7 +25,7 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
         <a href="#systems">Systems</a>
-        <a href="#work">Ideas</a>
+        <a href="#notebook">Notebook</a>
         <a href="#about">About</a>
         <a href="#direction">Direction</a>
         <a href="/zh/" lang="zh-CN">中文</a>
@@ -37,8 +39,9 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
         <p class="overline"><span class="status-dot"></span>A working notebook by Edward</p>
         <h1>I research how intelligent systems <span>remember, reason, and fail.</span></h1>
         <p class="hero-lead">
-          I’m an independent AI researcher and systems builder from Trinidad and Tobago. My work moves between AI safety, memory,
-          agent evaluation, biomedical signals, and the infrastructure that makes ambitious ideas usable.
+          I’m an AI researcher and systems builder from Trinidad and Tobago. I study where intelligent systems
+          lose information, control, and evidence between layers — and build the infrastructure that makes
+          those losses inspectable.
         </p>
         <div class="hero-actions">
           <a class="primary-link" href="#research">See my research <span>↓</span></a>
@@ -82,7 +85,7 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
       </aside>
 
       <div class="hero-proof hero-proof-text reveal" aria-label="Research focus and public evidence">
-        <p><span class="proof-label">Accepted work</span><strong>AAAI TrustAgent · COLM · MICCAI AMAI</strong></p>
+        <p><span class="proof-label">Accepted work</span><strong>5 workshop papers · 3 first-author<br />AAAI · COLM · MICCAI</strong></p>
         <p><span class="proof-label">Working across</span><strong>memory · evaluation · agents · AI control</strong></p>
         <p><span class="proof-label">Evidence</span><strong>papers · code · experiments · system notes</strong></p>
         <p class="proof-note">The signal is useful.<br /><em>The questions matter more.</em></p>
@@ -92,26 +95,27 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
     <section id="research" class="section shell">
       <div class="section-heading reveal">
         <div>
-          <p class="overline">Featured research</p>
-          <h2>Selected accepted research</h2>
+          <p class="overline">Flagship research</p>
+          <h2>Two flagship papers</h2>
         </div>
         <p>
-          These {acceptedPapers.length} public digests cover accepted work across AAAI, COLM, and MICCAI workshops. Together they ask
-          how intelligent systems should be remembered, supervised, tested, calibrated, and trusted.
+          Where memory loses information, and where control regains it. Five workshop papers were accepted
+          across AAAI, COLM, and MICCAI in 2026 — three first-author. These two anchor the program; each
+          opens a plain-language digest that carries its own provenance.
         </p>
       </div>
 
       <div class="paper-grid">
-        {acceptedPapers.map((paper, index) => {
+        {flagships.map((paper, index) => {
           const Tag = paper.url ? "a" : "article";
           return (
             <Tag
-              class="paper-card reveal"
+              class="paper-card flagship reveal"
               href={paper.url || undefined}
             >
               <div class="paper-topline">
-                <span class="paper-index">{String(index + 1).padStart(2, "0")} / {String(acceptedPapers.length).padStart(2, "0")}</span>
-                <span class="accepted-pill">Accepted</span>
+                <span class="paper-index">{String(index + 1).padStart(2, "0")} / {String(flagships.length).padStart(2, "0")}</span>
+                <span class="accepted-pill">First author</span>
                 <span>{paper.venue}</span>
               </div>
               <div class="paper-copy">
@@ -121,15 +125,30 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
               </div>
               <EvidenceSketch slug={paper.slug} compact />
               <div class="paper-bottom">
-                <span>{paper.note.replace("Accepted · ", "")}</span>
+                <span>{paper.note.replace("Accepted · ", "Accepted ")}</span>
                 <span aria-hidden="true">Read the digest →</span>
               </div>
             </Tag>
           );
         })}
       </div>
+
+      <div class="collab-block reveal">
+        <p class="collab-label">More accepted work</p>
+        <div class="collab-list">
+          {collaborations.map((paper) => (
+            <a class="collab-row" href={paper.url}>
+              <span class="collab-venue">{paper.venue}</span>
+              <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
+              <span class="collab-role">{paper.role}</span>
+              <span class="collab-arrow" aria-hidden="true">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+
       <div class="research-footnote reveal">
-        <p>Each card opens a plain-language digest. Public artifacts are linked from the digest when available.</p>
+        <p>Each entry opens a plain-language digest. Public artifacts are linked from the digest when available.</p>
         <p>The papers are the visible edge of a much larger working set.</p>
       </div>
     </section>
@@ -140,7 +159,10 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
           <p class="overline">Selected work</p>
           <h2>Systems I’ve built</h2>
         </div>
-        <p>A small selection from a much larger body of research infrastructure, experiments, and operational tools.</p>
+        <p>
+          The domain changes; the engineering requirement doesn’t: turn noisy information into decisions
+          that survive contact with reality. A small selection from a larger working set.
+        </p>
       </div>
 
       <div class="systems-grid">
@@ -160,34 +182,44 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
         })}
       </div>
 
-      <a class="method-spine reveal" href="/questions/build-the-missing-layer/">
-        <div>
-          <span class="method-kicker">Operating method</span>
-          <h3>The loop is an evidence system.</h3>
-        </div>
-        <ol aria-label="Edward's six-stage operating loop">
-          {["Observe", "Orient", "Plan", "Act", "Verify", "Remember"].map((step, index) => (
-            <li><span>0{index + 1}</span>{step}</li>
-          ))}
-        </ol>
-        <strong>Open the model →</strong>
-      </a>
-
       <a class="all-work-link reveal" href={links.github} target="_blank" rel="noopener">Browse the wider body of work on GitHub <span>↗</span></a>
     </section>
 
-    <StrangeLoop compact />
+    <section id="method" class="method-band" aria-labelledby="method-title">
+      <div class="shell method-inner">
+        <div class="method-copy reveal">
+          <p class="overline">Operating method</p>
+          <h2 id="method-title">The loop is<br />{" "}<span>an evidence system.</span></h2>
+          <p>
+            Plans are contracts, actions are bounded, a verifier can reject the work, and every pass
+            leaves lineage the next one can use. When something breaks, I debug vertically — the same
+            output traced from tokenization to institutional incentive.
+          </p>
+        </div>
+        <div class="method-panel reveal">
+          <ol class="method-loop" aria-label="Edward's six-stage operating loop">
+            {["Observe", "Orient", "Plan", "Act", "Verify", "Remember"].map((step, index) => (
+              <li><span>0{index + 1}</span>{step}</li>
+            ))}
+          </ol>
+          <div class="method-links">
+            <a href="/questions/build-the-missing-layer/">Open the operating loop →</a>
+            <a href="/questions/systems-are-strange-loops/">One output, seven layers of cause →</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <section id="work" class="section themes-section">
+    <section id="notebook" class="section themes-section">
       <div class="shell">
         <div class="section-heading reveal">
           <div>
-            <p class="overline">What connects the work</p>
-            <h2>Four ways into the notebook</h2>
+            <p class="overline">From the notebook</p>
+            <h2>Three ways in</h2>
           </div>
           <p>
-            The work expands in many directions, but these four notes are the clearest entry points
-            into the same underlying control problem.
+            The notebook holds the questions behind the papers. These three notes are the clearest
+            entry points into the same underlying control problem.
           </p>
         </div>
 
@@ -200,12 +232,12 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
               <span class="theme-arrow" aria-hidden="true">↗</span>
             </a>
           ))}
-        </div>
-        <div class="more-notes reveal">
-          <span>More field notes</span>
-          <nav aria-label="More field notes">
-            {moreArcs.map((arc) => <a href={arc.url}>{arc.title} <span>↗</span></a>)}
-          </nav>
+          <a class="theme-card theme-card-index reveal" href="/notes/">
+            <span class="theme-number">··</span>
+            <h3>The full index.</h3>
+            <p>Every field note in one place — the notebook grows here first.</p>
+            <span class="theme-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </section>
@@ -213,21 +245,21 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
     <section id="about" class="section shell about-section">
       <div class="about-heading reveal">
         <p class="overline">About me</p>
-        <h2>A cross-domain path,<br />{" "}<span>on purpose.</span></h2>
+        <h2>The path produces<br />{" "}<span>the questions.</span></h2>
       </div>
 
       <div class="about-copy reveal">
         <p class="about-lead">
-          I didn’t arrive in AI through a straight computer-science path. I followed problems that
-          seemed consequential, learned the domain, and built whatever layer was missing.
+          I follow consequential problems, learn the domain, and build whatever layer is missing.
+          That move — not a discipline — is the constant.
         </p>
         <p>
-          That path ran through fermentation science and wet-lab research at Colorado State,
-          industrial automation in Trinidad, entrepreneurship, and eventually AI research. The
-          throughline is a respect for noisy evidence and systems that have to work outside a demo.
+          The path ran through fermentation science and wet-lab research at Colorado State,
+          industrial automation in Trinidad, entrepreneurship, and now AI research. Each stop taught
+          the same respect for noisy evidence and for systems that have to work outside a demo.
         </p>
         <p>
-          Moving between fields is now part of how I work. A retrieval problem can look like a
+          Moving between fields is part of how I work. A retrieval problem can look like a
           control problem; an evaluation failure can look like a measurement problem; a research
           workflow can become infrastructure for an entire group.
         </p>
@@ -268,8 +300,8 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
             action more bounded, and verification closer to the layer where consequences become real.
           </p>
           <div class="now-actions">
-            <a class="primary-link" href="/zh/" lang="zh-CN">中文页面 <span>→</span></a>
-            <a href={links.email}>Start a conversation <span>↗</span></a>
+            <a class="primary-link" href={links.email}>Start a conversation <span>↗</span></a>
+            <a href="/zh/" lang="zh-CN">中文页面 <span>→</span></a>
           </div>
         </div>
         <p class="now-marginalia reveal">Abundant capability still needs bounded action,<br /><span>inspectable evidence, and accountable consequence.</span></p>
@@ -277,18 +309,20 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
     </section>
   </main>
 
-  <footer class="site-footer shell">
-    <div>
-      <p class="footer-title">Edward Lue Chee Lip</p>
-      <p>AI researcher and systems builder.<br />From Trinidad and Tobago; working across systems and scales.</p>
-      <p class="footer-note">Built as a notebook, not a résumé.</p>
-    </div>
-    <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
-    <div class="footer-links">
-      <a href={links.github} target="_blank" rel="noopener">GitHub</a>
-      <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-      <a href={links.x} target="_blank" rel="noopener">X</a>
-      <a href="/zh/" lang="zh-CN">中文</a>
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div>
+        <p class="footer-title">Edward Lue Chee Lip</p>
+        <p>AI researcher and systems builder.<br />From Trinidad and Tobago; working across systems and scales.</p>
+        <p class="footer-note">Built as a notebook, not a résumé.</p>
+      </div>
+      <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
+      <div class="footer-links">
+        <a href={links.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={links.x} target="_blank" rel="noopener">X</a>
+        <a href="/zh/" lang="zh-CN">中文</a>
+      </div>
     </div>
   </footer>
 
@@ -314,33 +348,16 @@ const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slu
     ];
     const noteText = document.querySelector("[data-field-note]");
     const noteIndex = document.querySelector("[data-note-index]");
-    const noteCarousel = document.querySelector("[data-note-carousel]");
     const noteDots = Array.from(document.querySelectorAll("[data-note-dot]"));
-    let currentNote = 0;
-    let noteTimer;
     const showNote = (nextNote) => {
-      currentNote = nextNote;
-      if (noteText) noteText.textContent = notes[currentNote];
-      if (noteIndex) noteIndex.textContent = String(currentNote + 1).padStart(2, "0");
+      if (noteText) noteText.textContent = notes[nextNote];
+      if (noteIndex) noteIndex.textContent = String(nextNote + 1).padStart(2, "0");
       noteDots.forEach((dot, index) => {
-        const active = index === currentNote;
+        const active = index === nextNote;
         dot.classList.toggle("active", active);
         dot.setAttribute("aria-pressed", String(active));
       });
     };
-    const startNotes = () => {
-      if (reducedMotion) return;
-      window.clearInterval(noteTimer);
-      noteTimer = window.setInterval(() => showNote((currentNote + 1) % notes.length), 5200);
-    };
-    noteDots.forEach((dot, index) => dot.addEventListener("click", () => {
-      showNote(index);
-      startNotes();
-    }));
-    noteCarousel?.addEventListener("mouseenter", () => window.clearInterval(noteTimer));
-    noteCarousel?.addEventListener("mouseleave", startNotes);
-    noteCarousel?.addEventListener("focusin", () => window.clearInterval(noteTimer));
-    noteCarousel?.addEventListener("focusout", startNotes);
-    startNotes();
+    noteDots.forEach((dot, index) => dot.addEventListener("click", () => showNote(index)));
   </script>
 </Layout>

@@ -49,6 +49,8 @@ const personSchema = {
     {isHomepage && <link rel="alternate" hreflang="zh-CN" href="https://edward-lcl.github.io/zh/" />}
     {isHomepage && <link rel="alternate" hreflang="x-default" href="https://edward-lcl.github.io/" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/jetbrains-mono-var.woff2" as="font" type="font/woff2" crossorigin />
     <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <script is:inline>document.documentElement.classList.add("js");</script>
     <title>{title}</title>
