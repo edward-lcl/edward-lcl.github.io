@@ -351,9 +351,19 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
     ];
     const noteText = document.querySelector("[data-field-note]");
     const noteIndex = document.querySelector("[data-note-index]");
+    const noteCarousel = document.querySelector("[data-note-carousel]");
     const noteDots = Array.from(document.querySelectorAll("[data-note-dot]"));
-    const showNote = (nextNote) => {
-      if (noteText) noteText.textContent = notes[nextNote];
+    let currentNote = 0;
+    const showNote = (nextNote, direction) => {
+      currentNote = nextNote;
+      if (noteText) {
+        if (direction && !reducedMotion) {
+          noteText.classList.remove("note-in-left", "note-in-right");
+          void noteText.offsetWidth;
+          noteText.classList.add(direction === "left" ? "note-in-left" : "note-in-right");
+        }
+        noteText.textContent = notes[nextNote];
+      }
       if (noteIndex) noteIndex.textContent = String(nextNote + 1).padStart(2, "0");
       noteDots.forEach((dot, index) => {
         const active = index === nextNote;
@@ -361,6 +371,21 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
         dot.setAttribute("aria-pressed", String(active));
       });
     };
-    noteDots.forEach((dot, index) => dot.addEventListener("click", () => showNote(index)));
+    noteDots.forEach((dot, index) => dot.addEventListener("click", () => {
+      if (index !== currentNote) showNote(index, index > currentNote ? "left" : "right");
+    }));
+    let touchX = 0;
+    let touchY = 0;
+    noteCarousel?.addEventListener("touchstart", (event) => {
+      touchX = event.touches[0].clientX;
+      touchY = event.touches[0].clientY;
+    }, { passive: true });
+    noteCarousel?.addEventListener("touchend", (event) => {
+      const deltaX = event.changedTouches[0].clientX - touchX;
+      const deltaY = event.changedTouches[0].clientY - touchY;
+      if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+      const step = deltaX < 0 ? 1 : -1;
+      showNote((currentNote + step + notes.length) % notes.length, step === 1 ? "left" : "right");
+    }, { passive: true });
   </script>
 </Layout>

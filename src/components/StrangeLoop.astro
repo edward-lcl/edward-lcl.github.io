@@ -62,19 +62,33 @@ const layers = [
       const label = stage.querySelector("[data-loop-label]");
       const short = stage.querySelector("[data-loop-short]");
       const text = stage.querySelector("[data-loop-text]");
-      stage.querySelectorAll("[data-loop-node]").forEach((node) => {
-        node.addEventListener("click", () => {
-          stage.querySelectorAll("[data-loop-node]").forEach((item) => {
-            item.classList.remove("active");
-            item.setAttribute("aria-pressed", "false");
-          });
-          node.classList.add("active");
-          node.setAttribute("aria-pressed", "true");
-          if (label) label.textContent = node.getAttribute("data-label") || "";
-          if (short) short.textContent = node.getAttribute("data-short") || "";
-          if (text) text.textContent = node.getAttribute("data-text") || "";
+      const nodes = Array.from(stage.querySelectorAll("[data-loop-node]"));
+      const activate = (node) => {
+        nodes.forEach((item) => {
+          item.classList.remove("active");
+          item.setAttribute("aria-pressed", "false");
         });
-      });
+        node.classList.add("active");
+        node.setAttribute("aria-pressed", "true");
+        if (label) label.textContent = node.getAttribute("data-label") || "";
+        if (short) short.textContent = node.getAttribute("data-short") || "";
+        if (text) text.textContent = node.getAttribute("data-text") || "";
+      };
+      nodes.forEach((node) => node.addEventListener("click", () => activate(node)));
+      let touchX = 0;
+      let touchY = 0;
+      stage.addEventListener("touchstart", (event) => {
+        touchX = event.touches[0].clientX;
+        touchY = event.touches[0].clientY;
+      }, { passive: true });
+      stage.addEventListener("touchend", (event) => {
+        const deltaX = event.changedTouches[0].clientX - touchX;
+        const deltaY = event.changedTouches[0].clientY - touchY;
+        if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+        const current = nodes.findIndex((node) => node.classList.contains("active"));
+        const step = deltaX < 0 ? 1 : -1;
+        activate(nodes[(current + step + nodes.length) % nodes.length]);
+      }, { passive: true });
     });
   </script>
 </section>

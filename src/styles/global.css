@@ -81,6 +81,20 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch feedback: a brief tint instead of the default gray flash. */
+@media (hover: none) {
+  a.paper-card:active,
+  a.system-card:active,
+  a.collab-row:active,
+  a.theme-card:active,
+  a.notes-row:active,
+  a.method-spine:active {
+    background-color: rgba(49, 87, 213, 0.06);
+    transition-duration: 60ms;
+  }
 }
 
 ::selection {
@@ -262,6 +276,25 @@ a {
   margin-top: 3.25rem;
   padding: 1.15rem 0 0.1rem 1.25rem;
   border-left: 2px solid var(--blue);
+  touch-action: pan-y;
+}
+
+@keyframes note-in-left {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes note-in-right {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: none; }
+}
+
+.desk-note p.note-in-left {
+  animation: note-in-left 260ms ease;
+}
+
+.desk-note p.note-in-right {
+  animation: note-in-right 260ms ease;
 }
 
 .desk-note-index {
@@ -294,13 +327,15 @@ a {
   padding-bottom: 0.35rem;
 }
 
+/* The visible bar stays slim; the padded hit area is what a thumb actually gets. */
 .note-dots button {
   width: 1.7rem;
-  height: 0.22rem;
-  padding: 0;
+  height: 1.72rem;
+  padding: 0.75rem 0;
   border: 0;
   border-radius: 20px;
   background: #c8cad0;
+  background-clip: content-box;
   cursor: pointer;
   transition: background 180ms ease, width 180ms ease;
 }
@@ -308,7 +343,7 @@ a {
 .note-dots button:hover,
 .note-dots button.active {
   width: 2.4rem;
-  background: var(--blue);
+  background-color: var(--blue);
 }
 
 .primary-link {
@@ -4013,7 +4048,8 @@ a.system-card .system-link {
   .note-dots button,
   .note-dots button:hover,
   .note-dots button.active {
-    width: 0.85rem;
+    width: 1.6rem;
+    padding-inline: 0.35rem;
   }
 
   .personal-card {
