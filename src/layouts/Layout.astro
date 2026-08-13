@@ -1,11 +1,16 @@
 ---
 import "../styles/global.css";
+import { acceptedPapers, additionalPapers } from "../data/site";
 
 interface Props {
   title: string;
   description?: string;
   lang?: string;
 }
+
+const allPapers = [...acceptedPapers, ...additionalPapers];
+const paperCount = allPapers.length;
+const firstAuthorCount = allPapers.filter((paper) => paper.role === "First author").length;
 
 const {
   title,
@@ -46,7 +51,7 @@ const personSchema = {
     <meta property="og:image" content="https://edward-lcl.github.io/og/card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="A working notebook by Edward Lue Chee Lip — I research how intelligent systems remember, reason, and fail. 5 workshop papers, 3 first-author: AAAI, COLM, MICCAI." />
+    <meta property="og:image:alt" content={`A working notebook by Edward Lue Chee Lip — I research how intelligent systems remember, reason, and fail. ${paperCount} workshop papers, ${firstAuthorCount} first-author: AAAI, ICML, COLM, MICCAI.`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonical} />
     {isHomepage && <link rel="alternate" hreflang="en" href="https://edward-lcl.github.io/" />}

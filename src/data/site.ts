@@ -210,6 +210,7 @@ export const acceptedPapers = [
     slug: "factor-ut",
     title: "Factor(U,T)",
     subtitle: "Controlling Untrusted AI by Monitoring Their Plans",
+    citationTitle: "Factor-UT: Controlling Untrusted AI Decomposers in Code Generation Settings",
     venue: "AAAI 2026 · TrustAgent",
     note: "Accepted",
     role: "First author",
@@ -498,7 +499,8 @@ export const researchArcs = [
     url: "/questions/education-is-an-evaluation-problem/",
     revised: "13 Aug 2026",
     readTime: "5 min read",
-    lede: "I failed a composition course in the same semester my research won CURC Highest Honors. One of those judgments had contact with the actual work. AI did not create that gap — it made the gap impossible to ignore.",
+    lede: "I failed a composition course in the same semester my research won CURC Highest Honors. The two evaluators were measuring different objects. AI did not create that gap — it made the gap impossible to ignore.",
+    evidenceNote: "Position note: grounded in one person's documented experience plus a small coded sample of public faculty discussion. The institutional claims are directional readings, not measurements.",
     references: [
       { label: "Where this position started · How AI Exposed the Lie Inside Education (Dec 2025)", url: "https://medium.com/@eluecheelip/how-ai-exposed-the-lie-inside-education-87fe8baecbc8" },
     ],
@@ -507,7 +509,7 @@ export const researchArcs = [
         title: "The proxy collapsed",
         body: [
           "For decades the essay, the problem set, and the exam stood in for cognition because producing them was expensive. The cost was the evidence: if the artifact existed, someone had probably done the thinking. That was never a measurement of learning — it was a proxy that held only while production was slow.",
-          "AI removed the cost, and the artifact stopped proving anything about the person who submitted it. Most institutions responded with detection: an arms race against an improving generator, run on behalf of assignments that never specified what cognitive work they were supposed to develop in the first place.",
+          "AI removed the cost, and the artifact stopped proving much about the person who submitted it. In the faculty discussion I coded for the original essay, institutional energy pointed overwhelmingly at detection and enforcement rather than redesign: an arms race against an improving generator, run on behalf of assignments that rarely specified what cognitive work they were supposed to develop in the first place.",
         ],
       },
       {
@@ -521,7 +523,7 @@ export const researchArcs = [
         title: "Going back anyway",
         body: [
           "The 2025 version of this note read like a verdict on school. It was a verdict on assessment. The parts of a university that AI cannot cheapen — a cohort, laboratories, structured depth, sustained access to people who know more than you — became more valuable, not less. So I enrolled: first year at XJTLU, beginning autumn 2026.",
-          "Holding the critique and enrolling is not a contradiction; the critique is an operating manual. Treat coursework as access to problems and people. Keep the real verification external and public — shipped systems, accepted papers, a notebook that carries its own provenance — and never let the credential substitute for the record. I also no longer expect exposure to force fast redesign: the forcing function is real, but Western institutions will metabolize it on a generational clock, and waiting for them is not a plan.",
+          "Holding the critique and enrolling is not a contradiction; the critique is an operating manual. Treat coursework as access to problems and people. Keep the real verification external and public — shipped systems, accepted papers, a notebook that carries its own provenance — and never let the credential substitute for the record. I also no longer expect exposure to force fast redesign. My dated position, not a forecast dressed as fact: incumbent Western institutions will metabolize this on something closer to a generational clock than a semester one, and waiting for them is not a plan.",
         ],
       },
       {

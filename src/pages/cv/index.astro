@@ -1,58 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { links } from "../../data/site";
+import { acceptedPapers, additionalPapers, links } from "../../data/site";
 
 const statusDate = "13 Aug 2026";
 
-const publications = [
-  {
-    title: "Factor-UT: Controlling Untrusted AI Decomposers in Code Generation Settings",
-    authors: "Edward Lue Chee Lip · Anthony Channg · Diana Kim · Aaron Sandoval · Kevin Zhu",
-    venue: "AAAI 2026 · Trustworthy Agentic AI Workshop",
-    status: "Accepted",
-    role: "First author",
-    link: { label: "arXiv:2512.14745", url: "https://arxiv.org/abs/2512.14745" },
-  },
-  {
-    title: "The Recall Debt: Flat Memory Schemas Structurally Fail Multi-Hop Retrieval",
-    authors: "Edward Lue Chee Lip · Sean Wu",
-    venue: "COLM 2026 · Context Beyond the Window Workshop",
-    status: "Accepted poster",
-    role: "First author",
-    link: { label: "digest", url: "/research/recall-debt/" },
-  },
-  {
-    title: "A Benchmark Audit of Site Confounds: Calibration and Self-Supervision in Cross-Dataset Parkinson’s EEG Detection",
-    authors: "Edward Lue Chee Lip · Van Mai · Saanvi Neema · Alexander Jameson · Karolina Torbus · Jithin Suresh",
-    venue: "MICCAI 2026 · AMAI Workshop",
-    status: "Accepted full paper · poster",
-    role: "First author",
-    link: { label: "code", url: "https://github.com/edward-lcl/sjji-eeg" },
-  },
-  {
-    title: "Before You Scale: The Cost of Supervision Mismatch in PRM Distillation",
-    authors: "Saksham Kapoor · Henry Tran · Edward Lue Chee Lip · Charlotte Le",
-    venue: "COLM 2026 · Efficient Reasoning Workshop",
-    status: "Accepted",
-    role: "Co-author",
-    link: { label: "code", url: "https://github.com/edward-lcl/feedback-distillation" },
-  },
-  {
-    title: "Diagnosing Agent Capabilities Through Information-Axis Knockouts",
-    authors: "Kaaustaaub Shankar · Edward Lue Chee Lip · Joshua Liu · Benjamin J. Smith",
-    venue: "COLM 2026 · Agent Behavior Workshop",
-    status: "Accepted poster",
-    role: "Co-author",
-    link: { label: "code", url: "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP" },
-  },
-  {
-    title: "Detecting Hidden Chain-of-Thought in Large Language Models with Linguistic, Behavioral, and Mechanistic Indicators",
-    authors: "Armaan Singh · Ryan Trinh Le · Jasmine Kaur · Edward Lue Chee Lip · Kiran Nijjer · Adnan Ahmed · Vasu Sharma",
-    venue: "ICML 2026 · Workshop",
-    status: "Accepted",
-    role: "Co-author",
-  },
+// Publications derive from the same record the notebook runs on — one fact, one place.
+const cvOrder = [
+  "factor-ut",
+  "recall-debt",
+  "site-confounds-parkinsons-eeg",
+  "before-you-scale",
+  "diagnosing-agent-capabilities",
+  "hidden-cot",
 ];
+const allPapers = [...acceptedPapers, ...additionalPapers];
+const cvLinkFor = (paper: (typeof allPapers)[number]) => {
+  if ("sourceUrl" in paper && paper.sourceUrl) {
+    const isArxiv = paper.sourceUrl.includes("arxiv.org/abs/");
+    return { label: isArxiv ? paper.sourceUrl.replace("https://arxiv.org/abs/", "arXiv:") : "code", url: paper.sourceUrl };
+  }
+  if (paper.url) return { label: "digest", url: paper.url };
+  return undefined;
+};
+const publications = cvOrder
+  .map((slug) => allPapers.find((paper) => paper.slug === slug))
+  .filter((paper) => paper !== undefined)
+  .map((paper) => ({
+    title: "citationTitle" in paper && paper.citationTitle ? paper.citationTitle : `${paper.title}: ${paper.subtitle}`,
+    authors: paper.authors,
+    venue: paper.venue,
+    status: paper.note,
+    role: paper.role,
+    link: cvLinkFor(paper),
+  }));
 
 const experience = [
   {
@@ -72,7 +52,7 @@ const experience = [
     bullets: [
       "Sole AI engineer for a 26-year government infrastructure contractor — building Talos, an internal platform that automates proposal generation, tracks assets, and forecasts procurement across a contract pipeline carrying roughly US$25M in annual flow.",
       "Built the shared data and orchestration layer beneath it (Node Zero), pulling fragmented instrumentation, inventory, and procurement records into one queryable source that the AI tools and dashboards run on.",
-      "Turned the company’s full operational history, previously locked in spreadsheets and instrumentation logs, into structured queryable data — making forecasting and efficiency analysis possible for the first time.",
+      "Converted operational records previously locked in spreadsheets and instrumentation logs into structured, queryable data that the company’s forecasting and efficiency analysis now run on.",
     ],
   },
   {
@@ -89,8 +69,8 @@ const experience = [
     role: "Student Researcher · United in STEMM",
     when: "Sep 2024 – Jun 2025 · Fort Collins, CO",
     bullets: [
-      "Led a 10-person team on a human protein expression project; awarded CURC Highest Honors for innovative parameter search and workflow design.",
-      "Built AI-assisted parameter-search and process-heuristic workflows that let an undergraduate team operate at graduate-level experimental throughput.",
+      "Led a 10-person team on a human protein expression project; awarded CURC Highest Honors for parameter search and workflow design.",
+      "Built AI-assisted parameter-search and process-heuristic workflows that raised the team’s experimental iteration rate and kept its evidence traceable across members.",
     ],
   },
   {
@@ -99,7 +79,7 @@ const experience = [
     when: "2021 – 2024",
     bullets: [
       "Control Technologies Limited, Service Engineer Intern (Jun – Aug 2024): P&ID systems for automated brewery control; CCTV-PLC monitoring for compliance and traceability. Re-engaged in 2025 to build Talos & Node Zero.",
-      "LAS Retail, Founder & Operator (2021 – 2023): founded and operated the first specialty cannabis accessories retail concept in Trinidad & Tobago; reached early commercial traction and executed a clean exit on relocation.",
+      "LAS Retail, Founder & Operator (2021 – 2023): founded and operated a specialty cannabis accessories retail business in Trinidad & Tobago — sourcing, compliance, and pricing in a category with no established local framework; reached early commercial traction and executed a clean exit on relocation.",
     ],
   },
 ];
@@ -138,7 +118,7 @@ const skills = [
         for a capital-intensive industrial operator.
       </p>
       <p class="cv-contact">
-        Trinidad &amp; Tobago · open to relocation
+        Trinidad &amp; Tobago · XJTLU from autumn 2026
         · <a href={links.email}>eluecheelip@gmail.com</a>
         · <a href={links.github}>github/edward-lcl</a>
         · <a href={links.linkedin}>linkedin/edward-lue-chee-lip</a>
@@ -200,7 +180,7 @@ const skills = [
         <span>on leave</span>
       </div>
       <div class="cv-job-head">
-        <strong>CURC Highest Honors — Colorado University Research Conference</strong>
+        <strong>CURC Highest Honors — Colorado State University</strong>
         <span>Jun 2025</span>
       </div>
     </section>

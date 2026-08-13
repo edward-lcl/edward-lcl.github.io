@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://edward-lcl.github.io/sitemap-index.xml

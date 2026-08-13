@@ -12,6 +12,9 @@ const collaborations = [
   ...acceptedPapers.filter((paper) => !flagshipSlugs.includes(paper.slug)),
   ...additionalPapers,
 ];
+const allPapers = [...acceptedPapers, ...additionalPapers];
+const paperCount = allPapers.length;
+const firstAuthorCount = allPapers.filter((paper) => paper.role === "First author").length;
 const featuredArcSlugs = [
   "a-zero-needs-adjudication",
   "where-does-the-model-end",
@@ -89,7 +92,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       </aside>
 
       <div class="hero-proof hero-proof-text reveal" aria-label="Research focus and public evidence">
-        <p><span class="proof-label">Accepted work</span><strong>6 workshop papers · 3 first-author<br />AAAI · ICML · COLM · MICCAI</strong></p>
+        <p><span class="proof-label">Accepted work</span><strong>{paperCount} workshop papers · {firstAuthorCount} first-author<br />AAAI · ICML · COLM · MICCAI</strong></p>
         <p><span class="proof-label">Working across</span><strong>memory · evaluation · agents · AI control</strong></p>
         <p><span class="proof-label">Evidence</span><strong>papers · code · experiments · system notes</strong></p>
         <p class="proof-note">The signal is useful.<br /><em>The questions matter more.</em></p>
@@ -103,9 +106,9 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
           <h2>Two flagship papers</h2>
         </div>
         <p>
-          Where memory loses information, and where control regains it. Six workshop papers were accepted
-          across AAAI, ICML, COLM, and MICCAI in 2026 — three first-author. These two anchor the program;
-          digests carry their own provenance.
+          Where memory loses information, and where control regains it. Accepted 2026 work spans AAAI,
+          ICML, COLM, and MICCAI workshops — {firstAuthorCount} papers first-author. These two anchor
+          the program; digests carry their own provenance.
         </p>
       </div>
 
@@ -155,7 +158,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       </div>
 
       <div class="research-footnote reveal">
-        <p>Each entry opens a plain-language digest. Public artifacts are linked from the digest when available.</p>
+        <p>Entries with a digest open a plain-language summary; the newest paper’s digest is in progress. Public artifacts are linked when available.</p>
         <p>The papers are the visible edge of a much larger working set.</p>
       </div>
     </section>

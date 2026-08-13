@@ -26,6 +26,7 @@ const { question, next } = Astro.props;
   status="Living field note"
   authors="Edward Lue Chee Lip"
   publicationDate="Continuously revised"
+  evidenceNote={"evidenceNote" in question ? question.evidenceNote : undefined}
   lastVerified={"revised" in question ? question.revised : undefined}
   lastVerifiedLabel="Last revised"
   readTime={"readTime" in question ? question.readTime : "3 min read"}

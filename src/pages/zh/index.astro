@@ -1,8 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { acceptedPapers, links, selectedSystems } from "../../data/site";
+import { acceptedPapers, additionalPapers, links, selectedSystems } from "../../data/site";
 
 const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
+const allPapers = [...acceptedPapers, ...additionalPapers];
+const paperCount = allPapers.length;
+const firstAuthorCount = allPapers.filter((paper) => paper.role === "First author").length;
+const zhNumerals = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
 const zhSystemCopy = {
   "eval-evidence": {
     kind: "评估基础设施",
@@ -56,8 +60,8 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           <p class="overline"><span class="status-dot"></span>Edward 的中文概览 · 深入内容以英文为准</p>
           <h1>我研究智能系统如何<span>记忆、推理与失败。</span></h1>
           <p class="hero-lead">
-            我来自特立尼达和多巴哥，是一名独立人工智能研究者与系统构建者。
-            我的工作横跨 AI 安全、记忆、智能体评估、生物医学信号，以及把复杂想法变成可用系统所需的基础设施。
+            我来自特立尼达和多巴哥，是一名人工智能研究者与系统构建者。
+            我研究智能系统在层与层之间丢失信息、控制与证据的位置，并构建让这些丢失可以被检验的基础设施。
           </p>
           <div class="hero-actions">
             <a class="primary-link" href="#research">查看研究 <span>↓</span></a>
@@ -86,7 +90,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
               <circle cx="20" cy="72" r="5" />
               <circle cx="340" cy="15" r="5" />
             </svg>
-            <div><span>特立尼达和多巴哥</span><em>主动跨越学科</em><span>XJTLU</span></div>
+            <div><span>特立尼达和多巴哥</span><em>同一个问题，跨越层级</em><span>XJTLU</span></div>
           </div>
           <p class="personal-note">
             来自特立尼达和多巴哥；已入学西交利物浦大学人工智能
@@ -95,12 +99,13 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           <p class="personal-aside">地点会变化，主线不会：追随难题、公开证据，并构建系统缺失的那一层。</p>
           <div class="personal-links">
             <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="/cv/">CV →</a>
             <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </aside>
 
         <div class="hero-proof hero-proof-text reveal" aria-label="研究方向与公开证据">
-          <p><span class="proof-label">已录用</span><strong>AAAI TrustAgent · COLM · MICCAI AMAI</strong></p>
+          <p><span class="proof-label">已录用</span><strong>{paperCount} 篇研讨会论文 · {firstAuthorCount} 篇第一作者<br />AAAI · ICML · COLM · MICCAI</strong></p>
           <p><span class="proof-label">研究方向</span><strong>记忆 · 评估 · 智能体 · AI 控制</strong></p>
           <p><span class="proof-label">公开证据</span><strong>论文 · 代码 · 实验 · 系统笔记</strong></p>
           <p class="proof-note">成果很重要。<br /><em>问题更重要。</em></p>
@@ -113,7 +118,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             <p class="overline">代表研究</p>
             <h2>部分已录用研究</h2>
           </div>
-          <p>以下五篇公开摘要来自 AAAI、COLM 与 MICCAI 研讨会的已录用工作：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
+          <p>2026 年共有{zhNumerals[paperCount]}篇研讨会论文被 AAAI、ICML、COLM 与 MICCAI 录用（{zhNumerals[firstAuthorCount]}篇第一作者）。以下{zhNumerals[acceptedPapers.length]}篇附有英文简明摘要：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
         </div>
 
         <div class="paper-grid">
@@ -148,8 +153,21 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             );
           })}
         </div>
+        <div class="collab-block reveal">
+          <p class="collab-label">其他已录用工作</p>
+          <div class="collab-list">
+            {additionalPapers.map((paper) => (
+              <article class="collab-row">
+                <span class="collab-venue">{paper.venue}</span>
+                <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
+                <span class="collab-role">合著 · 摘要页即将上线</span>
+                <span class="collab-arrow" aria-hidden="true"></span>
+              </article>
+            ))}
+          </div>
+        </div>
         <div class="research-footnote reveal">
-          <p>每张卡片都会打开简明摘要；公开版本可用时会从摘要页链接。</p>
+          <p>附摘要的卡片会打开英文简明总结；公开工件可用时会从摘要页链接。</p>
           <p>这些论文只是更大工作集的可见边缘。</p>
         </div>
       </section>
@@ -157,7 +175,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
       <section id="about" class="section shell about-section">
         <div class="about-heading reveal">
           <p class="overline">关于我</p>
-          <h2>跨领域，<br /><span>是有意为之。</span></h2>
+          <h2>这些问题，<br /><span>来自这条路径。</span></h2>
         </div>
         <div class="about-copy reveal">
           <p class="about-lead">
@@ -265,31 +283,39 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
       const noteCarousel = document.querySelector("[data-note-carousel]");
       const noteDots = Array.from(document.querySelectorAll("[data-note-dot]"));
       let currentNote = 0;
-      let noteTimer;
-      const showNote = (nextNote) => {
+      const showNote = (nextNote, direction) => {
         currentNote = nextNote;
-        if (noteText) noteText.textContent = notes[currentNote];
-        if (noteIndex) noteIndex.textContent = String(currentNote + 1).padStart(2, "0");
+        if (noteText) {
+          if (direction && !reducedMotion) {
+            noteText.classList.remove("note-in-left", "note-in-right");
+            void noteText.offsetWidth;
+            noteText.classList.add(direction === "left" ? "note-in-left" : "note-in-right");
+          }
+          noteText.textContent = notes[nextNote];
+        }
+        if (noteIndex) noteIndex.textContent = String(nextNote + 1).padStart(2, "0");
         noteDots.forEach((dot, index) => {
-          const active = index === currentNote;
+          const active = index === nextNote;
           dot.classList.toggle("active", active);
           dot.setAttribute("aria-pressed", String(active));
         });
       };
-      const startNotes = () => {
-        if (reducedMotion) return;
-        window.clearInterval(noteTimer);
-        noteTimer = window.setInterval(() => showNote((currentNote + 1) % notes.length), 5200);
-      };
       noteDots.forEach((dot, index) => dot.addEventListener("click", () => {
-        showNote(index);
-        startNotes();
+        if (index !== currentNote) showNote(index, index > currentNote ? "left" : "right");
       }));
-      noteCarousel?.addEventListener("mouseenter", () => window.clearInterval(noteTimer));
-      noteCarousel?.addEventListener("mouseleave", startNotes);
-      noteCarousel?.addEventListener("focusin", () => window.clearInterval(noteTimer));
-      noteCarousel?.addEventListener("focusout", startNotes);
-      startNotes();
+      let touchX = 0;
+      let touchY = 0;
+      noteCarousel?.addEventListener("touchstart", (event) => {
+        touchX = event.touches[0].clientX;
+        touchY = event.touches[0].clientY;
+      }, { passive: true });
+      noteCarousel?.addEventListener("touchend", (event) => {
+        const deltaX = event.changedTouches[0].clientX - touchX;
+        const deltaY = event.changedTouches[0].clientY - touchY;
+        if (Math.abs(deltaX) < 40 || Math.abs(deltaX) < Math.abs(deltaY) * 1.2) return;
+        const step = deltaX < 0 ? 1 : -1;
+        showNote((currentNote + step + notes.length) % notes.length, step === 1 ? "left" : "right");
+      }, { passive: true });
     </script>
   </div>
 </Layout>
