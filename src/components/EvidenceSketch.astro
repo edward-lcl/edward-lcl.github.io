@@ -53,31 +53,34 @@ const captions: Record<string, string> = {
     )}
 
     {slug === "factor-ut" && (
-      <div class="monitor-bars" aria-label="Monitoring AUROC comparison: decomposition-only 0.52 and implementation-level 0.96">
-        <div><span>Plan only</span><i style="--value:52"></i><strong>0.52</strong></div>
-        <div class="evidence-accent"><span>Implementation</span><i style="--value:96"></i><strong>0.96</strong></div>
-        <p>monitoring AUROC</p>
+      <div class="monitor-bars" aria-label="Monitoring AUROC on one zero-to-one scale where 0.50 is chance: plan-only monitoring scores 0.52, barely above chance; implementation-level monitoring scores 0.96, close to a perfect monitor">
+        <div><span>Plan only</span><i><em style="--value:52"></em></i><b>0.52</b></div>
+        <div class="evidence-accent"><span>Implementation</span><i><em style="--value:96"></em></i><b>0.96</b></div>
+        <p>Monitoring AUROC · dashed line = chance (0.50) · 1.00 = perfect monitor</p>
       </div>
     )}
 
     {slug === "site-confounds-parkinsons-eeg" && (
-      <div class="site-audit-sketch" aria-label="Site confound audit: pooled no-EEG site-prior balanced accuracy 0.901; held-out-site supervised ROC-AUC 0.763; fixed-threshold balanced accuracy 0.585 and train-site-selected threshold balanced accuracy 0.643">
-        <div class="site-audit-stage site-audit-warning">
-          <span>Pooled protocol</span>
-          <strong>0.901</strong>
-          <p>No EEG. Site prior only.</p>
+      <div class="site-audit-sketch" aria-label="Site-confound audit ledger: a pooled protocol scores 0.901 balanced accuracy from the site prior alone, using no EEG signal; an honest unseen-site holdout scores 0.763 ROC-AUC for ranking; at the decision layer, balanced accuracy falls to 0.585 with a fixed threshold and 0.643 with a train-site threshold">
+        <div class="site-audit-row site-audit-warning">
+          <span>Pooled protocol · site prior only, no EEG</span>
+          <b>0.901</b>
+          <em>balanced accuracy</em>
         </div>
-        <i class="site-audit-neq" aria-hidden="true">≠</i>
-        <div class="site-audit-stage">
-          <span>Unseen site · ranking</span>
-          <strong>0.763</strong>
-          <p>Supervised LODO ROC-AUC</p>
+        <div class="site-audit-row">
+          <span>Unseen site · supervised ranking (LODO)</span>
+          <b>0.763</b>
+          <em>ROC-AUC</em>
         </div>
-        <i aria-hidden="true">→</i>
-        <div class="site-audit-stage site-audit-decision">
-          <span>Unseen site · decision</span>
-          <div><b>0.585</b><em>fixed</em><b>0.643</b><em>train-site threshold</em></div>
-          <p>Balanced accuracy</p>
+        <div class="site-audit-row">
+          <span>Unseen site · decision, fixed threshold</span>
+          <b>0.585</b>
+          <em>balanced accuracy</em>
+        </div>
+        <div class="site-audit-row">
+          <span>Unseen site · decision, train-site threshold</span>
+          <b>0.643</b>
+          <em>balanced accuracy</em>
         </div>
         <small>Hospital identity can look like disease signal. The split and the threshold are part of the claim.</small>
       </div>

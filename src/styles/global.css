@@ -1535,12 +1535,12 @@ a.system-card .system-link {
 }
 
 .retrieval-bars .evidence-accent i em,
-.monitor-bars .evidence-accent i {
+.monitor-bars .evidence-accent i em {
   background: var(--blue);
 }
 
 .retrieval-bars .evidence-accent b,
-.monitor-bars .evidence-accent strong {
+.monitor-bars .evidence-accent b {
   color: var(--blue);
 }
 
@@ -1632,47 +1632,57 @@ a.system-card .system-link {
   text-transform: uppercase;
 }
 
+/* Both AUROC bars share one 0-to-1 track so their lengths can be compared;
+   the dashed marker is chance (0.50) — the value at which a monitor knows nothing. */
 .monitor-bars {
-  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 7vw, 8rem);
-  height: 230px;
-  align-items: end;
-  padding-inline: clamp(1rem, 6vw, 6rem);
+  gap: clamp(1.1rem, 2vw, 1.6rem);
+  padding-block: 1.2rem 0.4rem;
 }
 
 .monitor-bars > div {
   display: grid;
-  height: 100%;
-  grid-template-rows: auto 1fr auto;
-  gap: 0.7rem;
-  align-items: end;
+  grid-template-columns: minmax(120px, 0.4fr) minmax(0, 1fr) auto;
+  gap: 1.1rem;
+  align-items: center;
 }
 
 .monitor-bars i {
+  position: relative;
   display: block;
-  width: 100%;
-  height: calc(var(--value) * 1%);
+  height: 9px;
+  background: #e3e4e6;
+}
+
+.monitor-bars i em {
+  display: block;
+  width: calc(var(--value) * 1%);
+  height: 100%;
   background: #c9cbd0;
 }
 
-.monitor-bars strong {
+.monitor-bars i::after {
+  position: absolute;
+  top: -5px;
+  bottom: -5px;
+  left: 50%;
+  border-left: 1px dashed #9a4934;
+  content: "";
+}
+
+.monitor-bars b {
   font-family: var(--serif);
-  font-size: 1.8rem;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
   font-weight: 500;
 }
 
 .monitor-bars p {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  margin: 0;
+  margin: 0.4rem 0 0;
   color: var(--quiet);
   font-family: var(--mono);
   font-size: 0.55rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  writing-mode: vertical-rl;
 }
 
 .evidence-sketch-compact {
@@ -1779,95 +1789,89 @@ a.system-card .system-link {
 }
 
 .evidence-sketch-compact .monitor-bars {
-  gap: 1rem;
-  height: 90px;
-  padding-inline: 1rem;
+  gap: 0.8rem;
+  padding-block: 0.4rem 0;
+}
+
+.evidence-sketch-compact .monitor-bars > div {
+  grid-template-columns: minmax(84px, 0.8fr) minmax(50px, 1fr) auto;
+  gap: 0.5rem;
 }
 
 .evidence-sketch-compact .monitor-bars span {
   font-size: 0.46rem;
 }
 
-.evidence-sketch-compact .monitor-bars strong {
+.evidence-sketch-compact .monitor-bars i {
+  height: 5px;
+}
+
+.evidence-sketch-compact .monitor-bars i::after {
+  top: -3px;
+  bottom: -3px;
+}
+
+.evidence-sketch-compact .monitor-bars b {
   font-size: 0.8rem;
 }
 
+.evidence-sketch-compact .monitor-bars p {
+  font-size: 0.42rem;
+}
+
+/* The audit reads as a ledger: one metric per row, the trap row flagged.
+   Metrics differ across rows, so no shared bar scale is drawn on purpose. */
 .site-audit-sketch {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.2fr);
-  gap: clamp(0.8rem, 2vw, 1.6rem);
-  align-items: center;
+  gap: 0;
 }
 
-.site-audit-stage {
-  display: flex;
-  min-height: 190px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border: 1px solid var(--line);
-  background: var(--surface);
+.site-audit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(118px, auto);
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--line);
 }
 
-.site-audit-stage > span,
-.site-audit-stage em {
-  color: var(--quiet);
+.site-audit-row:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.site-audit-row > span,
+.site-audit-row em {
+  color: var(--muted);
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   font-style: normal;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.site-audit-stage > strong,
-.site-audit-stage b {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 3.6vw, 3.4rem);
-  font-weight: 500;
-  letter-spacing: -0.05em;
+.site-audit-row em {
+  color: var(--quiet);
+  font-size: 0.55rem;
+  text-align: right;
 }
 
-.site-audit-stage p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.72rem;
-  line-height: 1.45;
+.site-audit-row b {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+  font-weight: 500;
 }
 
 .site-audit-warning {
-  border-color: #b67b68;
+  border-left: 2px solid #b67b68;
   background: #f5ece7;
 }
 
-.site-audit-warning > strong {
+.site-audit-warning b {
   color: #9a4934;
 }
 
-.site-audit-decision {
-  border-color: rgba(49, 87, 213, 0.4);
-  background: var(--blue-soft);
-}
-
-.site-audit-decision > div {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.1rem 0.7rem;
-  align-items: baseline;
-}
-
-.site-audit-decision b:last-of-type {
-  color: var(--blue);
-}
-
-.site-audit-sketch > i {
-  color: var(--blue);
-  font-family: var(--serif);
-  font-size: 1.8rem;
-  font-style: normal;
-}
-
 .site-audit-sketch > small {
-  grid-column: 1 / -1;
+  margin-top: 1.1rem;
   color: var(--muted);
   font-family: var(--serif);
   font-size: 0.95rem;
@@ -1876,32 +1880,21 @@ a.system-card .system-link {
   text-align: right;
 }
 
-.evidence-sketch-compact .site-audit-sketch {
-  grid-template-columns: 1fr auto 1fr auto 1.2fr;
-  gap: 0.4rem;
+.evidence-sketch-compact .site-audit-row {
+  gap: 0.6rem;
+  padding: 0.5rem 0.55rem;
 }
 
-.evidence-sketch-compact .site-audit-stage {
-  min-height: 88px;
-  padding: 0.55rem;
+.evidence-sketch-compact .site-audit-row > span {
+  font-size: 0.44rem;
 }
 
-.evidence-sketch-compact .site-audit-stage > span,
-.evidence-sketch-compact .site-audit-stage em {
+.evidence-sketch-compact .site-audit-row em {
   font-size: 0.4rem;
 }
 
-.evidence-sketch-compact .site-audit-stage > strong,
-.evidence-sketch-compact .site-audit-stage b {
-  font-size: 1.05rem;
-}
-
-.evidence-sketch-compact .site-audit-stage p {
-  font-size: 0.48rem;
-}
-
-.evidence-sketch-compact .site-audit-sketch > i {
-  font-size: 0.8rem;
+.evidence-sketch-compact .site-audit-row b {
+  font-size: 0.82rem;
 }
 
 .evidence-sketch-compact .site-audit-sketch > small {
@@ -3983,34 +3976,26 @@ a.system-card .system-link {
     grid-template-columns: 1fr 1fr;
   }
 
-  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-sketch {
-    grid-template-columns: 1fr;
+  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-row {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-sketch > i {
-    transform: rotate(90deg);
-    text-align: center;
-  }
-
-  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-sketch > .site-audit-neq {
-    transform: none;
-  }
-
-  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-sketch > small {
-    grid-column: auto;
+  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-row em {
+    grid-column: 1 / -1;
     text-align: left;
   }
 
-  .evidence-sketch-compact .site-audit-stage {
-    min-width: 0;
+  .evidence-sketch:not(.evidence-sketch-compact) .site-audit-sketch > small {
+    text-align: left;
   }
 
-  .evidence-sketch-compact .site-audit-sketch {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .evidence-sketch-compact .site-audit-row {
+    grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .evidence-sketch-compact .site-audit-sketch > i {
-    display: none;
+  .evidence-sketch-compact .site-audit-row em {
+    grid-column: 1 / -1;
+    text-align: left;
   }
 
   .evidence-sketch-compact .transfer-sketch strong {
