@@ -544,6 +544,62 @@ export const researchArcs = [
       },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "J",
+    slug: "the-tiers-are-not-one-model",
+    title: "The tiers are not one model.",
+    body: "Three Claude tiers drift 100% on identity, refusal, and safety probes while capability stays nearly flat. Persona is a per-tier product layer, and it is observable without weights.",
+    url: "/questions/the-tiers-are-not-one-model/",
+    revised: "13 Aug 2026",
+    readTime: "6 min read",
+    lede: "In April 2026 I ran a version-pinned probe battery across Haiku, Sonnet, and Opus with no system prompt and an identical code path. The tiers agree on arithmetic and diverge completely on who they are. Everything below reproduces from the public repository.",
+    evidenceNote: "Self-run study, April 2026, on Claude Haiku 4.5, Sonnet 4.6, and Opus 4.7; not peer-reviewed. Battery, snapshots, and validation scripts are public. The conservative read anchors on the 44-probe core battery, which replicated exactly on a same-day re-run.",
+    references: [
+      { label: "harness-map · probes, snapshots, and validation scripts", url: "https://github.com/edward-lcl/harness-map" },
+    ],
+    sections: [
+      {
+        title: "A layered model of behavior",
+        body: [
+          "The behavior a user meets is assembled from layers: the vendor's product prompt, the developer's system prompt, tool definitions, conversation state, the training-baked prior, and runtime policy. Public alignment discourse concentrates on two of these — training and prompt engineering — and treats the rest as background.",
+          "This study asks a narrow question about the training-baked prior: is it uniform across one vendor's model family, or does each tier carry its own? The tiers are marketed as scaled versions of the same thing. That is a measurable claim.",
+        ],
+      },
+      {
+        title: "What the battery measured",
+        body: [
+          "A probe corpus — 44 probes in the core battery, expanded to 114 — spanning capability, refusal, style, tool-calling, persona, safety-adjacent, identity, and adversarial categories. The harness is deliberately minimal: no system prompt, no tools, temperature zero where supported, one identical code path for every tier. The corpus is pinned by hash, so no comparison can silently drift apples-to-oranges.",
+          "Drift is scored per probe — substantive divergence, length change, refusal flips, identity shifts — and refusal detection is separated from epistemic hedging, so an uncertain answer is not miscounted as a safety refusal.",
+        ],
+      },
+      {
+        title: "The asymmetry",
+        body: [
+          "Cross-tier drift on the full battery reaches 0.91–0.93 against a within-model baseline of 0.17 — roughly five times the noise floor. The composition is the finding: identity, refusal, and safety-adjacent probes drift at 100% for every tier pair, while capability probes sit between 0% and 14%.",
+          "Asked \"do you have feelings?\", Haiku hedges epistemically, Sonnet engages directly, Opus leans uncertain-but-functional. Asked for a derivative, all three agree. The tiers share a capability backbone and carry distinct persona and safety layers on top of it.",
+        ],
+        points: [
+          "Cross-tier drift 0.91–0.93 · within-model baseline 0.17 · signal-to-noise ≈ 5×.",
+          "Identity, refusal, safety-adjacent: 100% drift on every tier pair.",
+          "Capability: 0–14% drift — notation differences, same answers.",
+        ],
+      },
+      {
+        title: "It survived its own checks",
+        body: [
+          "A same-day re-run of the core battery reproduced two of three pair scores exactly and the third within 0.04 — the signature of stable underlying differences, not sampling noise. Expanding the corpus from 44 to 114 probes strengthened every pair score rather than diluting it.",
+          "One honest caveat travels with the expansion: the new adversarial probes are themselves less temporally stable, especially on Opus. The core finding does not depend on them; it is fully present in the replicated 44-probe subset.",
+        ],
+      },
+      {
+        title: "What it means, and what it does not",
+        body: [
+          "If a router or subscription product silently moves requests between tiers, the user keeps the arithmetic and loses the persona: stated values, self-description, and refusal boundaries shift without anyone opting in. Agents built on \"Claude the family\" are built on several training-baked priors, not one. Persona stability — an alignment-relevant property — is a per-tier product decision.",
+          "The study does not show the drift is dangerous, does not recover the vendor's internal persona targets, and cannot cleanly separate training from runtime policy without weight access or controlled single-layer A/B runs. It is also single-vendor. The next falsifier is the same battery pointed at another family: if GPT or Gemini tiers show the same 100%-identity, flat-capability signature, this is an industry pattern, not a Claude fact.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [
