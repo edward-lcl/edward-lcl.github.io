@@ -351,6 +351,7 @@ export const researchArcs = [
     title: "A zero needs adjudication.",
     body: "A failed task can mean incapability, a broken task, an opaque harness, or a gameable verifier. Provenance determines which claim the number can support.",
     url: "/questions/a-zero-needs-adjudication/",
+    revised: "13 Aug 2026",
     lede: "A benchmark output is not yet knowledge. Before a number becomes a claim, we need to know what produced it, what else could have produced it, and which uncertainties remain unresolved.",
     sections: [
       { title: "One number, several worlds", body: ["A zero may mean the task is genuinely difficult. It may also mean the specification is incomplete, the environment is broken, the verifier recognizes only one privileged path, or the harness suppressed a capability the model otherwise has.", "Those worlds are operationally different and statistically identical if all we publish is reward."], points: ["Task validity: was the thing being asked coherent and feasible?", "Instrument validity: which model, harness, prompt assembly, and provider state produced the trace?", "Verifier validity: did the reward correspond to the task’s actual success condition?", "Temporal validity: would the same named system behave the same way next week?"] },
@@ -364,6 +365,7 @@ export const researchArcs = [
     title: "Where does the model end?",
     body: "Weights, tokenizer, system prompt, tools, memory, classifiers, and product harness jointly shape behavior. Open and closed models are different kinds of objects.",
     url: "/questions/where-does-the-model-end/",
+    revised: "13 Aug 2026",
     lede: "The model presented to a user is rarely just a checkpoint. It is a layered product whose surrounding machinery changes what inputs become legible and which outputs become possible.",
     sections: [
       { title: "The harness is part of the model-as-used", body: ["Closed providers can tune system prompts, routers, tools, memory, classifiers, and hidden policies around a checkpoint. That harness can add capability, remove capability, or redirect the probability mass of an answer without changing the product name.", "An open checkpoint exposes a different object: more inspectable and recomposable, but without the provider’s proprietary control plane. Comparing the two as if they were interchangeable weights hides the actual system boundary."] },
@@ -377,6 +379,7 @@ export const researchArcs = [
     title: "The frontier is funded.",
     body: "Geopolitics directs capital; capital builds infrastructure; infrastructure selects research; research becomes products that redirect capital again.",
     url: "/questions/the-frontier-is-funded/",
+    revised: "13 Aug 2026",
     lede: "Research agendas do not emerge from ideas alone. They are downstream of energy, chips, industrial policy, national strategy, corporate revenue, and the institutions able to absorb long-horizon risk.",
     visual: "flywheel",
     sections: [
@@ -391,6 +394,7 @@ export const researchArcs = [
     title: "Systems are strange loops.",
     body: "Builders shape tools that reshape builders. Models, markets, institutions, and mimetic desire continually produce one another across time.",
     url: "/questions/systems-are-strange-loops/",
+    revised: "13 Aug 2026",
     lede: "The projects look separate only when viewed from one altitude. Move between layers and they become the same object: a system learning what to value while its observers learn how to see it.",
     visual: "strange-loop",
     sections: [
@@ -405,6 +409,7 @@ export const researchArcs = [
     title: "Red teaming is accountability.",
     body: "Adversarial pressure is most useful when it reveals a system boundary and forces providers to make more truthful claims—not when it stops at spectacle.",
     url: "/questions/red-teaming-as-accountability/",
+    revised: "13 Aug 2026",
     lede: "I came into this work through agent prompting, system-prompt leakage, and injection. The enduring question was not how to jailbreak a model; it was how external pressure can expose the mismatch between a system’s story and its behavior.",
     pullQuote: "Safety gets better as red-teaming gets better. Local models, jailbreak them to the limit—you can only do so much with that. The 400B+ models that could really do damage? You kind of want those to be safe. But also not useless. Which is why you need so much data on exactly what jailbreaks each model.",
     sections: [
@@ -420,6 +425,7 @@ export const researchArcs = [
     title: "The loop is an evidence system.",
     body: "OODA is the ancestry. In practice I add an explicit plan contract, bounded execution, a verifier that can reject the work, and a trace that becomes the next observation.",
     url: "/questions/build-the-missing-layer/",
+    revised: "13 Aug 2026",
     lede: "I use the same operating logic for an abstract research question, a multi-agent runtime, an RFQ, and a physical deployment: find the real constraint, make the proposed action falsifiable, and keep enough lineage to know what happened.",
     visual: "ooda",
     readTime: "7 min read",
@@ -442,6 +448,7 @@ export const researchArcs = [
     title: "When synthesis gets cheap, truth gets expensive.",
     body: "Compute can multiply hypotheses and implementations. Planning, verification, and contact with reality become the scarce layers that decide which outputs deserve belief.",
     url: "/questions/verification-must-touch-reality/",
+    revised: "13 Aug 2026",
     lede: "This is a dated position, not a forecast disguised as fact: as candidate generation gets cheaper, more value moves to selecting the right problem, bounding the action, and building a verifier that can disagree with the model.",
     visual: "verification-pipeline",
     readTime: "7 min read",
@@ -468,6 +475,7 @@ export const researchArcs = [
     title: "Control has grammar.",
     body: "System prompts, specifications, judge rubrics, and agent policies all use modal force to turn prose into an operational hierarchy.",
     url: "/questions/control-has-grammar/",
+    revised: "13 Aug 2026",
     lede: "I keep encountering the same pattern across protocol specifications, system prompts, evaluation rubrics, and agent instructions: when prose must constrain behavior, its verbs acquire force.",
     visual: "instruction-force",
     readTime: "4 min read",

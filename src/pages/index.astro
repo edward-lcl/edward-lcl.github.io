@@ -70,7 +70,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
             <circle cx="20" cy="72" r="5" />
             <circle cx="340" cy="15" r="5" />
           </svg>
-          <div><span>Trinidad &amp; Tobago</span><em>cross-domain by design</em><span>XJTLU</span></div>
+          <div><span>Trinidad &amp; Tobago</span><em>the same problem, across layers</em><span>XJTLU</span></div>
         </div>
         <p class="personal-note">
           From Trinidad and Tobago; studying Artificial Intelligence
@@ -140,7 +140,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
             <a class="collab-row" href={paper.url}>
               <span class="collab-venue">{paper.venue}</span>
               <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
-              <span class="collab-role">{paper.role}</span>
+              <span class:list={["collab-role", paper.role === "First author" && "collab-role-first"]}>{paper.role}</span>
               <span class="collab-arrow" aria-hidden="true">→</span>
             </a>
           ))}
@@ -257,11 +257,6 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
           The path ran through fermentation science and wet-lab research at Colorado State,
           industrial automation in Trinidad, entrepreneurship, and now AI research. Each stop taught
           the same respect for noisy evidence and for systems that have to work outside a demo.
-        </p>
-        <p>
-          Moving between fields is part of how I work. A retrieval problem can look like a
-          control problem; an evaluation failure can look like a measurement problem; a research
-          workflow can become infrastructure for an entire group.
         </p>
       </div>
 

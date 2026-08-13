@@ -1053,6 +1053,13 @@ a.system-card .system-link {
   font-size: 0.85rem;
 }
 
+.collab-role-first {
+  padding: 0.32rem 0.5rem;
+  border-radius: 100px;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+}
+
 /* Method band: the instrument register, mid-page */
 .method-band {
   padding-block: clamp(4.5rem, 8vw, 7rem);

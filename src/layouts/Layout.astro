@@ -43,7 +43,11 @@ const personSchema = {
     <meta property="og:url" content={Astro.url} />
     <meta property="og:site_name" content="Edward Lue Chee Lip" />
     <meta property="og:locale" content={lang === "zh-CN" ? "zh_CN" : "en_US"} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://edward-lcl.github.io/og/card.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="A working notebook by Edward Lue Chee Lip — I research how intelligent systems remember, reason, and fail. 5 workshop papers, 3 first-author: AAAI, COLM, MICCAI." />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonical} />
     {isHomepage && <link rel="alternate" hreflang="en" href="https://edward-lcl.github.io/" />}
     {isHomepage && <link rel="alternate" hreflang="zh-CN" href="https://edward-lcl.github.io/zh/" />}

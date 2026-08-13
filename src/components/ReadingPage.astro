@@ -20,6 +20,7 @@ interface Props {
   evidenceClass?: string;
   provenance?: string;
   lastVerified?: string;
+  lastVerifiedLabel?: string;
   citationState?: string;
   readTime?: string;
   pullQuote?: string;
@@ -48,6 +49,7 @@ const {
   evidenceClass,
   provenance,
   lastVerified,
+  lastVerifiedLabel = "Last checked",
   citationState,
   readTime,
   pullQuote,
@@ -110,7 +112,7 @@ const pageSchema = {
             {readTime && <div><dt>Reading time</dt><dd>{readTime}</dd></div>}
             {contribution && <div class="meta-wide"><dt>Contribution</dt><dd>{contribution}</dd></div>}
             {evidenceClass && <div><dt>Claim state</dt><dd>{evidenceClass}</dd></div>}
-            {lastVerified && <div><dt>Last checked</dt><dd>{lastVerified}</dd></div>}
+            {lastVerified && <div><dt>{lastVerifiedLabel}</dt><dd>{lastVerified}</dd></div>}
             {provenance && <div class="meta-wide"><dt>Provenance</dt><dd>{provenance}</dd></div>}
             {citationState && <div class="meta-wide"><dt>Citation</dt><dd>{citationState}</dd></div>}
           </dl>

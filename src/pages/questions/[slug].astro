@@ -26,12 +26,14 @@ const { question, next } = Astro.props;
   status="Living field note"
   authors="Edward Lue Chee Lip"
   publicationDate="Continuously revised"
+  lastVerified={"revised" in question ? question.revised : undefined}
+  lastVerifiedLabel="Last revised"
   readTime={"readTime" in question ? question.readTime : "3 min read"}
   pullQuote={"pullQuote" in question ? question.pullQuote : undefined}
   references={"references" in question ? question.references : undefined}
   sections={question.sections}
-  backHref="/#work"
-  backLabel="questions"
+  backHref="/notes/"
+  backLabel="field notes"
   nextHref={`/questions/${next.slug}/`}
   nextLabel={next.title}
 >
