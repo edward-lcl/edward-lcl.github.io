@@ -1846,14 +1846,14 @@ a.system-card .system-link {
 
 .ooda-map-scroll {
   overflow-x: auto;
-  padding-bottom: 0.75rem;
+  padding: 0.25rem 0 1rem;
   scrollbar-color: var(--blue) #dedfe2;
   scrollbar-width: thin;
 }
 
 .ooda-map {
   display: block;
-  min-width: 940px;
+  min-width: 1000px;
   width: 100%;
   height: auto;
 }
@@ -1861,7 +1861,7 @@ a.system-card .system-link {
 .ooda-map text {
   fill: var(--text);
   font-family: var(--mono);
-  font-size: 13.5px;
+  font-size: 15px;
   letter-spacing: 0.025em;
   text-anchor: middle;
   text-transform: uppercase;
@@ -1869,13 +1869,13 @@ a.system-card .system-link {
 
 .ooda-map .sub {
   fill: var(--muted);
-  font-size: 10.5px;
+  font-size: 11.5px;
 }
 
 .ooda-map-headings text {
   fill: var(--blue-dark);
   font-family: var(--sans);
-  font-size: 25px;
+  font-size: 29px;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -1893,6 +1893,7 @@ a.system-card .system-link {
 
 .ooda-map-lines .feedback {
   stroke: #7b8190;
+  stroke-width: 1.45;
 }
 
 .ooda-map marker path {
@@ -1918,6 +1919,7 @@ a.system-card .system-link {
   fill: none;
   stroke: #a1a5ae;
   stroke-width: 1;
+  marker-end: none;
 }
 
 .ooda-map-decide path,
@@ -1929,17 +1931,29 @@ a.system-card .system-link {
 .ooda-map-inputs text,
 .ooda-map-labels text {
   fill: #626978;
-  font-size: 9.5px;
+  font-size: 10.5px;
   font-weight: 600;
+}
+
+.ooda-map-labels text {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 12px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .ooda-map-inputs text {
   text-anchor: end;
 }
 
+.ooda-map-labels .feedback-label {
+  stroke-width: 14px;
+}
+
 .ooda-map-note {
   max-width: 830px;
-  margin: 1.25rem 0 3rem;
+  margin: 1.75rem 0 3.5rem;
   color: var(--muted);
   font-family: var(--serif);
   font-size: 1rem;
@@ -1968,15 +1982,18 @@ a.system-card .system-link {
 
 .ooda-track {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr) auto) minmax(0, 1fr);
-  gap: 0.8rem;
-  align-items: center;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: stretch;
 }
 
 .ooda-phase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   min-width: 0;
-  min-height: 170px;
-  padding: 1.1rem;
+  min-height: 184px;
+  padding: 1.2rem;
   border: 1px solid var(--line);
   background: var(--bg);
   color: var(--text);
@@ -2002,16 +2019,18 @@ a.system-card .system-link {
 
 .ooda-phase strong {
   display: block;
-  margin-top: 1rem;
+  margin-top: 1.15rem;
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-size: clamp(1.35rem, 1.75vw, 1.8rem);
   font-weight: 500;
   letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .ooda-phase em {
   display: block;
-  margin-top: 1.1rem;
+  margin-top: auto;
+  padding-top: 1.35rem;
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.55rem;
@@ -2020,11 +2039,18 @@ a.system-card .system-link {
   text-transform: uppercase;
 }
 
-.ooda-forward {
+.ooda-phase > i {
+  position: absolute;
+  top: 50%;
+  right: -1.6rem;
+  width: 1.2rem;
   color: var(--blue);
   font-family: var(--serif);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-style: normal;
+  line-height: 1;
+  text-align: center;
+  transform: translateY(-50%);
 }
 
 .ooda-feedback {
@@ -2089,7 +2115,7 @@ a.system-card .system-link {
 
 .harness-rails {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   border: 1px solid var(--line);
   border-top: 0;
 }
@@ -2113,7 +2139,7 @@ a.system-card .system-link {
 .harness-rails h3 {
   margin: 0.65rem 0 1rem;
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-size: clamp(1.1rem, 1.55vw, 1.45rem);
   font-weight: 500;
   letter-spacing: -0.03em;
 }
@@ -3108,9 +3134,10 @@ a.system-card .system-link {
 
   .ooda-track {
     grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
   }
 
-  .ooda-forward {
+  .ooda-phase > i {
     display: none;
   }
 
@@ -3252,7 +3279,7 @@ a.system-card .system-link {
   }
 
   .ooda-map {
-    min-width: 920px;
+    min-width: 1050px;
   }
 
   .operating-loop-canvas {
@@ -3263,17 +3290,13 @@ a.system-card .system-link {
     display: block;
   }
 
-  .ooda-track {
-    gap: 0.65rem;
-  }
-
   .ooda-phase {
-    min-height: 150px;
+    min-height: 158px;
     padding: 1rem;
   }
 
   .ooda-phase strong {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
   }
 
   .ooda-phase em {
