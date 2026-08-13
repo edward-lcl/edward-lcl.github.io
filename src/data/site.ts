@@ -600,6 +600,130 @@ export const researchArcs = [
       },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "K",
+    slug: "veracity-is-infrastructure",
+    title: "Veracity is infrastructure.",
+    body: "Google's Knowledge Graph, EEAT, and AI Overviews are the world's largest deployed answer to \"which claims count as facts.\" Trust there is a gradient, engineered — and agents that treat belief as a boolean repeat the mistake search already solved.",
+    url: "/questions/veracity-is-infrastructure/",
+    revised: "13 Aug 2026",
+    readTime: "5 min read",
+    lede: "The most consequential epistemic system in the world is not a philosophy department. It is a ranking function. I found my way into this through Russell Wright's entity-veracity work — the doorway, not the destination — and then recognized the same shape in systems I had to build.",
+    evidenceNote: "Conceptual note. The tier language follows Russell Wright's published entity-veracity work; the opinion-tuple mathematics is Jøsang's subjective logic. Claims about Google's systems describe publicly observable behavior, not internal design.",
+    references: [
+      { label: "Russell Wright · Entity Veracity", url: "https://entity-veracity.super-intelligent.ai" },
+      { label: "Jøsang · Subjective Logic", url: "https://link.springer.com/book/10.1007/978-3-319-42337-1" },
+    ],
+    sections: [
+      {
+        title: "The deployed system nobody names",
+        body: [
+          "Google decides which entities exist, through the Knowledge Graph; whose statements carry authority, through quality signals like EEAT; and, since AI Overviews, how the answer itself is framed. That last step matters: when the ranking layer writes the answer instead of listing candidates, the ranking function stops being a librarian and becomes an epistemology.",
+          "None of this is a criticism. It is an observation about scale: the most consequential machinery for deciding what gets treated as fact is deployed infrastructure, built by search engineers, running on trust gradients — and most discussion of AI knowledge acts as though it does not exist.",
+        ],
+      },
+      {
+        title: "Trust is a gradient, not a gate",
+        body: [
+          "The formal picture I keep returning to: a belief about an entity carries belief mass, disbelief mass, and uncertainty mass that must sum to one. Independent confirmation moves mass from uncertainty toward belief; contradiction moves it toward disbelief. \"Verified\" is not a boolean anywhere that matters — it is a position on this gradient.",
+          "Wright's tier language makes the gradient legible: cryptographically anchored entities at the bedrock, platform-authenticated ones above, passively cross-referenced ones after that, and single-source fog at the top. The engineering question is never \"is this true?\" — it is \"how much evidence, of what independence, from what sources, how recently?\"",
+        ],
+      },
+      {
+        title: "Why agents need it",
+        body: [
+          "An agent without belief grading treats a signed record and a stray forum post as the same kind of object. Its memory recalls both with equal confidence, its plans build on both with equal weight, and its errors compound quietly — which is the recall-debt failure and the unadjudicated-zero failure wearing a different coat.",
+          "The gradient is the adjudication layer for beliefs: it tells a system when it may commit, when it should hedge, and when a human should look before anything downstream inherits the claim.",
+        ],
+      },
+      {
+        title: "Still open",
+        body: [
+          "The question I am working on is what a system should do at each position on the gradient — the policy layer above the arithmetic. That work is ongoing and belongs to a longer piece; this note records the position it starts from: veracity is not metadata sprinkled on a knowledge base. It is infrastructure, and the largest systems in the world already run on it.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
+  {
+    index: "L",
+    slug: "the-shape-of-whats-absent",
+    title: "The shape of what's absent.",
+    body: "Deployed algorithmic systems encode their operators' priorities in measurable behavior. Refusals, framings, and shifts are signals — and behavioral probes are to public-facing AI what FOI requests are to public institutions.",
+    url: "/questions/the-shape-of-whats-absent/",
+    revised: "13 Aug 2026",
+    readTime: "5 min read",
+    lede: "Traditional accountability chases documents, leaks, and whistleblowers. There is another channel: the behavioral delta between what a system would say and what it does say. That delta is legible, measurable, and cannot be stonewalled.",
+    evidenceNote: "Position note. The method described operates on publicly observable behavior of deployed systems; this page states the principle and deliberately omits operational detail.",
+    sections: [
+      {
+        title: "Reading the silence",
+        body: [
+          "Every algorithm an institution deploys toward the public encodes that institution's priorities and constraints in its behavior. What a system declines to say, how it frames what it does say, and when its behavior shifts are not hidden properties. They are observable, and with a consistent instrument they are measurable.",
+          "The shape of what is absent is as legible as the shape of what is present, if the instrumentation is right.",
+        ],
+      },
+      {
+        title: "Three kinds of signal",
+        body: [
+          "Suppression signals: what does not get said — refusal rates, topic avoidance, truncation, measured against an unshaped baseline. Orientation signals: how what gets said is framed — who appears as agent versus object, which claims arrive naturalized versus contested, where the emotional valence sits. Pressure signals: when behavior shifts, and which external event — a filing, a lawsuit, an election, a news cycle — moved it.",
+          "Each of these is a statistical shape over a distribution of probes, never an anecdote about one output. A single response proves nothing; a stable delta across a held-fixed battery is evidence.",
+        ],
+      },
+      {
+        title: "The FOI analogy",
+        body: [
+          "Public institutions are subject to freedom-of-information requests because the public has standing to inspect what acts on it. Public-facing algorithmic systems deserve the same logic, and behavioral analysis delivers it — with the notable property that a probe cannot be legally stonewalled.",
+          "This is measurement, not accusation. A behavioral delta is empirical whether or not anyone intended it, which is exactly what makes it durable as evidence: it does not depend on a claim about motive.",
+        ],
+      },
+      {
+        title: "Why it matters",
+        body: [
+          "Users do not experience shaped systems as shaped; they experience them as neutral. A headline can be doubted — the framing inside a confident, helpful answer goes in unexamined. As more of the information layer becomes AI-mediated, the shaping becomes less visible precisely as it becomes more consequential.",
+          "Making the shape of the shaping visible is the accountability work of this decade. The tier-drift study elsewhere in this notebook is a small worked example of the method: hold the harness fixed, run the battery, read the deltas.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
+  {
+    index: "M",
+    slug: "handoffs-are-memory",
+    title: "Handoffs are memory.",
+    body: "A modern research team includes members with no memory at all: the agents. The only durable team state is what gets written where the next reader — human or machine — will actually start.",
+    url: "/questions/handoffs-are-memory/",
+    revised: "13 Aug 2026",
+    readTime: "4 min read",
+    lede: "I run research groups where coding agents are working members of the team. The practice that makes this function is not a better prompt. It is a living handoff document that every collaborator, human or machine, reads before touching the work.",
+    evidenceNote: "Methodology note from running research teams where coding agents are working members. These are practices, not measurements.",
+    sections: [
+      {
+        title: "Teams now include amnesiacs",
+        body: [
+          "An agent forgets everything between sessions. A human teammate forgets most things between meetings. The difference is one of degree, and pretending otherwise is how teams end up with their real state distributed across chat scrollback, one person's recollection, and a transcript nobody rereads.",
+          "Once you accept that every member of the team has unreliable memory, the design question changes: not \"how do we remember?\" but \"where does state live so that the next session — anyone's next session — starts from it?\"",
+        ],
+      },
+      {
+        title: "The living handoff",
+        body: [
+          "The practice: a context file lives in the repository and is maintained like code. Decisions, open threads, current experiment state, and the reasoning behind reversals land there — compiled from meetings, chat, and sessions rather than dying in the app where they happened. Agent-facing context files sit beside it, so a coding agent launched cold gets the same orientation a new human collaborator would.",
+          "The file is a contract with the future: whoever picks the project up next — including you, tomorrow — starts from the same state, at the cost of a few minutes of writing at the boundary of each session.",
+        ],
+      },
+      {
+        title: "Context hygiene",
+        body: [
+          "Long-running conversations rot: they accumulate stale assumptions and half-superseded plans. So sessions get refreshed deliberately, and the handoff document carries state across the boundary. The goal is that no single conversation is load-bearing. If a thread dies — a chat resets, a teammate leaves, an agent's context fills — the project state survives, because it never lived in the thread.",
+        ],
+      },
+      {
+        title: "The same claim as the research",
+        body: [
+          "This is the recall-debt argument as team practice. An archive that grows without traversable paths is not memory — for a retrieval system or for a lab. The handoff document is the bridge object: the explicit path from last session's discovery to this session's starting point. Teams that maintain it compound. Teams that trust the scrollback repeat themselves.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [
