@@ -1,0 +1,49 @@
+---
+import ReadingPage from "../../components/ReadingPage.astro";
+import { additionalPapers } from "../../data/site";
+
+const paper = additionalPapers.find((entry) => entry.slug === "hidden-cot");
+if (!paper) throw new Error("hidden-cot paper record missing");
+
+const sections = [
+  {
+    title: "What the paper asks",
+    body: [
+      "Can hidden chain-of-thought — reasoning a model performs but does not verbalize — be detected from the outside? The paper introduces the Hidden CoT Detection Score (HCDS), which combines linguistic, behavioral, and mechanistic indicators, and tests anchor-suppression interventions on Qwen3-4B across GSM8K and StrategyQA.",
+    ],
+  },
+  {
+    title: "Why it sits in this notebook",
+    body: [
+      "What a system verbalizes is not necessarily what it computes. That is the plan-versus-implementation gap from Factor(U,T) in another form, and it is why unverbalized reasoning is a monitoring problem rather than a curiosity: a monitor that reads only the stated chain of thought is reading a narrated artifact, not the computation.",
+    ],
+  },
+  {
+    title: "Status, and what this page deliberately is not",
+    body: [
+      "Accepted to an ICML 2026 workshop; I am a co-author. This digest is minimal by design: it records the acceptance and the paper's scope, and nothing further. The full digest — with the standard question-to-falsifier ledger and measured results — lands when the public artifact does. Until then, this page makes no claims the artifact cannot yet back.",
+    ],
+  },
+];
+---
+
+<ReadingPage
+  kind={`Research digest · ${paper.venue}`}
+  title={paper.title}
+  subtitle={paper.subtitle}
+  lede="Reasoning a model performs but does not verbalize is a monitoring problem. This minimal digest records the acceptance and scope; the full digest lands with the public artifact."
+  status={paper.note}
+  evidenceNote="Minimal digest by design: acceptance and scope only, pending the public artifact."
+  sections={sections}
+  role={paper.role}
+  authors={paper.authors}
+  publicationDate="Accepted · 2026"
+  artifactState="Public artifact pending"
+  evidenceClass="Accepted · artifact pending"
+  provenance="Author-team acceptance decision. Public proceedings record and artifact route pending."
+  lastVerified="13 Aug 2026"
+  citationState="Workshop proceedings citation pending."
+  readTime="2 min read"
+  backHref="/#research"
+  backLabel="accepted papers"
+/>

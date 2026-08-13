@@ -26,7 +26,8 @@ jobs:
           cache: npm
 
       - run: npm install
-      - run: npm run build
+      # Deploy only what passes the site's own gates: privacy scan, build, link check.
+      - run: npm run check
 
       - uses: actions/upload-pages-artifact@v3
         with:

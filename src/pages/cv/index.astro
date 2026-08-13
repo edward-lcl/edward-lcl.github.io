@@ -5,14 +5,7 @@ import { acceptedPapers, additionalPapers, links } from "../../data/site";
 const statusDate = "13 Aug 2026";
 
 // Publications derive from the same record the notebook runs on — one fact, one place.
-const cvOrder = [
-  "factor-ut",
-  "recall-debt",
-  "site-confounds-parkinsons-eeg",
-  "before-you-scale",
-  "diagnosing-agent-capabilities",
-  "hidden-cot",
-];
+// Order comes from cvPriority on the record itself; papers without one sort last, in record order.
 const allPapers = [...acceptedPapers, ...additionalPapers];
 const cvLinkFor = (paper: (typeof allPapers)[number]) => {
   if ("sourceUrl" in paper && paper.sourceUrl) {
@@ -22,10 +15,10 @@ const cvLinkFor = (paper: (typeof allPapers)[number]) => {
   if (paper.url) return { label: "digest", url: paper.url };
   return undefined;
 };
-const publications = cvOrder
-  .map((slug) => allPapers.find((paper) => paper.slug === slug))
-  .filter((paper) => paper !== undefined)
-  .map((paper) => ({
+const publications = allPapers
+  .map((paper, index) => ({ paper, order: "cvPriority" in paper && paper.cvPriority ? paper.cvPriority : 100 + index }))
+  .sort((a, b) => a.order - b.order)
+  .map(({ paper }) => ({
     title: "citationTitle" in paper && paper.citationTitle ? paper.citationTitle : `${paper.title}: ${paper.subtitle}`,
     authors: paper.authors,
     venue: paper.venue,

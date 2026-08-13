@@ -15,6 +15,7 @@ const collaborations = [
 const allPapers = [...acceptedPapers, ...additionalPapers];
 const paperCount = allPapers.length;
 const firstAuthorCount = allPapers.filter((paper) => paper.role === "First author").length;
+const venueList = [...new Set(allPapers.map((paper) => paper.series))].sort().join(" · ");
 const featuredArcSlugs = [
   "a-zero-needs-adjudication",
   "where-does-the-model-end",
@@ -92,7 +93,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       </aside>
 
       <div class="hero-proof hero-proof-text reveal" aria-label="Research focus and public evidence">
-        <p><span class="proof-label">Accepted work</span><strong>{paperCount} workshop papers · {firstAuthorCount} first-author<br />AAAI · ICML · COLM · MICCAI</strong></p>
+        <p><span class="proof-label">Accepted work</span><strong>{paperCount} workshop papers · {firstAuthorCount} first-author<br />{venueList}</strong></p>
         <p><span class="proof-label">Working across</span><strong>memory · evaluation · agents · AI control</strong></p>
         <p><span class="proof-label">Evidence</span><strong>papers · code · experiments · system notes</strong></p>
         <p class="proof-note">The signal is useful.<br /><em>The questions matter more.</em></p>
@@ -106,8 +107,8 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
           <h2>Two flagship papers</h2>
         </div>
         <p>
-          Where memory loses information, and where control regains it. Accepted 2026 work spans AAAI,
-          ICML, COLM, and MICCAI workshops — {firstAuthorCount} papers first-author. These two anchor
+          Where memory loses information, and where control regains it. Accepted 2026 work spans
+          {" "}{venueList} workshops — {firstAuthorCount} papers first-author. These two anchor
           the program; digests carry their own provenance.
         </p>
       </div>
@@ -158,7 +159,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       </div>
 
       <div class="research-footnote reveal">
-        <p>Entries with a digest open a plain-language summary; the newest paper’s digest is in progress. Public artifacts are linked when available.</p>
+        <p>Each entry opens a plain-language digest; the newest is deliberately minimal until its artifact goes public. Artifacts are linked when available.</p>
         <p>The papers are the visible edge of a much larger working set.</p>
       </div>
     </section>
@@ -297,8 +298,9 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
         </div>
         <div class="now-copy reveal">
           <p class="now-lead">
-            I’m an enrolled first-year in intelligent systems at Xi’an Jiaotong-Liverpool University,
-            building research and infrastructure across evaluation, memory, AI control, and scientific discovery.
+            I’m enrolled in Intelligent Systems at Xi’an Jiaotong-Liverpool University, beginning first
+            year in autumn 2026, while building research and infrastructure across evaluation, memory,
+            AI control, and scientific discovery.
           </p>
           <p>
             The long direction is stable even as projects change: make planning more grounded,

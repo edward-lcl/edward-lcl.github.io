@@ -6,7 +6,7 @@ const visibleSystems = selectedSystems.filter((system) => !("public" in system) 
 const allPapers = [...acceptedPapers, ...additionalPapers];
 const paperCount = allPapers.length;
 const firstAuthorCount = allPapers.filter((paper) => paper.role === "First author").length;
-const zhNumerals = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+const venueList = [...new Set(allPapers.map((paper) => paper.series))].sort().join("、");
 const zhSystemCopy = {
   "eval-evidence": {
     kind: "评估基础设施",
@@ -105,7 +105,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         </aside>
 
         <div class="hero-proof hero-proof-text reveal" aria-label="研究方向与公开证据">
-          <p><span class="proof-label">已录用</span><strong>{paperCount} 篇研讨会论文 · {firstAuthorCount} 篇第一作者<br />AAAI · ICML · COLM · MICCAI</strong></p>
+          <p><span class="proof-label">已录用</span><strong>{paperCount} 篇研讨会论文 · {firstAuthorCount} 篇第一作者<br />{venueList}</strong></p>
           <p><span class="proof-label">研究方向</span><strong>记忆 · 评估 · 智能体 · AI 控制</strong></p>
           <p><span class="proof-label">公开证据</span><strong>论文 · 代码 · 实验 · 系统笔记</strong></p>
           <p class="proof-note">成果很重要。<br /><em>问题更重要。</em></p>
@@ -118,7 +118,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             <p class="overline">代表研究</p>
             <h2>部分已录用研究</h2>
           </div>
-          <p>2026 年共有{zhNumerals[paperCount]}篇研讨会论文被 AAAI、ICML、COLM 与 MICCAI 录用（{zhNumerals[firstAuthorCount]}篇第一作者）。以下{zhNumerals[acceptedPapers.length]}篇附有英文简明摘要：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
+          <p>2026 年共有 {paperCount} 篇研讨会论文被 {venueList} 录用，其中 {firstAuthorCount} 篇第一作者。每篇都有英文简明摘要：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
         </div>
 
         <div class="paper-grid">
@@ -156,18 +156,21 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         <div class="collab-block reveal">
           <p class="collab-label">其他已录用工作</p>
           <div class="collab-list">
-            {additionalPapers.map((paper) => (
-              <article class="collab-row">
-                <span class="collab-venue">{paper.venue}</span>
-                <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
-                <span class="collab-role">合著 · 摘要页即将上线</span>
-                <span class="collab-arrow" aria-hidden="true"></span>
-              </article>
-            ))}
+            {additionalPapers.map((paper) => {
+              const Tag = paper.url ? "a" : "article";
+              return (
+                <Tag class="collab-row" href={paper.url || undefined}>
+                  <span class="collab-venue">{paper.venue}</span>
+                  <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
+                  <span class="collab-role">合著</span>
+                  <span class="collab-arrow" aria-hidden="true">{paper.url ? "→" : ""}</span>
+                </Tag>
+              );
+            })}
           </div>
         </div>
         <div class="research-footnote reveal">
-          <p>附摘要的卡片会打开英文简明总结；公开工件可用时会从摘要页链接。</p>
+          <p>每个条目都会打开英文简明摘要；最新一篇在公开工件上线前刻意保持精简。公开工件可用时会从摘要页链接。</p>
           <p>这些论文只是更大工作集的可见边缘。</p>
         </div>
       </section>
