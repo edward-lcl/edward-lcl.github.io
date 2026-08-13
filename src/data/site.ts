@@ -490,6 +490,48 @@ export const researchArcs = [
       { title: "Open methods without publishing an attack manual", body: ["Merit gates should be open enough for independent researchers to test claims. That does not require publishing account-farming tactics, live exploit payloads, or instructions whose main value is operational misuse.", "My line is to publish the measurement, failure boundary, and design correction. If a page could be mistaken for a how-to attack a deployed system, it does not belong in this notebook."] },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "I",
+    slug: "education-is-an-evaluation-problem",
+    title: "Education is an evaluation problem.",
+    body: "Institutions graded artifacts as proof of thinking. AI made artifacts free, and the proxy collapsed. The same verifier failure I study in agents runs through the systems that credential people.",
+    url: "/questions/education-is-an-evaluation-problem/",
+    revised: "13 Aug 2026",
+    readTime: "5 min read",
+    lede: "I failed a composition course in the same semester my research won CURC Highest Honors. One of those judgments had contact with the actual work. AI did not create that gap — it made the gap impossible to ignore.",
+    references: [
+      { label: "Where this position started · How AI Exposed the Lie Inside Education (Dec 2025)", url: "https://medium.com/@eluecheelip/how-ai-exposed-the-lie-inside-education-87fe8baecbc8" },
+    ],
+    sections: [
+      {
+        title: "The proxy collapsed",
+        body: [
+          "For decades the essay, the problem set, and the exam stood in for cognition because producing them was expensive. The cost was the evidence: if the artifact existed, someone had probably done the thinking. That was never a measurement of learning — it was a proxy that held only while production was slow.",
+          "AI removed the cost, and the artifact stopped proving anything about the person who submitted it. Most institutions responded with detection: an arms race against an improving generator, run on behalf of assignments that never specified what cognitive work they were supposed to develop in the first place.",
+        ],
+      },
+      {
+        title: "The same grammar as my research",
+        body: [
+          "A submitted essay is a benchmark output. A grade promotes that output to a claim about a person's capability. Promotion without adjudication — no provenance for how the artifact was produced, no named cognitive operation it was supposed to demonstrate, no verifier with contact to the real skill — is the same failure I catalogue in agent evaluation. A gameable verifier does not become trustworthy by being defended harder.",
+          "The redesigns that work follow the same checklist as honest evaluation anywhere: name the operation being measured; make the process visible as lineage rather than one polished artifact; measure in patterns across time instead of single events; and move verification to a layer with reality contact — an oral defense, an external audience, a derivation done in the room. Education is not adjacent to my research. It is a special case of it.",
+        ],
+      },
+      {
+        title: "Going back anyway",
+        body: [
+          "The 2025 version of this note read like a verdict on school. It was a verdict on assessment. The parts of a university that AI cannot cheapen — a cohort, laboratories, structured depth, sustained access to people who know more than you — became more valuable, not less. So I enrolled: first year at XJTLU, beginning autumn 2026.",
+          "Holding the critique and enrolling is not a contradiction; the critique is an operating manual. Treat coursework as access to problems and people. Keep the real verification external and public — shipped systems, accepted papers, a notebook that carries its own provenance — and never let the credential substitute for the record. I also no longer expect exposure to force fast redesign: the forcing function is real, but Western institutions will metabolize it on a generational clock, and waiting for them is not a plan.",
+        ],
+      },
+      {
+        title: "Still open",
+        body: [
+          "What I watch for is an institution willing to publish its verifiers: to state, per assignment, which cognitive operation it develops and how anyone would know it happened. A syllabus that can explain its own zeros would collapse the distance between education and evaluation entirely — which is where this notebook has been pointing all along.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [
