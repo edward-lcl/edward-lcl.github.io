@@ -639,6 +639,20 @@ export const selectedSystems = [
   },
 ] as const;
 
+// Accepted work without a digest page yet: shown in the homepage rows and on the CV.
+export const additionalPapers = [
+  {
+    slug: "hidden-cot",
+    title: "Detecting Hidden Chain-of-Thought in Large Language Models",
+    subtitle: "With Linguistic, Behavioral, and Mechanistic Indicators",
+    venue: "ICML 2026 · Workshop",
+    note: "Accepted",
+    role: "Co-author",
+    authors: "Armaan Singh · Ryan Trinh Le · Jasmine Kaur · Edward Lue Chee Lip · Kiran Nijjer · Adnan Ahmed · Vasu Sharma",
+    url: null,
+  },
+];
+
 export const links = {
   github: "https://github.com/edward-lcl",
   linkedin: "https://linkedin.com/in/edward-lue-chee-lip",

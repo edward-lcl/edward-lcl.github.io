@@ -1,14 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import EvidenceSketch from "../components/EvidenceSketch.astro";
-import { acceptedPapers, links, researchArcs, selectedSystems } from "../data/site";
+import { acceptedPapers, additionalPapers, links, researchArcs, selectedSystems } from "../data/site";
 
 const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
 const flagshipSlugs = ["recall-debt", "factor-ut"];
 const flagships = flagshipSlugs
   .map((slug) => acceptedPapers.find((paper) => paper.slug === slug))
   .filter((paper) => paper !== undefined);
-const collaborations = acceptedPapers.filter((paper) => !flagshipSlugs.includes(paper.slug));
+const collaborations = [
+  ...acceptedPapers.filter((paper) => !flagshipSlugs.includes(paper.slug)),
+  ...additionalPapers,
+];
 const featuredArcSlugs = [
   "a-zero-needs-adjudication",
   "where-does-the-model-end",
@@ -73,8 +76,8 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
           <div><span>Trinidad &amp; Tobago</span><em>the same problem, across layers</em><span>XJTLU</span></div>
         </div>
         <p class="personal-note">
-          From Trinidad and Tobago; studying Artificial Intelligence
-          <span> (Intelligent Systems) at XJTLU</span>.
+          From Trinidad and Tobago; enrolled in Artificial Intelligence
+          <span> (Intelligent Systems) at XJTLU</span>, first year beginning autumn 2026.
         </p>
         <p class="personal-aside">The location changes. The throughline stays: follow hard problems, expose the evidence, and build the missing layer.</p>
         <div class="personal-links">
@@ -86,7 +89,7 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       </aside>
 
       <div class="hero-proof hero-proof-text reveal" aria-label="Research focus and public evidence">
-        <p><span class="proof-label">Accepted work</span><strong>5 workshop papers · 3 first-author<br />AAAI · COLM · MICCAI</strong></p>
+        <p><span class="proof-label">Accepted work</span><strong>6 workshop papers · 3 first-author<br />AAAI · ICML · COLM · MICCAI</strong></p>
         <p><span class="proof-label">Working across</span><strong>memory · evaluation · agents · AI control</strong></p>
         <p><span class="proof-label">Evidence</span><strong>papers · code · experiments · system notes</strong></p>
         <p class="proof-note">The signal is useful.<br /><em>The questions matter more.</em></p>
@@ -100,9 +103,9 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
           <h2>Two flagship papers</h2>
         </div>
         <p>
-          Where memory loses information, and where control regains it. Five workshop papers were accepted
-          across AAAI, COLM, and MICCAI in 2026 — three first-author. These two anchor the program; each
-          opens a plain-language digest that carries its own provenance.
+          Where memory loses information, and where control regains it. Six workshop papers were accepted
+          across AAAI, ICML, COLM, and MICCAI in 2026 — three first-author. These two anchor the program;
+          digests carry their own provenance.
         </p>
       </div>
 
@@ -137,14 +140,17 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
       <div class="collab-block reveal">
         <p class="collab-label">More accepted work</p>
         <div class="collab-list">
-          {collaborations.map((paper) => (
-            <a class="collab-row" href={paper.url}>
-              <span class="collab-venue">{paper.venue}</span>
-              <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
-              <span class:list={["collab-role", paper.role === "First author" && "collab-role-first"]}>{paper.role}</span>
-              <span class="collab-arrow" aria-hidden="true">→</span>
-            </a>
-          ))}
+          {collaborations.map((paper) => {
+            const Tag = paper.url ? "a" : "article";
+            return (
+              <Tag class="collab-row" href={paper.url || undefined}>
+                <span class="collab-venue">{paper.venue}</span>
+                <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
+                <span class:list={["collab-role", paper.role === "First author" && "collab-role-first"]}>{paper.role}</span>
+                <span class="collab-arrow" aria-hidden="true">{paper.url ? "→" : ""}</span>
+              </Tag>
+            );
+          })}
         </div>
       </div>
 
@@ -288,8 +294,8 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
         </div>
         <div class="now-copy reveal">
           <p class="now-lead">
-            I study intelligent systems at Xi’an Jiaotong-Liverpool University while building
-            research and infrastructure across evaluation, memory, AI control, and scientific discovery.
+            I’m an enrolled first-year in intelligent systems at Xi’an Jiaotong-Liverpool University,
+            building research and infrastructure across evaluation, memory, AI control, and scientific discovery.
           </p>
           <p>
             The long direction is stable even as projects change: make planning more grounded,
