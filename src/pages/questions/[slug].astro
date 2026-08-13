@@ -1,0 +1,42 @@
+---
+import ReadingPage from "../../components/ReadingPage.astro";
+import OperatingLoop from "../../components/OperatingLoop.astro";
+import StrangeLoop from "../../components/StrangeLoop.astro";
+import VerificationPipeline from "../../components/VerificationPipeline.astro";
+import InstructionForce from "../../components/InstructionForce.astro";
+import { researchArcs } from "../../data/site";
+
+export function getStaticPaths() {
+  return researchArcs.map((question, index) => ({
+    params: { slug: question.slug },
+    props: {
+      question,
+      next: researchArcs[(index + 1) % researchArcs.length],
+    },
+  }));
+}
+
+const { question, next } = Astro.props;
+---
+
+<ReadingPage
+  kind="Question I keep returning to"
+  title={question.title}
+  lede={question.lede}
+  status="Living field note"
+  authors="Edward Lue Chee Lip"
+  publicationDate="Continuously revised"
+  readTime={"readTime" in question ? question.readTime : "3 min read"}
+  pullQuote={"pullQuote" in question ? question.pullQuote : undefined}
+  references={"references" in question ? question.references : undefined}
+  sections={question.sections}
+  backHref="/#work"
+  backLabel="questions"
+  nextHref={`/questions/${next.slug}/`}
+  nextLabel={next.title}
+>
+  {"visual" in question && question.visual === "ooda" && <OperatingLoop slot="visual" />}
+  {"visual" in question && question.visual === "verification-pipeline" && <VerificationPipeline slot="visual" />}
+  {"visual" in question && question.visual === "instruction-force" && <InstructionForce slot="visual" />}
+  {"visual" in question && !["ooda", "verification-pipeline", "instruction-force"].includes(question.visual) && <StrangeLoop slot="visual" compact={question.visual !== "strange-loop"} />}
+</ReadingPage>

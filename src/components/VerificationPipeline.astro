@@ -1,0 +1,104 @@
+---
+const modes = {
+  digital: {
+    label: "Software system",
+    stages: [
+      ["Fan out", "independent planners · scouts · critics"],
+      ["Synthesize", "constraints · disagreement · acceptance gate"],
+      ["Act", "bounded agent in an isolated sandbox"],
+      ["Verify", "tests · static analysis · external reviewer"],
+      ["Remember", "trace · artifact · correction · next run"],
+    ],
+    verifier: "A separate gate can reject the builder’s story.",
+  },
+  physical: {
+    label: "Physical discovery",
+    stages: [
+      ["Fan out", "candidate mechanisms · materials · protocols"],
+      ["Synthesize", "experiment plan · controls · stop condition"],
+      ["Act", "simulation first · bounded physical trial"],
+      ["Verify", "assay · microscope · spectrometer · test rig"],
+      ["Remember", "measurement · provenance · revised hypothesis"],
+    ],
+    verifier: "Reality gets an independent vote—and can falsify the model.",
+  },
+};
+---
+
+<figure class="verification-pipeline" aria-labelledby="verification-pipeline-title" data-verification-pipeline>
+  <header class="verification-heading shell">
+    <div>
+      <p class="overline">The abundance / bottleneck split</p>
+      <h2 id="verification-pipeline-title">Stack intelligence.<br /><span>Externalize truth.</span></h2>
+    </div>
+    <div class="verification-mode" aria-label="Pipeline mode">
+      <button class="active" type="button" data-pipeline-mode="digital" aria-pressed="true">Software</button>
+      <button type="button" data-pipeline-mode="physical" aria-pressed="false">Physical science</button>
+    </div>
+  </header>
+
+  <div class="verification-canvas shell">
+    <div class="compute-reservoir">
+      <span>Compute-abundant side</span>
+      <div aria-hidden="true">
+        <i>agent 01</i><i>agent 02</i><i>agent 03</i><i>agent N</i>
+      </div>
+      <p>Parallel inference makes candidate generation cheap.</p>
+    </div>
+
+    <ol class="pipeline-stages">
+      {modes.digital.stages.map(([title, detail], index) => (
+        <li class:list={[index === 1 && "planning-bottleneck", index === 3 && "verification-bottleneck"]}>
+          <span>0{index + 1}</span>
+          <strong data-stage-title={index}>{title}</strong>
+          <p data-stage-detail={index}>{detail}</p>
+          {index < modes.digital.stages.length - 1 && <i aria-hidden="true">→</i>}
+        </li>
+      ))}
+    </ol>
+
+    <div class="pipeline-bottlenecks" aria-label="Primary bottlenecks">
+      <p><span>Planning bottleneck</span> Which uncertainty deserves the next action?</p>
+      <p><span>Verification bottleneck</span> What independent evidence can say no?</p>
+    </div>
+
+    <aside class="verifier-readout">
+      <span data-verifier-mode>{modes.digital.label}</span>
+      <strong data-verifier-text>{modes.digital.verifier}</strong>
+    </aside>
+
+    <div class="pipeline-return" aria-hidden="true"><i></i><span>measured evidence returns to orientation</span><b>↶</b></div>
+  </div>
+
+  <figcaption class="shell">The proposal layer can scale with compute. The plan and the verifier determine whether that scale becomes knowledge.</figcaption>
+
+  <script define:vars={{ modes }}>
+    document.querySelectorAll("[data-verification-pipeline]").forEach((pipeline) => {
+      pipeline.querySelectorAll("[data-pipeline-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const mode = button.getAttribute("data-pipeline-mode");
+          const data = modes[mode];
+          if (!data) return;
+
+          pipeline.querySelectorAll("[data-pipeline-mode]").forEach((item) => {
+            const active = item === button;
+            item.classList.toggle("active", active);
+            item.setAttribute("aria-pressed", String(active));
+          });
+
+          data.stages.forEach((stage, index) => {
+            const title = pipeline.querySelector(`[data-stage-title="${index}"]`);
+            const detail = pipeline.querySelector(`[data-stage-detail="${index}"]`);
+            if (title) title.textContent = stage[0];
+            if (detail) detail.textContent = stage[1];
+          });
+
+          const modeLabel = pipeline.querySelector("[data-verifier-mode]");
+          const verifier = pipeline.querySelector("[data-verifier-text]");
+          if (modeLabel) modeLabel.textContent = data.label;
+          if (verifier) verifier.textContent = data.verifier;
+        });
+      });
+    });
+  </script>
+</figure>

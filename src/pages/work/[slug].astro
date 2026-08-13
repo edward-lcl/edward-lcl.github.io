@@ -1,0 +1,40 @@
+---
+import ReadingPage from "../../components/ReadingPage.astro";
+import SystemSketch from "../../components/SystemSketch.astro";
+import { selectedSystems } from "../../data/site";
+
+export function getStaticPaths() {
+  const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
+  return visibleSystems.map((system, index) => ({
+    params: { slug: system.slug },
+    props: {
+      system,
+      next: visibleSystems[(index + 1) % visibleSystems.length],
+    },
+  }));
+}
+
+const { system, next } = Astro.props;
+---
+
+<ReadingPage
+  kind={`System note · ${system.kind}`}
+  title={system.name}
+  lede={system.lede}
+  status={"status" in system ? system.status : undefined}
+  evidenceNote={"evidenceNote" in system ? system.evidenceNote : undefined}
+  sections={system.sections}
+  sourceUrl={system.sourceUrl}
+  sourceLabel={"sourceLabel" in system ? system.sourceLabel : undefined}
+  contribution={"contribution" in system ? system.contribution : undefined}
+  evidenceClass={"evidenceClass" in system ? system.evidenceClass : undefined}
+  provenance={"provenance" in system ? system.provenance : undefined}
+  lastVerified={"lastVerified" in system ? system.lastVerified : undefined}
+  artifactState={"artifactState" in system ? system.artifactState : undefined}
+  backHref="/#systems"
+  backLabel="selected systems"
+  nextHref={`/work/${next.slug}/`}
+  nextLabel={next.name}
+>
+  {["eval-evidence", "circuit-compass"].includes(system.slug) && <SystemSketch slot="visual" slug={system.slug} />}
+</ReadingPage>

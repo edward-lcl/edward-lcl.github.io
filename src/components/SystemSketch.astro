@@ -1,0 +1,38 @@
+---
+interface Props { slug: string; }
+const { slug } = Astro.props;
+---
+
+{slug === "eval-evidence" && (
+  <figure class="system-sketch" aria-labelledby="eval-system-caption">
+    <div class="shell system-sketch-heading">
+      <p class="overline">System boundary</p>
+      <h2>A score becomes<br /><span>an evidence envelope.</span></h2>
+    </div>
+    <div class="shell system-sketch-canvas eval-envelope" role="img" aria-label="An evaluation run is sealed with instrument, verifier, artifact and provenance fields, then reviewed as matched, different, unavailable or failed integrity">
+      <article><span>01 · Run</span><strong>Reported score</strong><p>A result exists, but its meaning is still underspecified.</p></article>
+      <i aria-hidden="true">→</i>
+      <article class="system-sketch-focus"><span>02 · Seal</span><strong>Evidence envelope</strong><ul><li>model + provider state</li><li>harness + budget</li><li>task + environment</li><li>verifier + artifacts</li><li>field provenance</li></ul></article>
+      <i aria-hidden="true">→</i>
+      <article><span>03 · Review</span><strong>Condition-aware finding</strong><p>Matched · different · unavailable · integrity failure</p></article>
+    </div>
+    <figcaption id="eval-system-caption" class="shell">The envelope preserves what a score can be compared against. It does not certify that the score is ground truth.</figcaption>
+  </figure>
+)}
+
+{slug === "circuit-compass" && (
+  <figure class="system-sketch" aria-labelledby="circuit-system-caption">
+    <div class="shell system-sketch-heading">
+      <p class="overline">Decision-support loop</p>
+      <h2>Do not collapse the paradox.<br /><span>Make it testable.</span></h2>
+    </div>
+    <div class="shell system-sketch-canvas circuit-route" role="img" aria-label="A biological contradiction branches into competing hypotheses, is scored against public data, attacked by an explicit critique, and routed to the next physical experiment">
+      <article class="circuit-paradox"><span>Observation</span><strong>Behavior ≠ molecular readout</strong><p>Keep the contradiction alive.</p></article>
+      <div class="circuit-hypotheses" aria-label="Competing hypotheses"><p>Compensation</p><p>Desensitization</p><p>Activity elevation</p><p>Network failure</p></div>
+      <article><span>Public evidence</span><strong>Dataset + literature</strong><p>Score directions; preserve cohort and modality limits.</p></article>
+      <article class="system-sketch-focus"><span>Adversarial pass</span><strong>Critique the story</strong><p>Confounds · replication · statistics · alternative mechanisms</p></article>
+      <article><span>Reality-facing output</span><strong>Next experiment</strong><p>The handoff narrows what the wet lab should discriminate.</p></article>
+    </div>
+    <figcaption id="circuit-system-caption" class="shell">The system accelerates hypothesis generation. Authority remains with the experiment that can disagree.</figcaption>
+  </figure>
+)}

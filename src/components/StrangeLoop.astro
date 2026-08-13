@@ -1,0 +1,80 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+const layers = [
+  { id: "input", label: "Input", short: "What is encoded", text: "Tokenization, typography, retrieval, and instruction order determine the material the system can represent." },
+  { id: "representation", label: "Representation", short: "Where it lands", text: "The model maps that material into an internal state and probability distribution. Latent space is part of the route—not a readable ledger of meaning." },
+  { id: "harness", label: "Harness", short: "How it is routed", text: "System prompts, memory, classifiers, tools, and agent loops decide which context is assembled and which capability is exposed." },
+  { id: "action", label: "Action", short: "What gains consequence", text: "An answer, tool call, code path, or bounded experiment turns a model output into an event that can change the world." },
+  { id: "evaluation", label: "Evaluation", short: "What becomes evidence", text: "Tasks, traces, verifiers, and adjudication decide whether the event is success, failure, anomaly, or an unresolved zero." },
+  { id: "institution", label: "Institution", short: "What gets rewarded", text: "Labs, governments, markets, and capital choose which evidence matters, which risks stay visible, and which systems scale." },
+  { id: "time", label: "Time", short: "What feeds back", text: "Outputs become product data, policy inputs, and future training material. The system changes the environment it will later observe." },
+];
+---
+
+<section class:list={["loop-lab", compact && "loop-lab-compact"]} aria-labelledby={compact ? "loop-title-compact" : "loop-title"}>
+  <div class="shell loop-shell">
+    <div class="loop-copy">
+      <p class="overline">The same object · seven altitudes</p>
+      <h2 id={compact ? "loop-title-compact" : "loop-title"}>One output,<br />{" "}<span>seven layers of cause.</span></h2>
+      <p class="loop-intro">Select a layer to trace how an input is represented, routed, judged, scaled, and changed over time.</p>
+      {!compact && <a class="all-work-link" href="#loop-notes">Read the full argument <span>↓</span></a>}
+    </div>
+
+    <div class="loop-stage" data-loop-stage>
+      <svg class="loop-orbit" viewBox="0 0 600 600" aria-hidden="true">
+        <defs>
+          <marker id="loop-arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L7,3 z" /></marker>
+        </defs>
+        <circle cx="300" cy="300" r="216" />
+        <path d="M300 62 A238 238 0 0 1 538 300" marker-end="url(#loop-arrow)" />
+        <path d="M538 300 A238 238 0 0 1 300 538" marker-end="url(#loop-arrow)" />
+        <path d="M300 538 A238 238 0 0 1 62 300" marker-end="url(#loop-arrow)" />
+        <path d="M62 300 A238 238 0 0 1 300 62" marker-end="url(#loop-arrow)" />
+      </svg>
+      <div class="loop-center">
+        <span data-loop-short>What is encoded</span>
+        <strong data-loop-label>Input</strong>
+        <p data-loop-text>Tokenization, typography, retrieval, and instruction order determine the material the system can represent.</p>
+      </div>
+      {layers.map((layer, index) => (
+        <button
+          class:list={["loop-node", index === 0 && "active"]}
+          style={`--node-index:${index}; --node-count:${layers.length}`}
+          type="button"
+          data-loop-node
+          data-label={layer.label}
+          data-short={layer.short}
+          data-text={layer.text}
+          aria-pressed={index === 0 ? "true" : "false"}
+        >
+          <span>0{index + 1}</span>{layer.label}
+        </button>
+      ))}
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll("[data-loop-stage]").forEach((stage) => {
+      const label = stage.querySelector("[data-loop-label]");
+      const short = stage.querySelector("[data-loop-short]");
+      const text = stage.querySelector("[data-loop-text]");
+      stage.querySelectorAll("[data-loop-node]").forEach((node) => {
+        node.addEventListener("click", () => {
+          stage.querySelectorAll("[data-loop-node]").forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-pressed", "false");
+          });
+          node.classList.add("active");
+          node.setAttribute("aria-pressed", "true");
+          if (label) label.textContent = node.getAttribute("data-label") || "";
+          if (short) short.textContent = node.getAttribute("data-short") || "";
+          if (text) text.textContent = node.getAttribute("data-text") || "";
+        });
+      });
+    });
+  </script>
+</section>

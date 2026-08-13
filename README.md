@@ -1,21 +1,23 @@
 # Edward — Personal Website
 
-A clean, minimal personal website built with Astro + Tailwind CSS. Designed to work seamlessly with GitHub Pages.
+A personal research portfolio built with Astro and deployed through GitHub Pages.
 
 ## Features
 
-- **Dark theme** with electric blue accent (#00d4ff)
-- **Responsive design** that works on all devices
-- **Animated SVG grid** hero background
-- **Data-driven project timeline** from src/data/projects.json
-- **Fast loading** — static Astro output, no client JS
-- **GitHub Pages ready** — auto-deploys on push to `main`
+- **Working-notebook design** with a restrained editorial system, field notes, and light interaction
+- **Evidence-backed accepted-paper index**
+- **Internal research, system, and question digests** instead of outbound-only cards
+- **Interactive strange-loop map** connecting technical and institutional layers
+- **English and Chinese entry routes**
+- **Self-contained typography** with no Google-hosted fonts
+- **Responsive, reduced-motion-aware static output**
+- **GitHub Pages ready**
 
 ## Tech Stack
 
 - Astro (static output)
-- Tailwind CSS v4
-- JetBrains Mono + Inter fonts
+- Native CSS
+- Native system font stacks
 
 ## Local Development
 

@@ -1,0 +1,293 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { acceptedPapers, links, selectedSystems } from "../../data/site";
+
+const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
+const zhSystemCopy = {
+  "eval-evidence": {
+    kind: "评估基础设施",
+    description: "让模型、Harness、预算、验证器、工件与缺失信息随评估分数一起流转的机器可检验证据包。",
+  },
+  "circuit-compass": {
+    kind: "生物医学决策支持",
+    description: "把生物学矛盾拆成竞争机制、公开数据分析、反方审查与下一步实验。",
+  },
+  "brewery-control-systems": {
+    kind: "工业系统",
+    description: "在特立尼达完成的啤酒厂自动化控制、仪表与合规监测 P&ID / AutoCAD 系统。",
+  },
+  "pop2-protein-expression": {
+    kind: "湿实验系统",
+    description: "带领十人本科团队，把湿实验迭代、AI 辅助参数搜索与可追溯证据界面连接起来。",
+  },
+} as const;
+
+const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems", "pop2-protein-expression"]
+  .map((slug) => {
+    const system = visibleSystems.find((item) => item.slug === slug);
+    return system ? { ...system, ...zhSystemCopy[slug] } : undefined;
+  })
+  .filter((system) => system !== undefined);
+---
+
+<Layout
+  title="Edward Lue Chee Lip — 人工智能研究与系统"
+  description="Edward Lue Chee Lip：来自特立尼达和多巴哥的人工智能研究者与系统构建者，研究记忆、评估、智能体控制与科学发现。"
+  lang="zh-CN"
+>
+  <div class="zh-page">
+    <header class="site-header">
+      <div class="shell nav-inner">
+        <a class="site-name" href="#top"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+        <p class="header-status"><span></span> 特立尼达 · 智能系统 · 开放研究</p>
+        <nav aria-label="主导航">
+          <a href="#research">研究</a>
+          <a href="#systems">作品</a>
+          <a href="#about">关于我</a>
+          <a href="#direction">方向</a>
+          <a href="/" lang="en">English</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero shell zh-hero">
+        <div class="hero-main reveal">
+          <p class="overline"><span class="status-dot"></span>Edward 的中文概览 · 深入内容以英文为准</p>
+          <h1>我研究智能系统如何<span>记忆、推理与失败。</span></h1>
+          <p class="hero-lead">
+            我来自特立尼达和多巴哥，是一名独立人工智能研究者与系统构建者。
+            我的工作横跨 AI 安全、记忆、智能体评估、生物医学信号，以及把复杂想法变成可用系统所需的基础设施。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#research">查看研究 <span>↓</span></a>
+            <a href={links.email}>联系我 <span>↗</span></a>
+          </div>
+
+          <div class="desk-note" data-note-carousel aria-label="轮播页边笔记">
+            <div>
+              <span class="desk-note-index">页边笔记 <b data-note-index>01</b>/03</span>
+              <p data-field-note>我追随重要的问题，而不是整齐的分类。</p>
+            </div>
+            <div class="note-dots" aria-label="选择页边笔记">
+              <button class="active" type="button" data-note-dot="0" aria-label="显示笔记 1" aria-pressed="true"></button>
+              <button type="button" data-note-dot="1" aria-label="显示笔记 2" aria-pressed="false"></button>
+              <button type="button" data-note-dot="2" aria-label="显示笔记 3" aria-pressed="false"></button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="personal-card reveal" aria-label="研究坐标">
+          <p class="card-label">研究坐标</p>
+          <div class="route-sketch" aria-hidden="true">
+            <svg viewBox="0 0 360 104" role="img">
+              <path class="route-path" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
+              <path class="route-shadow" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
+              <circle cx="20" cy="72" r="5" />
+              <circle cx="340" cy="15" r="5" />
+            </svg>
+            <div><span>特立尼达和多巴哥</span><em>主动跨越学科</em><span>XJTLU</span></div>
+          </div>
+          <p class="personal-note">
+            来自特立尼达和多巴哥；在西交利物浦大学学习人工智能
+            <span>（智能系统）</span>。
+          </p>
+          <p class="personal-aside">地点会变化，主线不会：追随难题、公开证据，并构建系统缺失的那一层。</p>
+          <div class="personal-links">
+            <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
+            <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+          </div>
+        </aside>
+
+        <div class="hero-proof hero-proof-text reveal" aria-label="研究方向与公开证据">
+          <p><span class="proof-label">已录用</span><strong>AAAI TrustAgent · COLM · MICCAI AMAI</strong></p>
+          <p><span class="proof-label">研究方向</span><strong>记忆 · 评估 · 智能体 · AI 控制</strong></p>
+          <p><span class="proof-label">公开证据</span><strong>论文 · 代码 · 实验 · 系统笔记</strong></p>
+          <p class="proof-note">成果很重要。<br /><em>问题更重要。</em></p>
+        </div>
+      </section>
+
+      <section id="research" class="section shell">
+        <div class="section-heading reveal">
+          <div>
+            <p class="overline">代表研究</p>
+            <h2>部分已录用研究</h2>
+          </div>
+          <p>以下五篇公开摘要来自 AAAI、COLM 与 MICCAI 研讨会的已录用工作：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
+        </div>
+
+        <div class="paper-grid">
+          {acceptedPapers.map((paper, index) => {
+            const Tag = paper.url ? "a" : "article";
+            return (
+              <Tag
+                class="paper-card reveal"
+                href={paper.url || undefined}
+              >
+                <div class="paper-topline">
+                  <span class="paper-index">{String(index + 1).padStart(2, "0")} / {String(acceptedPapers.length).padStart(2, "0")}</span>
+                  <span class="accepted-pill">已录用</span>
+                  <span>{paper.venue}</span>
+                </div>
+                <div class="paper-copy">
+                  <h3>{paper.title}</h3>
+                  <p class="paper-subtitle">{paper.subtitle}</p>
+                  <p class="paper-question">
+                    {paper.id === "01" && "遗忘也许不是检索错误，而是架构选择。"}
+                    {paper.id === "02" && "小模型何时学会专家反馈，何时只学会两者之间的偏差？"}
+                    {paper.id === "03" && "移除哪一种信息，才会真正击穿智能体的能力？"}
+                    {paper.id === "04" && "较弱的可信模型，能否安全监督更强但不可信的规划者？"}
+                    {paper.id === "05" && "模型识别的是帕金森病，还是采集数据的医院？"}
+                  </p>
+                </div>
+                <div class="paper-bottom">
+                  <span>{paper.note.replace("Accepted · ", "")}</span>
+                  <span aria-hidden="true">阅读英文摘要 →</span>
+                </div>
+              </Tag>
+            );
+          })}
+        </div>
+        <div class="research-footnote reveal">
+          <p>每张卡片都会打开简明摘要；公开版本可用时会从摘要页链接。</p>
+          <p>这些论文只是更大工作集的可见边缘。</p>
+        </div>
+      </section>
+
+      <section id="about" class="section shell about-section">
+        <div class="about-heading reveal">
+          <p class="overline">关于我</p>
+          <h2>跨领域，<br /><span>是有意为之。</span></h2>
+        </div>
+        <div class="about-copy reveal">
+          <p class="about-lead">
+            我不是沿着一条笔直的计算机科学道路进入 AI。我会跟随真正重要的问题，
+            学习它所在的领域，再构建缺失的那一层。
+          </p>
+          <p>
+            这条路径经过科罗拉多州立大学的发酵科学与湿实验室研究、特立尼达的工业自动化、
+            创业，最后进入人工智能研究。贯穿其中的是对噪声证据的尊重，以及让系统在演示之外真正工作的要求。
+          </p>
+        </div>
+        <ol class="path-list reveal" aria-label="Edward 的经历">
+          <li><span>2023–25</span><strong>生物技术与实验室</strong><p>蛋白表达、冷冻保护剂发现与实验设计。</p></li>
+          <li><span>2024–26</span><strong>工业与运营</strong><p>工业控制、P&amp;ID、监管系统与创业。</p></li>
+          <li><span>2025–现在</span><strong>AI 研究与系统</strong><p>安全、记忆、智能体行为与研究基础设施。</p></li>
+        </ol>
+      </section>
+
+      <section id="systems" class="section shell systems-section">
+        <div class="section-heading reveal">
+          <div><p class="overline">部分作品</p><h2>我构建的系统</h2></div>
+          <p>从研究基础设施到生物医学工具，这里只选择最能说明我工作方式的几个项目。</p>
+        </div>
+        <div class="systems-grid">
+          {zhSystems.map((system, index) => (
+            <a class="system-card reveal" href={system.url || links.github}>
+              <span class="system-index">0{index + 1}</span>
+              <div class="system-title"><span class="system-kind">{system.kind}</span><h3>{system.name}</h3></div>
+              <p>{system.description}</p>
+              <span class="system-link">阅读英文笔记 →</span>
+            </a>
+          ))}
+        </div>
+
+        <a class="method-spine reveal" href="/questions/build-the-missing-layer/">
+          <div>
+            <span class="method-kicker">工作方法</span>
+            <h3>这个循环本身就是证据系统。</h3>
+          </div>
+          <ol aria-label="Edward 的六阶段工作循环">
+            {["观察", "定向", "计划", "行动", "验证", "记忆"].map((step, index) => (
+              <li><span>0{index + 1}</span>{step}</li>
+            ))}
+          </ol>
+          <strong>打开模型 →</strong>
+        </a>
+      </section>
+
+      <section id="direction" class="now-section">
+        <div class="shell now-inner">
+          <div class="now-title reveal">
+            <p class="overline">工作方向</p>
+            <h2>可以被检验的<br /><span>智能。</span></h2>
+          </div>
+          <div class="now-copy reveal">
+            <p class="now-lead">我在西交利物浦大学学习智能系统，同时构建跨越评估、记忆、AI 控制与科学发现的研究和基础设施。</p>
+            <p>
+              项目会改变，长期方向不会：让计划更有认识论基础，让行动更有边界，
+              让验证更接近后果真正发生的那一层。
+            </p>
+            <div class="now-actions">
+              <a class="primary-link" href="/" lang="en">English site <span>→</span></a>
+              <a href={links.email}>联系我 <span>↗</span></a>
+            </div>
+          </div>
+          <p class="now-marginalia reveal">能力越充足，越需要有边界的行动、<br /><span>可检验的证据与可追责的后果。</span></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <div><p class="footer-title">Edward Lue Chee Lip</p><p>人工智能研究者与系统构建者。<br />来自特立尼达和多巴哥，跨越系统与尺度工作。</p><p class="footer-note">这是一本工作笔记，不是一份简历。</p></div>
+      <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
+      <div class="footer-links">
+        <a href={links.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/" lang="en">English</a>
+      </div>
+    </footer>
+
+    <script>
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reducedMotion) {
+        document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+      } else {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          });
+        }, { threshold: 0.06, rootMargin: "0px 0px -4% 0px" });
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+      }
+
+      const notes = [
+        "我追随重要的问题，而不是整齐的分类。",
+        "我更愿意公开机器的结构，而不是把信号打磨得完美。",
+        "最有趣的工作通常穿过不止一个抽象层。",
+      ];
+      const noteText = document.querySelector("[data-field-note]");
+      const noteIndex = document.querySelector("[data-note-index]");
+      const noteCarousel = document.querySelector("[data-note-carousel]");
+      const noteDots = Array.from(document.querySelectorAll("[data-note-dot]"));
+      let currentNote = 0;
+      let noteTimer;
+      const showNote = (nextNote) => {
+        currentNote = nextNote;
+        if (noteText) noteText.textContent = notes[currentNote];
+        if (noteIndex) noteIndex.textContent = String(currentNote + 1).padStart(2, "0");
+        noteDots.forEach((dot, index) => {
+          const active = index === currentNote;
+          dot.classList.toggle("active", active);
+          dot.setAttribute("aria-pressed", String(active));
+        });
+      };
+      const startNotes = () => {
+        if (reducedMotion) return;
+        window.clearInterval(noteTimer);
+        noteTimer = window.setInterval(() => showNote((currentNote + 1) % notes.length), 5200);
+      };
+      noteDots.forEach((dot, index) => dot.addEventListener("click", () => {
+        showNote(index);
+        startNotes();
+      }));
+      noteCarousel?.addEventListener("mouseenter", () => window.clearInterval(noteTimer));
+      noteCarousel?.addEventListener("mouseleave", startNotes);
+      noteCarousel?.addEventListener("focusin", () => window.clearInterval(noteTimer));
+      noteCarousel?.addEventListener("focusout", startNotes);
+      startNotes();
+    </script>
+  </div>
+</Layout>

@@ -1,0 +1,47 @@
+---
+const forces = [
+  { word: "MUST NOT", force: "prohibition", width: "100%" },
+  { word: "MUST", force: "requirement", width: "100%" },
+  { word: "SHOULD", force: "default", width: "67%" },
+  { word: "MAY", force: "permission", width: "34%" },
+];
+
+const surfaces = ["Protocol spec", "System prompt", "Judge rubric", "Agent policy"];
+---
+
+<figure class="instruction-force" aria-labelledby="instruction-force-title">
+  <header class="instruction-force-heading shell">
+    <div>
+      <p class="overline">A recurring control grammar</p>
+      <h2 id="instruction-force-title">Words become<br /><span>control surfaces.</span></h2>
+    </div>
+    <p>RFC 2119 gives specifications a small vocabulary for obligation. The same grammar reappears wherever systems turn prose into behavior.</p>
+  </header>
+
+  <div class="instruction-force-canvas shell">
+    <div class="force-scale" aria-label="Force words from absolute prohibition and requirement to default and permission">
+      {forces.map((item, index) => (
+        <div style={`--force-width:${item.width}`}>
+          <span>0{index + 1}</span>
+          <strong>{item.word}</strong>
+          <i aria-hidden="true"></i>
+          <em>{item.force}</em>
+        </div>
+      ))}
+    </div>
+
+    <div class="force-route" aria-label="The grammar appears across protocol specifications, system prompts, judge rubrics, and agent policies">
+      {surfaces.map((surface, index) => (
+        <div><span>{String(index + 1).padStart(2, "0")}</span><strong>{surface}</strong></div>
+      ))}
+    </div>
+
+    <aside class="force-caveat">
+      <span>Inference boundary</span>
+      <strong>Structural clue ≠ proof of authenticity.</strong>
+      <p>Force words are useful experimental variables. They are not a jailbreak, a leak detector, or evidence that a prompt came from a particular lab.</p>
+    </aside>
+  </div>
+
+  <figcaption class="shell">A public method can expose the measurement and the ablation without publishing an attack playbook.</figcaption>
+</figure>

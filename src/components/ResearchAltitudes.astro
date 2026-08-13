@@ -1,0 +1,27 @@
+---
+interface Props {
+  items: readonly (readonly [string, string])[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="research-altitudes" aria-labelledby="research-altitudes-title">
+  <header class="shell research-altitudes-heading">
+    <div>
+      <p class="overline">The same object · seven altitudes</p>
+      <h2 id="research-altitudes-title">From question<br /><span>to falsifier.</span></h2>
+    </div>
+    <p>A paper becomes easier to inspect when its claim, boundary, intervention, measurement, failure mode, and next disconfirming result are kept separate.</p>
+  </header>
+
+  <ol class="shell research-altitudes-list">
+    {items.map(([label, value], index) => (
+      <li>
+        <span>{String(index + 1).padStart(2, "0")}</span>
+        <strong>{label}</strong>
+        <p>{value}</p>
+      </li>
+    ))}
+  </ol>
+</section>

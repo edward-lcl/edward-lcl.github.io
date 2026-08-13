@@ -1,212 +1,346 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import projects from "../data/projects.json";
+import EvidenceSketch from "../components/EvidenceSketch.astro";
+import StrangeLoop from "../components/StrangeLoop.astro";
+import { acceptedPapers, links, researchArcs, selectedSystems } from "../data/site";
 
-const statusClass: Record<string, string> = {
-  PUBLISHED: "badge-published",
-  RESEARCH: "badge-research",
-  ACTIVE: "badge-active",
-  STEALTH: "badge-stealth",
-  COMPLETED: "badge-completed",
-};
-
-// Dot color = activity/momentum signal (independent of visibility)
-// STEALTH projects are also active — teal dot signals momentum, dark badge signals privacy
-const dotColor: Record<string, string> = {
-  PUBLISHED: "#c9a84c",
-  RESEARCH: "#7eb8f7",
-  ACTIVE: "#5cc8b0",
-  STEALTH: "#5cc8b0",   // active momentum, private visibility
-  COMPLETED: "#5a5a70",
-};
+const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
+const featuredArcSlugs = [
+  "a-zero-needs-adjudication",
+  "where-does-the-model-end",
+  "the-frontier-is-funded",
+  "verification-must-touch-reality",
+];
+const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => arc.slug === slug)).filter(Boolean);
+const moreArcs = researchArcs.filter((arc) => !featuredArcSlugs.includes(arc.slug));
 ---
 
-<Layout title="Edward Lue Chee Lip">
+<Layout title="Edward Lue Chee Lip — AI Research & Systems">
+  <header class="site-header">
+    <div class="shell nav-inner">
+      <a class="site-name" href="#top"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+      <p class="header-status"><span></span> Trinidad &amp; Tobago · intelligent systems · open research</p>
+      <nav aria-label="Primary navigation">
+        <a href="#research">Research</a>
+        <a href="#systems">Systems</a>
+        <a href="#work">Ideas</a>
+        <a href="#about">About</a>
+        <a href="#direction">Direction</a>
+        <a href="/zh/" lang="zh-CN">中文</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- ═══════════ HERO ═══════════ -->
-  <section class="relative isolate min-h-screen flex items-center justify-center px-6 overflow-hidden">
-    <!-- CSS grid background -->
-    <div class="hero-grid" aria-hidden="true"></div>
+  <main id="main">
+    <section id="top" class="hero shell">
+      <div class="hero-main reveal">
+        <p class="overline"><span class="status-dot"></span>A working notebook by Edward</p>
+        <h1>I research how intelligent systems <span>remember, reason, and fail.</span></h1>
+        <p class="hero-lead">
+          I’m an independent AI researcher and systems builder from Trinidad and Tobago. My work moves between AI safety, memory,
+          agent evaluation, biomedical signals, and the infrastructure that makes ambitious ideas usable.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#research">See my research <span>↓</span></a>
+          <a href={links.email}>Email me <span>↗</span></a>
+        </div>
 
-    <!-- Scan line -->
-    <div class="hero-scan"></div>
-
-    <!-- Top glow -->
-    <div class="hero-glow"></div>
-
-    <div class="relative z-10 max-w-3xl mx-auto text-center">
-      <h1 class="font-mono font-bold text-6xl sm:text-7xl md:text-[5.5rem] tracking-tight text-white mb-6 fade-up">
-        Edward
-      </h1>
-      <p class="font-mono text-xs sm:text-sm text-accent tracking-[0.25em] uppercase mb-10 fade-up stagger-1">
-        AI Safety Researcher&ensp;·&ensp;Systems Builder&ensp;·&ensp;AAAI 2026 First Author
-      </p>
-      <p class="text-[#6a6a80] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto mb-12 fade-up stagger-2">
-        I build high-leverage systems across domains. Started in biotech, moved
-        through industrial engineering and entrepreneurship, ended up in AI
-        research — not by chasing titles, but by following meaningful problems.
-        Based in Trinidad and Tobago.
-      </p>
-
-      <!-- Links row -->
-      <div class="flex flex-wrap items-center justify-center gap-5 sm:gap-7 mb-10 fade-up stagger-3">
-        <a href="https://github.com/edward-lcl" target="_blank" rel="noopener" class="accent-link font-mono text-sm flex items-center gap-2">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
-        </a>
-        <a href="https://arxiv.org/abs/2512.14745" target="_blank" rel="noopener" class="accent-link font-mono text-sm flex items-center gap-2">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          arXiv
-        </a>
-        <a href="https://linkedin.com/in/edward-lue-chee-lip" target="_blank" rel="noopener" class="accent-link font-mono text-sm flex items-center gap-2">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          LinkedIn
-        </a>
-        <a href="https://x.com/MushuDev" target="_blank" rel="noopener" class="accent-link font-mono text-sm flex items-center gap-2">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X
-        </a>
+        <div class="desk-note" data-note-carousel aria-label="Rotating field notes">
+          <div>
+            <span class="desk-note-index">Margin note <b data-note-index>01</b>/03</span>
+            <p data-field-note>I follow consequential problems, not tidy categories.</p>
+          </div>
+          <div class="note-dots" aria-label="Choose a field note">
+            <button class="active" type="button" data-note-dot="0" aria-label="Show note 1" aria-pressed="true"></button>
+            <button type="button" data-note-dot="1" aria-label="Show note 2" aria-pressed="false"></button>
+            <button type="button" data-note-dot="2" aria-label="Show note 3" aria-pressed="false"></button>
+          </div>
+        </div>
       </div>
 
-      <!-- Scroll CTA -->
-      <a href="#work" class="inline-block font-mono text-[11px] text-[#3d3d50] tracking-[0.3em] uppercase hover:text-accent transition-colors duration-300 fade-up stagger-4">
-        View Work ↓
+      <aside class="personal-card reveal" aria-label="Research coordinates">
+        <p class="card-label">Research coordinates</p>
+        <div class="route-sketch" aria-hidden="true">
+          <svg viewBox="0 0 360 104" role="img">
+            <path class="route-path" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
+            <path class="route-shadow" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
+            <circle cx="20" cy="72" r="5" />
+            <circle cx="340" cy="15" r="5" />
+          </svg>
+          <div><span>Trinidad &amp; Tobago</span><em>cross-domain by design</em><span>XJTLU</span></div>
+        </div>
+        <p class="personal-note">
+          From Trinidad and Tobago; studying Artificial Intelligence
+          <span> (Intelligent Systems) at XJTLU</span>.
+        </p>
+        <p class="personal-aside">The location changes. The throughline stays: follow hard problems, expose the evidence, and build the missing layer.</p>
+        <div class="personal-links">
+          <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
+          <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href={links.x} target="_blank" rel="noopener">X ↗</a>
+        </div>
+      </aside>
+
+      <div class="hero-proof hero-proof-text reveal" aria-label="Research focus and public evidence">
+        <p><span class="proof-label">Accepted work</span><strong>AAAI TrustAgent · COLM · MICCAI AMAI</strong></p>
+        <p><span class="proof-label">Working across</span><strong>memory · evaluation · agents · AI control</strong></p>
+        <p><span class="proof-label">Evidence</span><strong>papers · code · experiments · system notes</strong></p>
+        <p class="proof-note">The signal is useful.<br /><em>The questions matter more.</em></p>
+      </div>
+    </section>
+
+    <section id="research" class="section shell">
+      <div class="section-heading reveal">
+        <div>
+          <p class="overline">Featured research</p>
+          <h2>Selected accepted research</h2>
+        </div>
+        <p>
+          These {acceptedPapers.length} public digests cover accepted work across AAAI, COLM, and MICCAI workshops. Together they ask
+          how intelligent systems should be remembered, supervised, tested, calibrated, and trusted.
+        </p>
+      </div>
+
+      <div class="paper-grid">
+        {acceptedPapers.map((paper, index) => {
+          const Tag = paper.url ? "a" : "article";
+          return (
+            <Tag
+              class="paper-card reveal"
+              href={paper.url || undefined}
+            >
+              <div class="paper-topline">
+                <span class="paper-index">{String(index + 1).padStart(2, "0")} / {String(acceptedPapers.length).padStart(2, "0")}</span>
+                <span class="accepted-pill">Accepted</span>
+                <span>{paper.venue}</span>
+              </div>
+              <div class="paper-copy">
+                <h3>{paper.title}</h3>
+                <p class="paper-subtitle">{paper.subtitle}</p>
+                <p class="paper-question">{paper.question}</p>
+              </div>
+              <EvidenceSketch slug={paper.slug} compact />
+              <div class="paper-bottom">
+                <span>{paper.note.replace("Accepted · ", "")}</span>
+                <span aria-hidden="true">Read the digest →</span>
+              </div>
+            </Tag>
+          );
+        })}
+      </div>
+      <div class="research-footnote reveal">
+        <p>Each card opens a plain-language digest. Public artifacts are linked from the digest when available.</p>
+        <p>The papers are the visible edge of a much larger working set.</p>
+      </div>
+    </section>
+
+    <section id="systems" class="section shell systems-section">
+      <div class="section-heading reveal">
+        <div>
+          <p class="overline">Selected work</p>
+          <h2>Systems I’ve built</h2>
+        </div>
+        <p>A small selection from a much larger body of research infrastructure, experiments, and operational tools.</p>
+      </div>
+
+      <div class="systems-grid">
+        {visibleSystems.map((system, index) => {
+          const Tag = system.url ? "a" : "article";
+          return (
+            <Tag class="system-card reveal" href={system.url || undefined}>
+              <span class="system-index">0{index + 1}</span>
+              <div class="system-title">
+                <span class="system-kind">{system.kind}</span>
+                <h3>{system.name}</h3>
+              </div>
+              <p>{system.description}</p>
+              <span class="system-link">Read the system note →</span>
+            </Tag>
+          );
+        })}
+      </div>
+
+      <a class="method-spine reveal" href="/questions/build-the-missing-layer/">
+        <div>
+          <span class="method-kicker">Operating method</span>
+          <h3>The loop is an evidence system.</h3>
+        </div>
+        <ol aria-label="Edward's six-stage operating loop">
+          {["Observe", "Orient", "Plan", "Act", "Verify", "Remember"].map((step, index) => (
+            <li><span>0{index + 1}</span>{step}</li>
+          ))}
+        </ol>
+        <strong>Open the model →</strong>
       </a>
-    </div>
-  </section>
 
-  <!-- ═══════════ WORK / PROJECT TIMELINE ═══════════ -->
-  <section id="work" class="max-w-3xl mx-auto px-6 py-16">
-    <h2 class="font-mono text-xl font-bold text-white mb-10 tracking-tight section-heading reveal">
-      Work
-    </h2>
+      <a class="all-work-link reveal" href={links.github} target="_blank" rel="noopener">Browse the wider body of work on GitHub <span>↗</span></a>
+    </section>
 
-    <div class="relative pl-8">
-      <div class="timeline-line"></div>
+    <StrangeLoop compact />
 
-      {projects.map((project, i) => {
-        const isClickable = !!project.url;
-        const cardClasses = `relative mb-8 last:mb-0 reveal timeline-card ${project.featured ? 'timeline-card-featured' : ''}`;
-        const cardContent = (
-          <>
-            <div class="timeline-dot" style={`background: ${dotColor[project.status] || "#7eb8f7"}; box-shadow: 0 0 6px ${dotColor[project.status] || "#7eb8f7"}40;`}></div>
-            <div class="flex items-baseline gap-3 mb-2 flex-wrap">
-              <span class={`font-mono text-base font-medium ${project.status === "STEALTH" ? "text-stealth" : "text-white"}`}>
-                {project.name}
-              </span>
-              <span class="font-mono text-xs text-[#3d3d50]">{project.year}</span>
-              <span class={`font-mono text-[10px] uppercase tracking-wider border px-2 py-0.5 rounded-full ${statusClass[project.status] || ""}`}>
-                {project.status}
-              </span>
-              {isClickable && (
-                <span class="ml-auto text-[#3a3a4a] group-hover:text-accent text-xs transition-colors">↗</span>
-              )}
-            </div>
-
-            <p class={`text-sm leading-relaxed mb-3 max-w-2xl ${project.status === "STEALTH" ? "text-[#4a4a60]" : "text-[#6a6a80]"}`}>
-              {project.description}
-            </p>
-
-            <div class="flex flex-wrap gap-x-3 gap-y-1">
-              {project.tags.map((tag: string) => (
-                <span class="font-mono text-[10px] text-[#4a4a5a] uppercase tracking-wider">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </>
-        );
-
-        return isClickable ? (
-          <a href={project.url} target="_blank" rel="noopener"
-             class={`block group ${cardClasses}`}
-             data-delay={Math.min(i * 40, 100)}>
-            {cardContent}
-          </a>
-        ) : (
-          <div class={cardClasses}
-               data-delay={Math.min(i * 40, 100)}>
-            {cardContent}
+    <section id="work" class="section themes-section">
+      <div class="shell">
+        <div class="section-heading reveal">
+          <div>
+            <p class="overline">What connects the work</p>
+            <h2>Four ways into the notebook</h2>
           </div>
-        );
-      })}
+          <p>
+            The work expands in many directions, but these four notes are the clearest entry points
+            into the same underlying control problem.
+          </p>
+        </div>
+
+        <div class="theme-grid">
+          {featuredArcs.map((arc, index) => arc && (
+            <a class="theme-card reveal" href={arc.url}>
+              <span class="theme-number">0{index + 1}</span>
+              <h3>{arc.title}</h3>
+              <p>{arc.body}</p>
+              <span class="theme-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+        <div class="more-notes reveal">
+          <span>More field notes</span>
+          <nav aria-label="More field notes">
+            {moreArcs.map((arc) => <a href={arc.url}>{arc.title} <span>↗</span></a>)}
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section shell about-section">
+      <div class="about-heading reveal">
+        <p class="overline">About me</p>
+        <h2>A cross-domain path,<br />{" "}<span>on purpose.</span></h2>
+      </div>
+
+      <div class="about-copy reveal">
+        <p class="about-lead">
+          I didn’t arrive in AI through a straight computer-science path. I followed problems that
+          seemed consequential, learned the domain, and built whatever layer was missing.
+        </p>
+        <p>
+          That path ran through fermentation science and wet-lab research at Colorado State,
+          industrial automation in Trinidad, entrepreneurship, and eventually AI research. The
+          throughline is a respect for noisy evidence and systems that have to work outside a demo.
+        </p>
+        <p>
+          Moving between fields is now part of how I work. A retrieval problem can look like a
+          control problem; an evaluation failure can look like a measurement problem; a research
+          workflow can become infrastructure for an entire group.
+        </p>
+      </div>
+
+      <ol class="path-list reveal" aria-label="Edward's path">
+        <li>
+          <span>2023–25</span>
+          <strong>Biotech & wet lab</strong>
+          <p>Protein expression, cryoprotectant discovery, experimental design, and learning to distrust clean-looking signals.</p>
+        </li>
+        <li>
+          <span>2024–26</span>
+          <strong>Industry & operations</strong>
+          <p>Industrial controls, P&amp;IDs, regulatory systems, entrepreneurship, and decisions with physical consequences.</p>
+        </li>
+        <li>
+          <span>2025–now</span>
+          <strong>AI research & systems</strong>
+          <p>Safety, memory, agent behavior, research infrastructure, and accepted work across AI research workshops.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="direction" class="now-section">
+      <div class="shell now-inner">
+        <div class="now-title reveal">
+          <p class="overline">Working direction</p>
+          <h2>Intelligence<br />{" "}<span>that can be checked.</span></h2>
+        </div>
+        <div class="now-copy reveal">
+          <p class="now-lead">
+            I study intelligent systems at Xi’an Jiaotong-Liverpool University while building
+            research and infrastructure across evaluation, memory, AI control, and scientific discovery.
+          </p>
+          <p>
+            The long direction is stable even as projects change: make planning more grounded,
+            action more bounded, and verification closer to the layer where consequences become real.
+          </p>
+          <div class="now-actions">
+            <a class="primary-link" href="/zh/" lang="zh-CN">中文页面 <span>→</span></a>
+            <a href={links.email}>Start a conversation <span>↗</span></a>
+          </div>
+        </div>
+        <p class="now-marginalia reveal">Abundant capability still needs bounded action,<br /><span>inspectable evidence, and accountable consequence.</span></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer shell">
+    <div>
+      <p class="footer-title">Edward Lue Chee Lip</p>
+      <p>AI researcher and systems builder.<br />From Trinidad and Tobago; working across systems and scales.</p>
+      <p class="footer-note">Built as a notebook, not a résumé.</p>
     </div>
-  </section>
-
-  <!-- ═══════════ CURRENTLY BUILDING ═══════════ -->
-  <section class="max-w-3xl mx-auto px-6 py-16 section-divider">
-    <h2 class="font-mono text-xl font-bold text-white mb-8 tracking-tight section-heading reveal">
-      Now
-    </h2>
-    <p class="text-[#6a6a80] text-base leading-relaxed max-w-2xl reveal">
-      Building Levi and Talos. Working on systems for memory, context, operational
-      intelligence, and decision support. Ongoing research collaboration targeting
-      publication in Q3 2026.
-    </p>
-  </section>
-
-  <!-- ═══════════ ABOUT ═══════════ -->
-  <section class="max-w-3xl mx-auto px-6 py-16 section-divider">
-    <h2 class="font-mono text-xl font-bold text-white mb-8 tracking-tight section-heading reveal">
-      About
-    </h2>
-    <p class="text-[#6a6a80] text-base leading-relaxed max-w-2xl mb-10 reveal">
-      I started in fermentation science at Colorado State University, then moved
-      wherever the most meaningful problems seemed to be. That path ran through
-      biotech, industrial automation, entrepreneurship, and AI research. I'm the
-      first author of Factor(UT), accepted at AAAI 2026. I've built cryoprotectant
-      discovery pipelines, designed P&ID systems for industrial control, and built
-      systems for memory, context, and agent orchestration. The throughline isn't a
-      title — it's a bias toward high-impact work and a way of thinking across
-      domains.
-    </p>
-  </section>
-
-  <!-- ═══════════ HOW I BUILD ═══════════ -->
-  <section class="max-w-3xl mx-auto px-6 py-16 section-divider">
-    <h2 class="font-mono text-xl font-bold text-white mb-8 tracking-tight section-heading reveal">
-      How I Build
-    </h2>
-    <p class="text-[#6a6a80] text-base leading-relaxed max-w-2xl reveal">
-      Single-domain expertise is valuable, but increasingly compressible. What's harder to replace is someone who can move between biotech, financial systems, industrial automation, and AI — and actually connect them. Problems look different from each vantage point. The cross-domain connections are often where the leverage is.
-    </p>
-    <p class="text-[#6a6a80] text-base leading-relaxed max-w-2xl mt-4 reveal">
-      I build systems that reflect that style of thinking: modular, composable, grounded in memory and context. Not just tools for a task — infrastructure for working on problems that don't fit neatly into one box.
-    </p>
-  </section>
-
-  <!-- ═══════════ FOOTER ═══════════ -->
-  <footer class="max-w-3xl mx-auto px-6 py-14 section-divider">
-    <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-mono text-[11px] text-[#3d3d50] text-center tracking-wide">
-      <span>Edward Lue Chee Lip</span>
-      <span>·</span>
-      <a href="mailto:eluecheelip@gmail.com" class="accent-link">eluecheelip@gmail.com</a>
-      <span>·</span>
-      <span>Built with Astro</span>
+    <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
+    <div class="footer-links">
+      <a href={links.github} target="_blank" rel="noopener">GitHub</a>
+      <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={links.x} target="_blank" rel="noopener">X</a>
+      <a href="/zh/" lang="zh-CN">中文</a>
     </div>
   </footer>
 
-</Layout>
+  <script>
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
+    } else {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.06, rootMargin: "0px 0px -4% 0px" });
+      document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    }
 
-<!-- Scroll-triggered reveal animation -->
-<script>
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const delay = el.dataset.delay;
-          if (delay) {
-            setTimeout(() => el.classList.add("visible"), parseInt(delay));
-          } else {
-            el.classList.add("visible");
-          }
-          observer.unobserve(el);
-        }
+    const notes = [
+      "I follow consequential problems, not tidy categories.",
+      "I would rather expose the machinery than polish the signal.",
+      "The interesting work usually crosses more than one abstraction layer.",
+    ];
+    const noteText = document.querySelector("[data-field-note]");
+    const noteIndex = document.querySelector("[data-note-index]");
+    const noteCarousel = document.querySelector("[data-note-carousel]");
+    const noteDots = Array.from(document.querySelectorAll("[data-note-dot]"));
+    let currentNote = 0;
+    let noteTimer;
+    const showNote = (nextNote) => {
+      currentNote = nextNote;
+      if (noteText) noteText.textContent = notes[currentNote];
+      if (noteIndex) noteIndex.textContent = String(currentNote + 1).padStart(2, "0");
+      noteDots.forEach((dot, index) => {
+        const active = index === currentNote;
+        dot.classList.toggle("active", active);
+        dot.setAttribute("aria-pressed", String(active));
       });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px 0px 0px" }
-  );
-
-  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-</script>
+    };
+    const startNotes = () => {
+      if (reducedMotion) return;
+      window.clearInterval(noteTimer);
+      noteTimer = window.setInterval(() => showNote((currentNote + 1) % notes.length), 5200);
+    };
+    noteDots.forEach((dot, index) => dot.addEventListener("click", () => {
+      showNote(index);
+      startNotes();
+    }));
+    noteCarousel?.addEventListener("mouseenter", () => window.clearInterval(noteTimer));
+    noteCarousel?.addEventListener("mouseleave", startNotes);
+    noteCarousel?.addEventListener("focusin", () => window.clearInterval(noteTimer));
+    noteCarousel?.addEventListener("focusout", startNotes);
+    startNotes();
+  </script>
+</Layout>

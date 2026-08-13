@@ -1,0 +1,49 @@
+---
+import ReadingPage from "../../components/ReadingPage.astro";
+import EvidenceSketch from "../../components/EvidenceSketch.astro";
+import FactorPipeline from "../../components/FactorPipeline.astro";
+import ResearchAltitudes from "../../components/ResearchAltitudes.astro";
+import { acceptedPapers } from "../../data/site";
+
+export function getStaticPaths() {
+  return acceptedPapers.map((paper, index) => ({
+    params: { slug: paper.slug },
+    props: {
+      paper,
+      next: acceptedPapers[(index + 1) % acceptedPapers.length],
+    },
+  }));
+}
+
+const { paper, next } = Astro.props;
+---
+
+<ReadingPage
+  kind={`Research digest · ${paper.venue}`}
+  title={paper.title}
+  subtitle={paper.subtitle}
+  lede={paper.lede}
+  status={paper.note}
+  evidenceNote={paper.evidenceNote}
+  sections={paper.sections}
+  sourceUrl={paper.sourceUrl}
+  role={paper.role}
+  authors={"authors" in paper ? paper.authors : undefined}
+  publicationDate={paper.publicationDate}
+  artifactState={paper.artifactState}
+  contribution={paper.contribution}
+  evidenceClass={paper.evidenceClass}
+  provenance={paper.provenance}
+  lastVerified={paper.lastVerified}
+  citationState={paper.citationState}
+  readTime={paper.readTime}
+  backHref="/#research"
+  backLabel="accepted papers"
+  nextHref={`/research/${next.slug}/`}
+  nextLabel={next.title}
+>
+  {paper.slug === "factor-ut"
+    ? <FactorPipeline slot="visual" />
+    : <EvidenceSketch slot="visual" slug={paper.slug} />}
+  <ResearchAltitudes slot="depth" items={paper.altitudes} />
+</ReadingPage>

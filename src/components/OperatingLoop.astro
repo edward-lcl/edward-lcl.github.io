@@ -1,0 +1,229 @@
+---
+const phases = [
+  {
+    id: "observe",
+    index: "01",
+    label: "Observe",
+    input: "traces · failures · outside signal",
+    detail: "Instrument first. A run should leave evidence about the environment, the model, the harness, and the change it produced.",
+  },
+  {
+    id: "orient",
+    index: "02",
+    label: "Orient",
+    input: "provenance · constraints · prior runs",
+    detail: "Build the system model. Connect what happened to the conditions, histories, permissions, and incentives that made it possible.",
+  },
+  {
+    id: "plan",
+    index: "03",
+    label: "Plan",
+    input: "operation · falsifier · gate",
+    detail: "Turn orientation into an evidence contract: hypothesis, provenance, acceptance, falsifier, kill condition, budget, rollback, and the next thread.",
+  },
+  {
+    id: "act",
+    index: "04",
+    label: "Act",
+    input: "bounded agent · deterministic code",
+    detail: "Change the system inside a sandbox. The agent handles judgment; code owns known operations, boundaries, and acceptance.",
+  },
+  {
+    id: "verify",
+    index: "05",
+    label: "Verify",
+    input: "independent test · reality · reject",
+    detail: "Let a separate gate disagree with the builder. In software this may be a deterministic test; in science it may be an instrument, assay, or lab.",
+  },
+  {
+    id: "remember",
+    index: "06",
+    label: "Remember",
+    input: "lineage · correction · next event",
+    detail: "Preserve what was observed, asserted, derived, unavailable, and corrected so the next loop begins from evidence rather than reconstructed lore.",
+  },
+];
+---
+
+<figure class="operating-loop" aria-labelledby="operating-loop-title">
+  <header class="operating-loop-heading shell">
+    <div>
+      <p class="overline">How I work · OODA extended into an evidence system</p>
+      <h2 id="operating-loop-title">Find the constraint.<br /><span>Keep the trace.</span></h2>
+    </div>
+    <p>Boyd’s sketch is the ancestry. My working version adds an explicit plan contract, a verifier that can reject the work, and durable lineage for the next pass.</p>
+  </header>
+
+  <div class="operating-loop-canvas shell">
+    <div class="ooda-map-scroll" tabindex="0" aria-label="Expanded OODA loop diagram; scroll horizontally on small screens">
+      <svg class="ooda-map" viewBox="0 0 1200 540" role="img" aria-label="Expanded observe, orient, decide, act control loop">
+        <desc id="ooda-map-desc">Outside information and unfolding circumstances become observations. Orientation combines context, prior experience, new information, constraints, and analysis. A decision is treated as a hypothesis and action as a test. Feed-forward, implicit guidance, and three feedback routes return evidence to observation.</desc>
+        <defs>
+          <marker id="ooda-arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto" markerUnits="strokeWidth">
+            <path d="M0 0L9 4.5L0 9Z" />
+          </marker>
+        </defs>
+
+        <g class="ooda-map-headings">
+          <text x="150" y="38">OBSERVE</text>
+          <text x="505" y="38">ORIENT</text>
+          <text x="815" y="38">DECIDE</text>
+          <text x="1060" y="38">ACT</text>
+        </g>
+
+        <g class="ooda-map-lines">
+          <path d="M40 202H95" />
+          <path d="M50 300H95" />
+          <path d="M68 385L110 330" />
+          <path d="M235 250H325" />
+          <path d="M700 250H765" />
+          <path d="M900 250H995" />
+          <path d="M500 115C430 58 235 72 190 150" class="implicit" />
+          <path d="M650 115C790 62 1060 76 1060 175" class="implicit" />
+          <path d="M1060 325V505H165V340" class="feedback" />
+          <path d="M835 330V470H185V340" class="feedback" />
+          <path d="M520 385V435H205V340" class="feedback" />
+        </g>
+
+        <g class="ooda-map-inputs">
+          <text x="80" y="169">OUTSIDE</text><text x="80" y="185">INFORMATION</text>
+          <text x="80" y="267">UNFOLDING</text><text x="80" y="283">CIRCUMSTANCES</text>
+          <text x="130" y="402">INTERACTION WITH</text><text x="130" y="417">THE ENVIRONMENT</text>
+        </g>
+
+        <g class="ooda-map-observe">
+          <circle cx="165" cy="250" r="78" />
+          <text x="165" y="246">observations</text>
+          <text class="sub" x="165" y="267">trace · signal · anomaly</text>
+        </g>
+
+        <g class="ooda-map-orient">
+          <rect x="325" y="105" width="375" height="290" rx="44" />
+          <circle cx="505" cy="166" r="48" />
+          <circle cx="405" cy="245" r="48" />
+          <circle cx="605" cy="245" r="48" />
+          <circle cx="445" cy="335" r="48" />
+          <circle cx="565" cy="335" r="48" />
+          <path d="M440 205L470 190M550 190L575 210M450 260L475 305M575 270L550 305M455 245H555M493 335H517" />
+          <text x="505" y="160">cultural</text><text x="505" y="176">context</text>
+          <text x="405" y="239">prior</text><text x="405" y="255">experience</text>
+          <text x="605" y="239">analysis &amp;</text><text x="605" y="255">synthesis</text>
+          <text x="445" y="329">new</text><text x="445" y="345">information</text>
+          <text x="565" y="329">constraints &amp;</text><text x="565" y="345">assumptions</text>
+        </g>
+
+        <g class="ooda-map-decide">
+          <path d="M835 165L910 250L835 335L760 250Z" />
+          <text x="835" y="243">decision</text>
+          <text class="sub" x="835" y="264">hypothesis + gate</text>
+        </g>
+
+        <g class="ooda-map-act">
+          <rect x="995" y="175" width="130" height="150" rx="4" />
+          <text x="1060" y="243">action</text>
+          <text class="sub" x="1060" y="264">bounded test</text>
+        </g>
+
+        <g class="ooda-map-labels">
+          <text x="270" y="238">FEED FORWARD</text>
+          <text x="706" y="238">FEED FORWARD</text>
+          <text x="915" y="238">FEED FORWARD</text>
+          <text x="288" y="78">IMPLICIT GUIDANCE &amp; CONTROL</text>
+          <text x="770" y="78">IMPLICIT GUIDANCE &amp; CONTROL</text>
+          <text x="615" y="425">FEEDBACK: ORIENTATION CHANGES WHAT CAN BE OBSERVED</text>
+          <text x="615" y="460">FEEDBACK: THE DECISION UPDATES THE HYPOTHESIS</text>
+          <text x="615" y="495">FEEDBACK: ACTION PRODUCES NEW EVIDENCE</text>
+        </g>
+      </svg>
+    </div>
+
+    <p class="ooda-scroll-hint" aria-hidden="true">Swipe to trace the full loop →</p>
+
+    <p class="ooda-map-note">The important part is not the four nouns. Orientation changes observation; decisions are hypotheses; actions are tests; every layer can feed evidence back before a full cycle completes.</p>
+
+    <p class="ooda-inspect">Inspect each phase</p>
+
+    <div class="ooda-track" aria-label="Observe, orient, plan, act, verify, remember">
+      {phases.map((phase, index) => (
+        <>
+          <button
+            class:list={["ooda-phase", index === 0 && "active"]}
+            type="button"
+            aria-pressed={index === 0 ? "true" : "false"}
+            data-ooda-phase
+            data-index={phase.index}
+            data-label={phase.label}
+            data-detail={phase.detail}
+          >
+            <span>{phase.index}</span>
+            <strong>{phase.label}</strong>
+            <em>{phase.input}</em>
+          </button>
+          {index < phases.length - 1 && <i class="ooda-forward" aria-hidden="true">→</i>}
+        </>
+      ))}
+    </div>
+
+    <div class="ooda-feedback" aria-hidden="true">
+      <span>feedback becomes the next observation</span>
+      <i></i>
+      <b>↶</b>
+    </div>
+
+    <aside class="ooda-readout" aria-live="polite">
+      <span data-ooda-index>01</span>
+      <div><p data-ooda-label>Observe</p><strong data-ooda-detail>{phases[0].detail}</strong></div>
+    </aside>
+
+    <div class="harness-rails" aria-label="The operating rails beneath the loop">
+      <article>
+        <span>Plan contract</span>
+        <h3>Precommit the evidence.</h3>
+        <p>Operation · hypothesis · falsifier · kill · rollback</p>
+      </article>
+      <article>
+        <span>Harness</span>
+        <h3>Assemble the capability.</h3>
+        <p>Context · model · prompt · tools · memory</p>
+      </article>
+      <article>
+        <span>Workflow</span>
+        <h3>Put the graph in code.</h3>
+        <p>Phases · typed handoffs · retries · gates · trace</p>
+      </article>
+      <article>
+        <span>Sandbox</span>
+        <h3>Bound the consequence.</h3>
+        <p>Filesystem · network · secrets · time · writes</p>
+      </article>
+      <article>
+        <span>Verifier</span>
+        <h3>Let the gate say no.</h3>
+        <p>Tests · reviewers · instruments · receipts · reality</p>
+      </article>
+    </div>
+  </div>
+
+  <figcaption class="shell">The full OODA sketch explains the feedback topology. The six-stage rail explains how I operationalize it.</figcaption>
+
+  <script>
+    document.querySelectorAll(".operating-loop").forEach((loop) => {
+      const index = loop.querySelector("[data-ooda-index]");
+      const label = loop.querySelector("[data-ooda-label]");
+      const detail = loop.querySelector("[data-ooda-detail]");
+      loop.querySelectorAll("[data-ooda-phase]").forEach((phase) => {
+        phase.addEventListener("click", () => {
+          loop.querySelectorAll("[data-ooda-phase]").forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-pressed", "false");
+          });
+          phase.classList.add("active");
+          phase.setAttribute("aria-pressed", "true");
+          if (index) index.textContent = phase.getAttribute("data-index") || "";
+          if (label) label.textContent = phase.getAttribute("data-label") || "";
+          if (detail) detail.textContent = phase.getAttribute("data-detail") || "";
+        });
+      });
+    });
+  </script>
+</figure>

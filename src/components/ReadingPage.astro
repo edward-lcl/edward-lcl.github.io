@@ -1,0 +1,187 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { ReadingSection } from "../data/site";
+
+interface Props {
+  kind: string;
+  title: string;
+  subtitle?: string;
+  lede: string;
+  status?: string;
+  evidenceNote?: string;
+  sections: readonly ReadingSection[];
+  sourceUrl?: string | null;
+  sourceLabel?: string;
+  role?: string;
+  authors?: string;
+  publicationDate?: string;
+  artifactState?: string;
+  contribution?: string;
+  evidenceClass?: string;
+  provenance?: string;
+  lastVerified?: string;
+  citationState?: string;
+  readTime?: string;
+  pullQuote?: string;
+  references?: readonly { label: string; url: string }[];
+  backHref: string;
+  backLabel: string;
+  nextHref?: string;
+  nextLabel?: string;
+}
+
+const {
+  kind,
+  title,
+  subtitle,
+  lede,
+  status,
+  evidenceNote,
+  sections,
+  sourceUrl,
+  sourceLabel,
+  role,
+  authors,
+  publicationDate,
+  artifactState,
+  contribution,
+  evidenceClass,
+  provenance,
+  lastVerified,
+  citationState,
+  readTime,
+  pullQuote,
+  references,
+  backHref,
+  backLabel,
+  nextHref,
+  nextLabel,
+} = Astro.props;
+
+const isScholarlyArticle = kind.startsWith("Research digest");
+const pageSchema = {
+  "@context": "https://schema.org",
+  "@type": isScholarlyArticle ? "ScholarlyArticle" : "Article",
+  headline: title,
+  ...(subtitle ? { alternativeHeadline: subtitle } : {}),
+  description: lede,
+  url: Astro.url.href,
+  inLanguage: "en",
+  author: {
+    "@type": "Person",
+    name: "Edward Lue Chee Lip",
+    url: new URL("/", Astro.site).href,
+  },
+  ...(isScholarlyArticle ? { datePublished: "2026-08-01" } : {}),
+};
+---
+
+<Layout title={`${title} — Edward Lue Chee Lip`} description={lede}>
+  <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <header class="site-header reading-header">
+    <div class="shell nav-inner">
+      <a class="site-name" href="/"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+      <p class="header-status"><span></span> Field notes / {kind}</p>
+      <nav aria-label="Reading navigation">
+        <a href={backHref}>← {backLabel}</a>
+        <a href="/questions/systems-are-strange-loops/">Framework</a>
+        <a href={sourceUrl || "mailto:eluecheelip@gmail.com"} target={sourceUrl ? "_blank" : undefined} rel={sourceUrl ? "noopener" : undefined}>{sourceUrl ? `${sourceLabel || "Source"} ↗` : "Discuss ↗"}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="reading-page">
+    <header class="reading-hero shell">
+      <div class="reading-title">
+        <p class="overline"><span class="status-dot"></span>{kind}</p>
+        <h1>{title}</h1>
+        {subtitle && <p class="reading-subtitle">{subtitle}</p>}
+      </div>
+      <aside class="reading-lede">
+        <p>{lede}</p>
+        {status && <span class="reading-status">{status}</span>}
+        {(role || authors || publicationDate || artifactState || readTime) && (
+          <dl class="reading-meta-grid">
+            {role && <div><dt>Edward’s role</dt><dd>{role}</dd></div>}
+            {publicationDate && <div><dt>Status</dt><dd>{publicationDate}</dd></div>}
+            {authors && <div class="meta-wide"><dt>Authors</dt><dd>{authors}</dd></div>}
+            {artifactState && <div><dt>Artifacts</dt><dd>{artifactState}</dd></div>}
+            {readTime && <div><dt>Reading time</dt><dd>{readTime}</dd></div>}
+            {contribution && <div class="meta-wide"><dt>Contribution</dt><dd>{contribution}</dd></div>}
+            {evidenceClass && <div><dt>Claim state</dt><dd>{evidenceClass}</dd></div>}
+            {lastVerified && <div><dt>Last checked</dt><dd>{lastVerified}</dd></div>}
+            {provenance && <div class="meta-wide"><dt>Provenance</dt><dd>{provenance}</dd></div>}
+            {citationState && <div class="meta-wide"><dt>Citation</dt><dd>{citationState}</dd></div>}
+          </dl>
+        )}
+      </aside>
+    </header>
+
+    {pullQuote && (
+      <blockquote class="reading-pullquote shell">
+        <p>“{pullQuote}”</p>
+        <cite>Working note · Edward Lue Chee Lip</cite>
+      </blockquote>
+    )}
+
+    <slot name="visual" />
+    <slot name="depth" />
+
+    <div class="reading-body shell">
+      <aside class="reading-index" aria-label="On this page">
+        <p class="card-label">On this page</p>
+        <ol>
+          {sections.map((section, index) => (
+            <li><a href={`#section-${index + 1}`}><span>0{index + 1}</span>{section.title}</a></li>
+          ))}
+        </ol>
+        {evidenceNote && <p class="evidence-note">{evidenceNote}</p>}
+        {references && references.length > 0 && (
+          <div class="reading-references">
+            <p>References</p>
+            {references.map((reference) => <a href={reference.url} target="_blank" rel="noopener">{reference.label} ↗</a>)}
+          </div>
+        )}
+      </aside>
+
+      <article class="reading-article">
+        {sections.map((section, index) => (
+          <section id={`section-${index + 1}`} class="reading-section">
+            <p class="section-number">0{index + 1}</p>
+            <h2>{section.title}</h2>
+            {section.body.map((paragraph) => <p>{paragraph}</p>)}
+            {section.points && (
+              <ul>
+                {section.points.map((point) => <li>{point}</li>)}
+              </ul>
+            )}
+          </section>
+        ))}
+
+      </article>
+    </div>
+
+    <nav class="reading-next shell" aria-label="Continue reading">
+      <a href={backHref}><span>Back to</span>{backLabel} ←</a>
+      {nextHref && <a href={nextHref}><span>Continue to</span>{nextLabel} →</a>}
+    </nav>
+  </main>
+
+  <footer class="site-footer shell reading-footer">
+    <div><p class="footer-title">Edward Lue Chee Lip</p><p>A public notebook about intelligent systems,<br />their instruments, and the worlds around them.</p></div>
+    <a class="footer-email" href="mailto:eluecheelip@gmail.com">eluecheelip@gmail.com</a>
+    <div class="footer-links"><a href="/">Home</a><a href="/zh/">中文</a></div>
+  </footer>
+
+  <script>
+    const progress = document.querySelector(".reading-progress span");
+    const updateProgress = () => {
+      const maximum = document.documentElement.scrollHeight - window.innerHeight;
+      const value = maximum > 0 ? window.scrollY / maximum : 0;
+      if (progress instanceof HTMLElement) progress.style.transform = `scaleX(${value})`;
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+  </script>
+</Layout>

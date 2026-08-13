@@ -1,0 +1,88 @@
+---
+interface Props {
+  slug: string;
+  compact?: boolean;
+}
+
+const { slug, compact = false } = Astro.props;
+
+const captions: Record<string, string> = {
+  "recall-debt": "Similarity retrieval collapses before bridge-aware retrieval does.",
+  "before-you-scale": "A teacher-level advantage can disappear at the distillation boundary.",
+  "diagnosing-agent-capabilities": "The same zero decomposes into different information failures.",
+  "factor-ut": "Malice is difficult to read in a plan and easier to read in its implementation.",
+  "site-confounds-parkinsons-eeg": "A no-EEG site baseline matches the pooled headline; honest site holdout exposes the calibration gap.",
+};
+---
+
+<figure class:list={["evidence-sketch", compact && "evidence-sketch-compact"]} data-evidence={slug}>
+  {!compact && (
+    <header class="evidence-heading shell">
+      <div><p class="overline">One result · visually</p><h2>Evidence before interpretation.</h2></div>
+      <figcaption>{captions[slug]}</figcaption>
+    </header>
+  )}
+
+  <div class:list={[!compact && "shell", "evidence-canvas"]}>
+    {slug === "recall-debt" && (
+      <div class="retrieval-bars" aria-label="Recall at 10 comparison: BM25 zero percent, dense zero percent, stronger similarity retrievers at most 22.6 percent, bridge resolved 61.6 percent">
+        <div style="--value: 0"><span>BM25</span><i><em></em></i><b>0%</b></div>
+        <div style="--value: 0"><span>Dense</span><i><em></em></i><b>0%</b></div>
+        <div style="--value: 22.6"><span>Stronger similarity</span><i><em></em></i><b>≤22.6%</b></div>
+        <div class="evidence-accent" style="--value: 61.6"><span>Bridge resolved</span><i><em></em></i><b>61.6%</b></div>
+      </div>
+    )}
+
+    {slug === "before-you-scale" && (
+      <div class="transfer-sketch" aria-label="Privileged supervision helps the teacher in a tractability sweet spot, but the advantage does not transfer to the tested student">
+        <div><span>01</span><strong>Privileged teacher</strong><em>+0.051 F1 on MATH</em></div>
+        <i aria-hidden="true">→</i>
+        <div class="transfer-boundary"><span>02</span><strong>Distillation boundary</strong><em>signal becomes diffuse</em></div>
+        <i aria-hidden="true">→</i>
+        <div><span>03</span><strong>1.5B student</strong><em>verified transfer null</em></div>
+      </div>
+    )}
+
+    {slug === "diagnosing-agent-capabilities" && (
+      <div class="knockout-sketch" aria-label="Four information-axis knockouts: World, Goal, Mechanics, and Feedback">
+        {["World", "Goal", "Mechanics", "Feedback"].map((axis, index) => (
+          <div><span>0{index + 1}</span><strong>{axis}</strong><i aria-hidden="true"></i></div>
+        ))}
+        <p>Outcome → diagnosis</p>
+      </div>
+    )}
+
+    {slug === "factor-ut" && (
+      <div class="monitor-bars" aria-label="Monitoring AUROC comparison: decomposition-only 0.52 and implementation-level 0.96">
+        <div><span>Plan only</span><i style="--value:52"></i><strong>0.52</strong></div>
+        <div class="evidence-accent"><span>Implementation</span><i style="--value:96"></i><strong>0.96</strong></div>
+        <p>monitoring AUROC</p>
+      </div>
+    )}
+
+    {slug === "site-confounds-parkinsons-eeg" && (
+      <div class="site-audit-sketch" aria-label="Site confound audit: pooled no-EEG site-prior balanced accuracy 0.901; held-out-site supervised ROC-AUC 0.763; fixed-threshold balanced accuracy 0.585 and train-site-selected threshold balanced accuracy 0.643">
+        <div class="site-audit-stage site-audit-warning">
+          <span>Pooled protocol</span>
+          <strong>0.901</strong>
+          <p>No EEG. Site prior only.</p>
+        </div>
+        <i class="site-audit-neq" aria-hidden="true">≠</i>
+        <div class="site-audit-stage">
+          <span>Unseen site · ranking</span>
+          <strong>0.763</strong>
+          <p>Supervised LODO ROC-AUC</p>
+        </div>
+        <i aria-hidden="true">→</i>
+        <div class="site-audit-stage site-audit-decision">
+          <span>Unseen site · decision</span>
+          <div><b>0.585</b><em>fixed</em><b>0.643</b><em>train-site threshold</em></div>
+          <p>Balanced accuracy</p>
+        </div>
+        <small>Hospital identity can look like disease signal. The split and the threshold are part of the claim.</small>
+      </div>
+    )}
+  </div>
+
+  {compact && <figcaption>{captions[slug]}</figcaption>}
+</figure>

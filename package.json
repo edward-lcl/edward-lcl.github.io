@@ -8,12 +8,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check:privacy": "node scripts/privacy-scan.mjs",
+    "check:links": "node scripts/link-check.mjs",
+    "check": "npm run check:privacy && astro build && npm run check:links",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.2",
-    "tailwindcss": "^4.2.2"
+    "astro": "^7.2.1"
   }
 }
