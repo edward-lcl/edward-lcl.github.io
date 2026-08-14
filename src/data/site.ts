@@ -771,6 +771,100 @@ export const researchArcs = [
       },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "O",
+    slug: "the-ontology-is-the-interface",
+    title: "The ontology is the interface.",
+    body: "Between raw data and consequential action sits a plane of named objects with properties, relations, and permitted actions. Whoever defines that plane defines what the organization can mean — and what its agents can do.",
+    url: "/questions/the-ontology-is-the-interface/",
+    revised: "13 Aug 2026",
+    readTime: "5 min read",
+    lede: "The most instructive architecture diagrams of the decade put the interesting layer in the middle: data sources below, logic beside, systems of action beyond — and between them, a plane of objects like Plant, Order, and Customer that everything above touches instead of touching the databases.",
+    evidenceNote: "Pattern note. The large-scale description follows Palantir's public Foundry and AIP materials; the small-scale practice is my own systems. No claims are made about any specific deployment's internals.",
+    references: [
+      { label: "Palantir · Foundry Ontology", url: "https://www.palantir.com/platforms/foundry/foundry-ontology/" },
+    ],
+    sections: [
+      {
+        title: "The middle plane",
+        body: [
+          "In the pattern worth stealing, analytics, automations, and agents never query tables. They read and act on objects — a Plant with a live efficiency score, an Order with a delivery to schedule, a Customer with an action called notify. Data sources feed the objects from below; models and rules give them behavior; the systems where consequences land sit on the far side.",
+          "The plane in the middle is the interface in the strict sense: it is the contract between what the organization knows and what the organization can do. Everything above it inherits its vocabulary, and everything below it disappears behind that vocabulary.",
+        ],
+      },
+      {
+        title: "Schema is governance",
+        body: [
+          "Deciding what counts as an object, which properties it carries, which relations are real, and who may invoke which action — these look like data-modeling choices and are actually governance choices. When access control and audit ride on the object layer, permissions become semantics: the question \"what can this agent see and touch?\" is answered by the ontology, not by a scattered pile of grants.",
+          "This is why the layer is political inside any organization that builds it. The schema encodes whose view of the business wins. An ontology is an org chart for meaning.",
+        ],
+      },
+      {
+        title: "Why agents force the issue",
+        body: [
+          "Language models made unstructured interfaces cheap: point one at raw tables and it will produce plausible answers. But plausible readings of raw data are precisely the unadjudicated-belief failure this notebook keeps circling — and an agent acting from them acts without a consequence boundary.",
+          "The ontology is that boundary made of meaning. An agent that can only act through typed objects with named actions is an agent whose behavior is inspectable, permissionable, and auditable by construction. The alternative is an agent whose capabilities are whatever the prompt happened to allow that day.",
+        ],
+      },
+      {
+        title: "The small version",
+        body: [
+          "The pattern scales down further than its enterprise packaging suggests. My own systems keep a typed object layer between ingestion and action: entities carry provenance, confidence, and domain boundaries — the veracity gradient lives on these objects — and no automation acts on anything that lacks a name, an owner, and a permitted set of actions.",
+          "You do not need a platform to have an ontology. You need the discipline. The open question I am still testing is whether ontology-first survives contact with fast-moving research code, or whether the schema ossifies faster than the work changes shape.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
+  {
+    index: "P",
+    slug: "orientation-precedes-grounding",
+    title: "Orientation precedes grounding.",
+    body: "Before \"how true is this claim?\" comes \"from what vantage am I evaluating it?\" Agents fail characteristically when their posture — lens, mode, altitude, reach — is left implicit.",
+    url: "/questions/orientation-precedes-grounding/",
+    revised: "13 Aug 2026",
+    readTime: "5 min read",
+    lede: "Epistemic grounding grades beliefs. Something sits above it: the choice of lens the reasoning is done through. A chess player who declares \"I'm playing positionally\" before the first move has constrained every move that follows — and that is a feature.",
+    evidenceNote: "Working-position note synthesizing published cognitive science — Boden's creativity taxonomy, Kauffman's adjacent possible — with operational observations from running agent systems. Implementation details of my own substrate are out of scope.",
+    references: [
+      { label: "Boden · The Creative Mind: Myths and Mechanisms", url: "https://www.routledge.com/The-Creative-Mind-Myths-and-Mechanisms/Boden/p/book/9780415314534" },
+      { label: "Kauffman · Investigations (the adjacent possible)", url: "https://global.oup.com/academic/product/investigations-9780195121056" },
+    ],
+    sections: [
+      {
+        title: "Before truth comes vantage",
+        body: [
+          "The grounding question — where did this belief come from, how confident should I be — assumes the reasoning episode is already framed. It rarely is. Who is reasoning, from which role, toward which possibility space, at what level of zoom: these choices precede evidence evaluation and quietly decide what can be observed at all.",
+          "This is the deep half of the orientation step in any observe–orient loop. Orientation is not just assembling context; it is choosing the lens the context will be read through.",
+        ],
+      },
+      {
+        title: "The postures agents fail to hold",
+        body: [
+          "Watch agent systems fail long enough and the failures sort into postures, not tasks. Stuck at one altitude: everything answered at 10,000 feet in vague strategy, or at 100 feet in line-by-line detail, with no movement between. Confused perspective: the frame the agent reasons from does not match the frame its tools act in. Wrong creativity mode, in Boden's taxonomy: grinding exploratory search inside a schema when the situation needs a combinatorial bridge between two schemas — or attempting a transformational schema change when plain search would do. And proposing unreachable moves: recommending actions from the abstract space of all actions rather than Kauffman's adjacent possible, the frontier actually reachable from the current configuration.",
+        ],
+        points: [
+          "Altitude: can the reasoner zoom, and does it know its current height?",
+          "Perspective: does the reasoning frame match the acting frame?",
+          "Mode: exploring a schema, bridging schemas, or changing the schema?",
+          "Reach: is the proposal on the reachable frontier, or in the abstract action space?",
+        ],
+      },
+      {
+        title: "Declare the posture",
+        body: [
+          "The intervention is unglamorous: make the posture explicit before reasoning begins. State the vantage, the mode, the altitude, and the radius of moves under consideration — and let the surrounding system serve views matched to the declared altitude instead of one flat context dump.",
+          "Declared posture does for reasoning what a plan contract does for action: it turns an implicit stance into an inspectable object. It is cheap to write down and expensive to skip, because an undeclared posture still exists — it is just unexaminable.",
+        ],
+      },
+      {
+        title: "Where it sits in the stack",
+        body: [
+          "Orientation above grounding, grounding above memory: the lens chooses what counts as relevant, the gradient grades what is believed, the substrate remembers what happened. All three are infrastructure, not prompt garnish.",
+          "The honest open question: whether declared posture measurably improves outcomes, or whether it becomes post-hoc rationalization — a stance written down and then ignored. That is testable, and it is on the list.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [
