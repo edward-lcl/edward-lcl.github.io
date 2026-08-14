@@ -724,6 +724,53 @@ export const researchArcs = [
       },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "N",
+    slug: "epistemic-grounding-is-the-missing-layer",
+    title: "Epistemic grounding is the missing layer.",
+    body: "Safety research, search engineering, and production systems have independently converged on the same absence: agents have no substrate that tracks where beliefs come from, how confident they are, and when to defer. This note is the dated claim that these are one gap.",
+    url: "/questions/epistemic-grounding-is-the-missing-layer/",
+    revised: "13 Aug 2026",
+    readTime: "6 min read",
+    lede: "Three fields that do not read each other keep discovering the same missing layer. I am publishing the connection as a dated note rather than waiting for the perfect paper — because an unpublished thesis has no provenance, and provenance is the point.",
+    evidenceNote: "Position note, published deliberately ahead of a formal write-up: a dated stake on a convergence I have not seen connected elsewhere. The cited work by Smith and Wright is public; the production evidence is mine. The formal specification and the experimental designs it implies are ongoing work and are not in this note.",
+    references: [
+      { label: "Smith, Mitelut, Vamplew · Intent-aligned AI systems deplete human agency (2023)", url: "https://arxiv.org/abs/2305.19223" },
+      { label: "Russell Wright · Entity Veracity", url: "https://entity-veracity.super-intelligent.ai" },
+      { label: "Jøsang · Subjective Logic", url: "https://link.springer.com/book/10.1007/978-3-319-42337-1" },
+    ],
+    sections: [
+      {
+        title: "Three fields, one gap",
+        body: [
+          "AI safety found it from the agency side. Ben Smith's work argues that intent-aligned systems can erode human agency without malice — repeated restatement drifts a person away from what they originally wanted — and leaves open the question of when a system should defer to human judgment rather than commit. That is a question about confidence thresholds, and current agent architectures have nowhere to put it.",
+          "Search engineering found it from the trust side. Twenty-five years of information retrieval converge on veracity as a gradient — entities graded by the independence, recency, and verification of their evidence, not by a boolean. The previous note in this notebook covers that stream. And I found it from the production side: building operational systems for infrastructure clients forces the same questions constantly — when may this system commit to a belief, when must it surface for review, and how do we know where a conclusion came from? I built answers because the alternative was a system confidently acting on wrong information in a domain where that matters.",
+          "Three vocabularies — agency depletion, entity veracity, operational reliability — describing one absence. I have not seen the connection made elsewhere. This note is the dated claim that it is one gap.",
+        ],
+      },
+      {
+        title: "What the layer must do",
+        body: [
+          "Track origin: every belief carries its sources and lineage, so a conclusion can be traced to what produced it. Grade confidence: belief, disbelief, and uncertainty as masses on a gradient — Jøsang's subjective logic gives this a clean algebra — so \"how sure are we\" is a first-class value, not a vibe. Respect boundaries: a belief earned in one domain does not transfer to another at full confidence; the crossing itself is an event worth recording. And defer deliberately: below some confidence, at some stakes, the system's correct move is to stop and show a human — which turns Smith's open question from a policy aspiration into an architectural slot.",
+          "None of these are exotic. Each exists somewhere — in provenance research, in knowledge graphs, in HITL practice. What does not exist is the substrate that provides all four beneath any agent loop, the way a filesystem sits beneath any program.",
+        ],
+      },
+      {
+        title: "Why current frameworks lack it",
+        body: [
+          "Agent frameworks treat memory as storage and belief as retrieval: whatever comes back from the store is acted on with uniform confidence. Benchmarks make the same omission from the other side — they score whether an agent's final commitment was right, not how justified the agent was at the moment of committing, so a lucky guess and an earned conclusion are indistinguishable in the reward.",
+          "The consequence shows up throughout this notebook: recall debt is missing lineage in memory; the unadjudicated zero is missing provenance in evaluation; veracity-blind agents are missing confidence grading in belief. These read as separate problems and are one problem — the missing epistemic layer, observed from three altitudes.",
+        ],
+      },
+      {
+        title: "The stake",
+        body: [
+          "I am building toward the formal specification — the algebra, the promotion and deferral policies, and the evidence that lineage tracking improves reliability and transfer in controlled tests. That work is ongoing and belongs to a longer piece with collaborators and experiments behind it.",
+          "This note exists because the alternative was worse: a thesis that waited in a private vault for a perfect paper that circumstances might never allow. Published, it has a date, a shape, and an address. The falsifier is stated plainly: if explicit lineage and confidence tracking fail to improve rule reliability and cross-domain transfer in controlled comparisons, this layer is bookkeeping, not substrate — and I will revise the note to say so.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [
