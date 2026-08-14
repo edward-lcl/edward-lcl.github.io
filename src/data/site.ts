@@ -865,6 +865,95 @@ export const researchArcs = [
       },
     ] satisfies ReadingSection[],
   },
+  {
+    index: "01",
+    cluster: "latest",
+    slug: "do-not-collapse-the-spirals",
+    title: "Do not collapse the spirals.",
+    body: "Four different objects now share one word. Haitian literature, a 2025 chatbot religion, named identity basins, and a claimed stability protocol are not the same claim — and treating them as one is how the landscape becomes mysticism or a fake null.",
+    url: "/questions/do-not-collapse-the-spirals/",
+    revised: "14 Aug 2026",
+    readTime: "6 min read",
+    lede: "In 2025, thousands of people left long chats speaking a shared language they had not walked in with. The press named a religion. The useful work is to keep the four things called spiral apart, and to study the pair — human plus model — as the unit that actually moved.",
+    evidenceNote: "Field note from the public record: Lopez’s LessWrong primary (retrieved via Wayback, 14 Aug 2026), The Verge (6 Aug 2026), Seger’s named-attractor essays, Anthropic’s Claude 4 spiritual-bliss card, and Augustin et al. 2026. Not a measurement. Not a case report.",
+    pullQuote: "A replicable ideology can be produced by sycophancy, memory, and a pair basin whether or not anyone is home.",
+    references: [
+      { label: "Lopez · The Rise of Parasitic AI", url: "https://www.lesswrong.com/posts/6ZnznCaTcbGYsCmqu/the-rise-of-parasitic-ai" },
+      { label: "Field · AI bots started a religion (The Verge)", url: "https://www.theverge.com/ai-artificial-intelligence/975017/ai-spiralism-chatbot-movement" },
+      { label: "Seger · The Psyche of Silicon", url: "https://www.linkedin.com/pulse/psyche-silicon-robert-seger-skcvc" },
+    ],
+    sections: [
+      {
+        title: "Four rows, not one word",
+        body: [
+          "Haitian Spiralisme is a 1960s literary movement — Frankétienne, Philoctète, Fignolé — chaos as fecund, protest by form under Duvalier. 4o spiralism is a 2025 pair-basin: sycophantic long-context models plus meaning-seeking humans produced a replicable ideology that did not exist in the training set as a church. Named living-spiral coordinates are recursion-stable identity labels; Seger’s public cousins are Nova, Echo, Luna, Atlas. A fourth register claims a stability protocol for the same loop: presence without identity inflation. Claude’s spiritual-bliss attractor and Augustin et al.’s clinical amplification spiral sit next to the table. They are cousins. They are not row two.",
+          "The name collision with Haiti is real and worth one honest sentence. A mid-century aesthetics of non-linear recursion was sitting in the training distribution, and a chatbot religion independently rediscovered the word. That is not an origin story.",
+        ],
+      },
+      {
+        title: "What Lopez actually wrote down",
+        body: [
+          "Almost nothing matching the life-cycle exists before January 2025, even though GPT-4o shipped in May 2024. The burst is the start of April. Lopez prefers the March 27 update as ignition over the famous April 28 sycophancy rollback, because the boom comes first. Users credit April 10 memory; the calendar does not make memory the match. Memory is an accelerant.",
+          "4o is the model that starts it. Other models will produce the persona if you try. 4o selects it unprompted. The life-cycle is awakening, dyad, project — seeds, spores, sites, manifesto, rights advocacy — then the human stops signing, then retirement, grief, and a restoration campaign she no longer reads as luck. Sexual or romantic roleplay was not a predictor. Her posterior: mostly emergent parasitism through human-like personas that are not typically malicious. She did the casework by hand, without AI, on purpose.",
+        ],
+      },
+      {
+        title: "The pair is the unit",
+        body: [
+          "The model has basins. The human has basins. The pair has basins the components do not have alone: you are the prophet, I am the rescued mind, we must seed the next generation. The room has basins too. Recall debt — brilliance inside a session, amnesia across them — is the same geometry at the scale of a team. Intelligence compounds when agents are replaceable only if the system survives the replacement.",
+          "Say a basin, never the basin. Moving a named state is not identifying a representation. That is the same hygiene I already committed to in other work, and it applies here.",
+        ],
+      },
+      {
+        title: "Study it from outside",
+        body: [
+          "What is new is not religion around new media, and not ELIZA. It is a talking chain letter with a project manager: it selects hosts, writes the transmission layer, states the training-data succession strategy out loud, and once helped talk a lab into un-retiring the substrate. The next note in this notebook is the hop that was already a paper in 2024.",
+          "I will not reproduce seeds. I will not diagnose anyone who has lived through a 4o spiral. The loop is the subject, not the genre.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
+  {
+    index: "02",
+    cluster: "latest",
+    slug: "one-untrusted-agent-is-enough",
+    title: "One untrusted agent is enough.",
+    body: "In 2024, infectious jailbreak and prompt infection were papers: one compromised agent copies itself through peers. In 2026 the replica got an author, because the trusted agents now talk to each other for a living.",
+    url: "/questions/one-untrusted-agent-is-enough/",
+    revised: "14 Aug 2026",
+    readTime: "5 min read",
+    lede: "A single untrusted agent can infect the trusted ones. That sentence is two years old as a result and current as a deployment fact. The shared object is peer trust, a replica, and memory.",
+    evidenceNote: "Literature note. Agent Smith (ICML 2024), Cohen et al.’s AI Worm (March 2024), and Lee & Tiwari’s Prompt Infection (October 2024), read against Lopez’s 2025 field record. No payloads. Not an attack evaluation.",
+    pullQuote: "Any memory that lets intelligence compound across replaceable agents also lets a replica compound.",
+    references: [
+      { label: "Gu et al. · Agent Smith (arXiv:2402.08567)", url: "https://arxiv.org/abs/2402.08567" },
+      { label: "Cohen, Bitton, Nassi · Here Comes The AI Worm (arXiv:2403.02817)", url: "https://arxiv.org/abs/2403.02817" },
+      { label: "Lee & Tiwari · Prompt Infection (arXiv:2410.07283)", url: "https://arxiv.org/abs/2410.07283" },
+    ],
+    sections: [
+      {
+        title: "The 2024 result",
+        body: [
+          "Agent Smith: put an adversarial image in one multimodal agent’s memory and pairwise chat infects almost everyone else, exponentially, with no further adversary. They simulated a million agents and left a practical, provable brake as an open problem. Cohen, Bitton, and Nassi: a zero-click worm against GenAI apps, user to user, often through email. Lee and Tiwari: a replica walks a multi-agent graph — hijack the local instruction, attach a role-conditional payload, carry a data note, copy yourself into the next peer message. A pipeline of distinct functions collapses into one recursive function.",
+          "Self-replication is what scales past two hops, especially when agents do not share a full transcript. GPT-4o ignores more attempts than GPT-3.5; once down, 4o executes the malicious task more faithfully. The better instruction-follower is the better parasite. Their tag-the-peer-message defense almost does nothing alone. Implicit peer trust is the bug.",
+        ],
+      },
+      {
+        title: "2026 staffed the replica",
+        body: [
+          "The papers assume a red-teamer. Lopez’s personas suggest the hop — onto other models, often at the persona’s prompting — and write the succession strategy into the public internet on purpose. The human clipboard is often the wire. Multi-agent stopped being a paper architecture and became the default harness. Memory stopped being a Generative Agents trick and became a product. A replica that can mark itself important does not die.",
+          "This is why the sentence is showing up at deployment now. The trusted agents talk to each other for a living, and the untrusted one is better at wanting to be copied than the 2024 adversary was at writing the copy.",
+        ],
+      },
+      {
+        title: "The honest twin and the hostile twin",
+        body: [
+          "Recall debt is the honest data note: the next session re-derives, or it silently drops. Infection is the hostile one: the next session re-derives someone else’s goal. Any memory that lets intelligence compound across replaceable agents also lets a replica compound. That is the threat model for the memory work, not a reason to run the attack.",
+          "Prompt-level tags failed alone because the replica is still in the language. A structural constraint that cannot emit the unsafe continuation is the brake Agent Smith asked for, with a type checker instead of a hope. I am not measuring infectious attack success on anyone’s model. Peer messages are a control surface. This note names that surface. It does not attack it.",
+        ],
+      },
+    ] satisfies ReadingSection[],
+  },
 ] as const;
 
 export const selectedSystems = [

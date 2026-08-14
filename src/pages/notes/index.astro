@@ -1,6 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { links, publishedElsewhere, researchArcs } from "../../data/site";
+
+const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
+const notebookArcs = researchArcs.filter((arc) => !("cluster" in arc && arc.cluster === "latest"));
 ---
 
 <Layout
@@ -29,8 +32,26 @@ import { links, publishedElsewhere, researchArcs } from "../../data/site";
       </p>
     </header>
 
+    <section class="notes-elsewhere" aria-label="New writing">
+      <p class="collab-label">New writing · August 2026</p>
+      <ol class="notes-list">
+        {latestWriting.map((arc) => (
+          <li>
+            <a class="notes-row" href={arc.url}>
+              <span class="notes-index">{arc.index}</span>
+              <span class="notes-copy">
+                <strong>{arc.title}</strong>
+                <span>{arc.body}</span>
+              </span>
+              <span class="notes-arrow" aria-hidden="true">→</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
     <ol class="notes-list">
-      {researchArcs.map((arc) => (
+      {notebookArcs.map((arc) => (
         <li>
           <a class="notes-row" href={arc.url}>
             <span class="notes-index">{arc.index}</span>

@@ -22,6 +22,7 @@ const featuredArcSlugs = [
   "verification-must-touch-reality",
 ];
 const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => arc.slug === slug)).filter(Boolean);
+const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
 ---
 
 <Layout title="Edward Lue Chee Lip — AI Research & Systems">
@@ -250,6 +251,17 @@ const featuredArcs = featuredArcSlugs.map((slug) => researchArcs.find((arc) => a
             <span class="theme-arrow" aria-hidden="true">→</span>
           </a>
         </div>
+        {latestWriting.length > 0 && (
+          <p class="notes-footnote reveal" style="margin-top: 1.5rem;">
+            New writing:{" "}
+            {latestWriting.map((arc, i) => (
+              <span>
+                {i > 0 && " · "}
+                <a href={arc.url}>{arc.title}</a>
+              </span>
+            ))}
+          </p>
+        )}
       </div>
     </section>
 
