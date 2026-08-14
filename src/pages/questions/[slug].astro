@@ -7,25 +7,33 @@ import InstructionForce from "../../components/InstructionForce.astro";
 import { researchArcs } from "../../data/site";
 
 export function getStaticPaths() {
-  return researchArcs.map((question, index) => ({
-    params: { slug: question.slug },
-    props: {
-      question,
-      next: researchArcs[(index + 1) % researchArcs.length],
-    },
-  }));
+  return researchArcs.map((question, index) => {
+    const latest = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
+    const sibling = latest.find((arc) => arc.slug !== question.slug);
+    const next =
+      "cluster" in question && question.cluster === "latest" && sibling
+        ? sibling
+        : researchArcs[(index + 1) % researchArcs.length];
+    return {
+      params: { slug: question.slug },
+      props: { question, next },
+    };
+  });
 }
 
 const { question, next } = Astro.props;
+const kind = "kind" in question ? question.kind : "Question I keep returning to";
+const status = "status" in question ? question.status : "Living field note";
+const publicationDate = "publicationDate" in question ? question.publicationDate : "Continuously revised";
 ---
 
 <ReadingPage
-  kind="Question I keep returning to"
+  kind={kind}
   title={question.title}
   lede={question.lede}
-  status="Living field note"
+  status={status}
   authors="Edward Lue Chee Lip"
-  publicationDate="Continuously revised"
+  publicationDate={publicationDate}
   evidenceNote={"evidenceNote" in question ? question.evidenceNote : undefined}
   lastVerified={"revised" in question ? question.revised : undefined}
   lastVerifiedLabel="Last revised"
