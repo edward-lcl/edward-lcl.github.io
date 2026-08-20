@@ -44,11 +44,9 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
       <div class="shell nav-inner">
         <a class="site-name" href="#top"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
         <p class="header-status"><span></span> 特立尼达 · 智能系统 · 开放研究</p>
-        <nav aria-label="主导航">
-          <a href="#research">研究</a>
-          <a href="#systems">作品</a>
-          <a href="#about">关于我</a>
-          <a href="#direction">方向</a>
+        <nav class="header-actions" aria-label="主导航">
+          <a class="cv-quick-link" href="/cv/">CV <span aria-hidden="true">↗</span></a>
+          <a href={links.email}>联系</a>
           <a href="/" lang="en">English</a>
         </nav>
       </div>
@@ -97,9 +95,17 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             <span>（智能系统）</span>专业，2026 年秋季开始一年级。
           </p>
           <p class="personal-aside">地点会变化，主线不会：追随难题、公开证据，并构建系统缺失的那一层。</p>
+          <div class="personal-index">
+            <p>快速索引</p>
+            <nav aria-label="页面索引">
+              <a href="#research"><span>01</span>研究</a>
+              <a href="#systems"><span>02</span>作品</a>
+              <a href="#about"><span>03</span>关于我</a>
+              <a href="#direction"><span>04</span>方向</a>
+            </nav>
+          </div>
           <div class="personal-links">
             <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
-            <a href="/cv/">CV →</a>
             <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
           </div>
         </aside>

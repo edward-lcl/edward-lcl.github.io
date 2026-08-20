@@ -30,12 +30,9 @@ const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.clust
     <div class="shell nav-inner">
       <a class="site-name" href="#top"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
       <p class="header-status"><span></span> Trinidad &amp; Tobago · intelligent systems · open research</p>
-      <nav aria-label="Primary navigation">
-        <a href="#research">Research</a>
-        <a href="#systems">Systems</a>
-        <a href="#notebook">Notebook</a>
-        <a href="#about">About</a>
-        <a href="#direction">Direction</a>
+      <nav class="header-actions" aria-label="Primary navigation">
+        <a class="cv-quick-link" href="/cv/">CV <span aria-hidden="true">↗</span></a>
+        <a href={links.email}>Email</a>
         <a href="/zh/" lang="zh-CN">中文</a>
       </nav>
     </div>
@@ -85,9 +82,18 @@ const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.clust
           <span> (Intelligent Systems) at XJTLU</span>, first year beginning autumn 2026.
         </p>
         <p class="personal-aside">The location changes. The throughline stays: follow hard problems, expose the evidence, and build the missing layer.</p>
+        <div class="personal-index">
+          <p>Quick index</p>
+          <nav aria-label="Notebook index">
+            <a href="#research"><span>01</span>Research</a>
+            <a href="#systems"><span>02</span>Systems</a>
+            <a href="#notebook"><span>03</span>Notebook</a>
+            <a href="#about"><span>04</span>About</a>
+            <a href="#direction"><span>05</span>Direction</a>
+          </nav>
+        </div>
         <div class="personal-links">
           <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="/cv/">CV →</a>
           <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
           <a href={links.x} target="_blank" rel="noopener">X ↗</a>
         </div>

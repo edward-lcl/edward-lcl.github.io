@@ -192,6 +192,36 @@ a {
   color: var(--blue);
 }
 
+.nav-inner .header-actions {
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.nav-inner .cv-quick-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--blue);
+  border-radius: 2px;
+  background: var(--blue);
+  color: white;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.nav-inner .cv-quick-link:hover {
+  border-color: var(--blue-dark);
+  background: var(--blue-dark);
+  color: white;
+  transform: translateY(-1px);
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.8fr);
@@ -452,13 +482,57 @@ a {
   line-height: 1.65;
 }
 
+.personal-index {
+  margin-top: 1.8rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--line);
+}
+
+.personal-index > p {
+  margin: 0 0 0.55rem;
+  color: var(--quiet);
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.personal-index nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.35rem;
+}
+
+.personal-index a {
+  display: grid;
+  grid-template-columns: 1.4rem minmax(0, 1fr);
+  gap: 0.3rem;
+  align-items: baseline;
+  padding: 0.58rem 0;
+  border-bottom: 1px solid rgba(27, 29, 33, 0.09);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 0.94rem;
+  transition: color 160ms ease, padding-left 160ms ease;
+}
+
+.personal-index a:hover {
+  padding-left: 0.18rem;
+  color: var(--blue);
+}
+
+.personal-index a span {
+  color: var(--blue);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.03em;
+}
+
 .personal-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem 1.2rem;
-  margin-top: 2rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--line);
+  margin-top: 1.25rem;
   color: var(--blue);
   font-size: 0.75rem;
   font-weight: 600;
