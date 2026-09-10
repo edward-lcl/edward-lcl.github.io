@@ -3,12 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import { links, publishedElsewhere, researchArcs } from "../../data/site";
 
 const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
-const notebookArcs = researchArcs.filter((arc) => !("cluster" in arc && arc.cluster === "latest"));
+const framework = researchArcs.find((arc) => arc.slug === "inside-the-loop")!;
+const notebookArcs = researchArcs.filter((arc) => arc.slug !== "inside-the-loop" && !("cluster" in arc && arc.cluster === "latest"));
 ---
 
 <Layout
   title="Field notes — Edward Lue Chee Lip"
-  description="The full index of Edward's field notes: living questions about memory, evaluation, control, and the institutions around intelligent systems."
+  description="Edward’s research notebook: memory, evaluation, independent verification, and the human-machine feedback loops connecting them."
 >
   <header class="site-header">
     <div class="shell nav-inner">
@@ -27,11 +28,16 @@ const notebookArcs = researchArcs.filter((arc) => !("cluster" in arc && arc.clus
       <p class="overline"><span class="status-dot"></span>The notebook index</p>
       <h1>Field notes</h1>
       <p class="notes-lead">
-        Living questions, continuously revised. Each note is an entry point into the same underlying
-        problem: keeping information, control, and evidence intact as they cross layers.
+        I follow failures from memory and agents into the verifiers and institutions around them.
+        These notes ask how the resulting feedback loops can stay open to correction.
+        <a href="/questions/inside-the-loop/">Start with Inside the loop →</a>
       </p>
     </header>
 
+    <section class="notes-elsewhere" aria-label="Framework essay">
+      <p class="collab-label">The connecting argument · September 2026</p>
+      <a class="notes-row" href={framework.url}><span class="notes-index">00</span><span class="notes-copy"><strong>{framework.title}</strong><span>{framework.body}</span></span><span class="notes-arrow" aria-hidden="true">→</span></a>
+    </section>
     <section class="notes-elsewhere" aria-label="New writing">
       <p class="collab-label">New writing · August 2026</p>
       <ol class="notes-list">

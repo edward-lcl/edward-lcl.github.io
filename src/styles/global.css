@@ -4429,3 +4429,11 @@ a.system-card .system-link {
     transform: none;
   }
 }
+
+/* Editorial connections use the existing notebook palette and typography. */
+.hero-question { max-width: 42rem; margin: 1rem 0 0; color: var(--muted); line-height: 1.6; }
+.hero-question a { display: inline-block; text-decoration: underline; text-underline-offset: 0.2em; }
+.section-sources { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; margin: 1.2rem 0; font-size: 0.85rem; }
+.section-sources a, .research-connection a { text-decoration: underline; text-underline-offset: 0.2em; }
+.research-connection { padding-top: 1.5rem; padding-bottom: 1.5rem; line-height: 1.7; }
+.loop-center .loop-source { margin-top: 0.6rem; color: var(--ink-accent-soft); font-size: 0.65rem; line-height: 1.4; text-decoration: underline; }

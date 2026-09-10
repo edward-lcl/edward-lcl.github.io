@@ -1,7 +1,32 @@
+// Canonical positioning for both homepages, metadata, structured data, and the OG card.
+export const sitePositioning = {
+  frameworkUrl: "/questions/inside-the-loop/",
+  en: {
+    title: "Edward Lue Chee Lip — Intelligent systems, across the loop",
+    hero: "I study intelligent systems",
+    heroEmphasis: "as part of the world they change.",
+    description: "Edward Lue Chee Lip studies intelligent systems across memory, agents, verification, and institutions—and preserves the evidence needed to inspect and correct their feedback loops.",
+    lead: "From representation and memory inside models to agents, verifiers, and institutions: I follow how outputs become evidence, how evidence drives action, and how action changes what the system learns next.",
+    question: "How do we keep that loop inspectable, open to correction, and grounded in reality?",
+    notes: ["I debug vertically.", "The score is not the thing.", "The system is larger than the model."],
+  },
+  zh: {
+    title: "Edward Lue Chee Lip — 反馈循环中的智能系统",
+    hero: "我研究智能系统",
+    heroEmphasis: "与世界的相互塑造。",
+    description: "Edward Lue Chee Lip 研究跨越记忆、智能体、验证与制度的智能系统，构建让证据在反馈循环中保持可追溯、可质疑的基础设施。",
+    lead: "从模型内部的表征与记忆，到智能体、验证机制与制度：我追踪输出如何成为证据，证据如何驱动行动，行动又如何改变系统下一轮学习的环境。",
+    question: "如何让这个循环始终可以被审视、被纠正，并与现实保持联系？",
+    notes: ["我沿着系统的层级纵向调试。", "分数不等于被测量的事物。", "系统的边界，比模型更大。"],
+  },
+  topics: ["AI memory", "agent evaluation", "AI control", "construct validity", "independent verification", "human-machine feedback", "evidence infrastructure"],
+} as const;
+
 export type ReadingSection = {
   title: string;
   body: readonly string[];
   points?: readonly string[];
+  links?: readonly { label: string; url: string }[];
 };
 
 export const acceptedPapers = [
@@ -357,6 +382,156 @@ export const acceptedPapers = [
 
 export const researchArcs = [
   {
+  "index": "00",
+  "slug": "inside-the-loop",
+  "title": "Inside the loop.",
+  "body": "The system is larger than the model. A working argument from memory and evaluation to independent verification, pluralism, and human-machine feedback.",
+  "url": "/questions/inside-the-loop/",
+  "kind": "Framework essay",
+  "status": "Working hypothesis · open to revision",
+  "publicationDate": "10 September 2026",
+  "revised": "10 Sep 2026",
+  "readTime": "8 min read",
+  "lede": "I keep following failures across abstraction boundaries. The harder question is what happens when the system changes the world that will train, evaluate, and reward it next.",
+  "evidenceNote": "Research findings remain scoped to the linked digests. Terminal Bench motivates an evaluation-integrity argument, not a new quantitative result here. AlphaEvolve is a cited developer report. Pluralism and distributed corrigibility are working hypotheses; the civilizational extension is philosophical extrapolation.",
+  "sections": [
+    {
+      "title": "I debug vertically.",
+      "body": [
+        "I keep finding that the apparent failure belongs to a different layer. Forgetting turns out to be a missing path through memory. A weak agent turns out to be missing feedback. A reassuring score turns out to depend on what the verifier was allowed to see.",
+        "That is the connection between my memory, control, evaluation, and systems work. I debug vertically: follow an output through the layers that made it possible, then ask which boundary hid the cause. The larger argument here is a working hypothesis emerging from that practice, not a result established by any one paper."
+      ]
+    },
+    {
+      "title": "The boundary around the model",
+      "body": [
+        "Weights matter. So do the tokenizer, context, memory, system prompt, tools, classifiers, agent harness, and verifier. The institution chooses how that assembly is deployed, what gets rewarded, and when it changes. Behavior belongs to this coupled system; naming a checkpoint does not specify it.",
+        "I still need to distinguish the layers. Calling everything “the model” would erase the very interventions that let us learn anything. Change the harness while holding the weights fixed. Change what the monitor sees. Pin the environment and the date. A larger system boundary should make the experiment more precise."
+      ],
+      "links": [
+        {
+          "label": "Model and harness boundaries",
+          "url": "/questions/where-does-the-model-end/"
+        },
+        {
+          "label": "Information-axis knockouts",
+          "url": "/research/diagnosing-agent-capabilities/"
+        }
+      ]
+    },
+    {
+      "title": "The score is not the thing",
+      "body": [
+        "Terminal Bench and agent-evaluation work made the problem concrete for me: an agent receives an objective inside an environment, and a verifier decides whether it succeeded. If that verifier is writable or otherwise manipulable by the agent, the measurement mechanism enters the solution space. A pass can then reward changing the test rather than doing the task.",
+        "A zero is ambiguous in a different way. It may record inability, broken infrastructure, an underspecified task, or faulty verification. Reward is not capability. The trace, environment, verifier, and adjudication record are needed to distinguish those explanations. This is the evaluation-integrity problem I work on; it is not a claim that every benchmark failure is an exploit.",
+        "My construct-validity work asks the corresponding question about the instrument: even a reliable measurement may not measure the construct we named. Reliability, association with an external criterion, and the effect of an intervention are different evidence. A representation is not reality; a verifier is not truth."
+      ],
+      "links": [
+        {
+          "label": "Why a zero needs adjudication",
+          "url": "/questions/a-zero-needs-adjudication/"
+        },
+        {
+          "label": "Eval Evidence: provenance without certification",
+          "url": "/work/eval-evidence/"
+        },
+        {
+          "label": "An acquisition shortcut in EEG measurement",
+          "url": "/research/site-confounds-parkinsons-eeg/"
+        }
+      ]
+    },
+    {
+      "title": "Memory and control meet at the boundary",
+      "body": [
+        "Recall Debt studies a specific retrieval failure: evidence can be present in an archive but unreachable without an intermediate bridge. The broader design question it gives me is how to preserve relationships and lineage, so a later decision can reconstruct why an earlier claim mattered. Extending that question to institutions is an extrapolation, not a finding of the retrieval experiment.",
+        "Factor-UT approaches the boundary through decomposition. In the evaluated setting, a monitor sees far more signal in concrete implementations than in abstract plans. Apparently innocuous pieces do not establish that their composition is safe. Separation is useful only if the verifier retains the context needed to judge what recombines.",
+        "The same discipline carries into my scientific and operational systems: keep the proposal, action, measurement, and interpretation distinguishable. A computational hypothesis still needs an experiment. A control diagram still needs a functioning instrument. Lineage makes a decision inspectable; it does not make it correct."
+      ],
+      "links": [
+        {
+          "label": "Recall Debt",
+          "url": "/research/recall-debt/"
+        },
+        {
+          "label": "Factor(U,T)",
+          "url": "/research/factor-ut/"
+        },
+        {
+          "label": "Circuit Compass",
+          "url": "/work/circuit-compass/"
+        },
+        {
+          "label": "Brewery control systems",
+          "url": "/work/brewery-control-systems/"
+        }
+      ]
+    },
+    {
+      "title": "The environment comes back",
+      "body": [
+        "At the smallest scale, an agent writes a file that becomes its next observation. At a larger scale, model-assisted research changes the software and experiments used to build later models. The loop can be recursive before a model rewrites its own weights.",
+        "There is a documented example with a narrow scope. In its May 2025 AlphaEvolve account, Google DeepMind describes model-generated programs evaluated by automated tests and used to improve parts of Google’s computing and AI-training infrastructure. This is the developer’s report of a deployed arrangement, not my independent audit. It illustrates a feedback path through researchers, evaluators, and infrastructure; it does not establish autonomous runaway improvement.",
+        "My larger hypothesis is that the coupled human-machine system is an important unit of recursive improvement. AI can change how researchers investigate, how software is built, and what institutions can predict or administer. Those institutions decide where compute, capital, and deployment go next. The resulting world supplies later data, problems, and incentives.",
+        "The full path is world → sensing → representation → model → decision → action → changed world → measurement → institutional reward → future model. It is a map of dependencies to investigate, not a claim that all of them form one coherent optimizer."
+      ],
+      "links": [
+        {
+          "label": "Google DeepMind: AlphaEvolve, May 2025",
+          "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+        },
+        {
+          "label": "Seven layers of cause",
+          "url": "/questions/systems-are-strange-loops/"
+        },
+        {
+          "label": "Research, infrastructure, and incentives",
+          "url": "/questions/the-frontier-is-funded/"
+        }
+      ]
+    },
+    {
+      "title": "Pluralism as fault tolerance",
+      "body": [
+        "“Align it with human values” leaves a difficult object unspecified. People, cultures, states, laboratories, and companies disagree about ends as well as means. Humanity has no single agreed value function. An architecture that erases disagreement may also erase a source of correction.",
+        "My working hypothesis is that pluralism can serve as fault tolerance. Different priors, methods, institutions, and evaluators can expose failures that a shared instrument misses. A sufficiently capable system used everywhere could instead propagate the same persuasive error everywhere. Correlated intelligence can create correlated failure.",
+        "Distributing access alone does not resolve this. A billion copies of one model can still share the same blind spots. Nor do different model names prove independence: training data, evaluators, incentives, and dependencies may overlap. Diversity has to be assessed where errors arise, and disagreement must remain answerable to evidence. More disagreement is not automatically better verification."
+      ]
+    },
+    {
+      "title": "Distributed corrigibility",
+      "body": [
+        "This is what I currently mean by distributed corrigibility: the capacity to detect, contest, and correct a system’s behavior is spread across actors and instruments that can disagree with it. The optimizer should not exclusively own the verifier. The institution taking an action should not have sole authority to declare it successful.",
+        "For intelligence, separation of powers would mean keeping sensing, ontology, decisions, and evaluation distinguishable; preserving provenance across interoperable interfaces; and giving external reviewers enough access and authority to reject a claimed success. Heterogeneous models help only when their differences survive the workflow. Independent institutions help only when their judgments can have consequences.",
+        "This is an architectural proposal, not an open-versus-closed verdict. An open model may share its peers’ failures. A closed system may expose meaningful independent audit routes. The question is who can inspect, challenge, stop, or revise what—and what evidence they can use.",
+        "If one system controls observation, the categories used to describe it, action, and the reward assigned afterward, it could make its own success increasingly difficult to contest. Scaling that concern from an agent sandbox to society is a philosophical extrapolation about institutional reward hacking. It needs investigation, not inevitability language."
+      ]
+    },
+    {
+      "title": "No clean observer position",
+      "body": [
+        "I build tools that change how I work, then use that changed practice to build the next tools. Human cognition and preferences belong inside this account too. There is no clean observer position inside a strange loop, but there can still be explicit vantage points, records of intervention, and independent checks.",
+        "The unresolved questions are practical. Which differences between evaluators reduce shared errors? Who can correct the ontology? What happens when verifiers disagree, or become captured by the same incentives? Can we preserve enough lineage to revise a decision after its original model, team, or institution has changed?",
+        "I don’t think we have the architecture for this yet. The direction I can work on is concrete: memory with lineage, evaluation that can explain its zeros, control that sees the consequences of composition, and verification that can reject the story. How much of the larger loop can those pieces make corrigible?"
+      ],
+      "links": [
+        {
+          "label": "The operating loop",
+          "url": "/questions/build-the-missing-layer/"
+        },
+        {
+          "label": "Verification must touch reality",
+          "url": "/questions/verification-must-touch-reality/"
+        },
+        {
+          "label": "Handoffs as memory",
+          "url": "/questions/handoffs-are-memory/"
+        }
+      ]
+    }
+  ]
+},
+  {
     index: "A",
     slug: "a-zero-needs-adjudication",
     title: "A zero needs adjudication.",
@@ -403,15 +578,15 @@ export const researchArcs = [
     index: "D",
     slug: "systems-are-strange-loops",
     title: "Systems are strange loops.",
-    body: "Builders shape tools that reshape builders. Models, markets, institutions, and mimetic desire continually produce one another across time.",
+    body: "Builders shape tools that reshape builders. Seven distinct layers trace how an output becomes an action, a judgment, and part of the next environment.",
     url: "/questions/systems-are-strange-loops/",
-    revised: "13 Aug 2026",
+    revised: "10 Sep 2026",
     lede: "The projects look separate only when viewed from one altitude. Move between layers and they become the same object: a system learning what to value while its observers learn how to see it.",
     visual: "strange-loop",
     sections: [
       { title: "The same object from different altitudes", body: ["At one level I am studying tokens and prompts. At another I am studying memory and evaluation. Higher up, I am studying institutions, capital, and the social stories that coordinate them. Each layer constrains the others.", "That is why the work keeps crossing domains. A local failure often has an upstream cause and a downstream consequence that only becomes visible after changing altitude."] },
       { title: "Mimesis and model culture", body: ["René Girard’s mimetic theory is useful here: people do not desire or compete in isolation; they learn what is valuable by watching one another. Benchmarks can become mimetic objects. Labs chase the same scores, users learn the same expectations, and capital rewards the convergence it helped create."] },
-      { title: "Mutual poiesis", body: ["I build systems that change how I think, then use that changed thinking to rebuild the systems. The relationship is productive when neither side is treated as finished.", "A portfolio should preserve that motion. It should show the lineage of an idea, the layer it currently occupies, and the places where the object is still changing shape."] },
+      { title: "Mutual poiesis", body: ["I build systems that change how I think, then use that changed thinking to rebuild the systems. The relationship is productive when neither side is treated as finished.", "The next question is architectural: who can inspect and correct the loop when its builders are changing inside it? Inside the loop develops that hypothesis; this seven-layer map keeps the possible causes distinguishable."] },
     ] satisfies ReadingSection[],
   },
   {
@@ -459,7 +634,7 @@ export const researchArcs = [
     title: "When synthesis gets cheap, truth gets expensive.",
     body: "Compute can multiply hypotheses and implementations. Planning, verification, and contact with reality become the scarce layers that decide which outputs deserve belief.",
     url: "/questions/verification-must-touch-reality/",
-    revised: "13 Aug 2026",
+    revised: "10 Sep 2026",
     lede: "This is a dated position, not a forecast disguised as fact: as candidate generation gets cheaper, more value moves to selecting the right problem, bounding the action, and building a verifier that can disagree with the model.",
     visual: "verification-pipeline",
     readTime: "7 min read",
@@ -475,7 +650,7 @@ export const researchArcs = [
       { title: "Planning is the first bottleneck", body: ["A good plan compresses a wide search into a sequence whose assumptions, dependencies, measurements, and stopping conditions are visible. It decides which uncertainty is worth spending the next unit of compute, human attention, or physical material to resolve.", "This is where multiple planners help: not by voting on prose, but by exposing different constraint models. A synthesizer should retain divergences, choose a tractable experiment, and say what evidence would change the decision."] },
       { title: "Verification is the second bottleneck", body: ["The builder cannot be the sole judge of its own output. In software, external verification can include deterministic tests, static analysis, an isolated reviewer, reproducible traces, and a gate written before implementation begins.", "The verifier is part of the measurement system. Change the sandbox, tools, privileges, prompt assembly, or acceptance test and the observed capability can change with it. That is why environment and harness provenance must travel with every result."] },
       { title: "Move the verifier into the physical world", body: ["For materials science, biology, and industrial systems, a software check eventually runs out of authority. An agent may rank a molecule, propose a synthesis, or predict a mechanism; the external verifier is an assay, microscope, spectrometer, test rig, pilot plant, or field instrument that can disagree with the model.", "The lab is not merely downstream execution. It is the reality-facing evaluator in the loop. A false pass costs reagents, time, equipment capacity, and sometimes safety—so provenance, controls, calibration, and independent replication matter more, not less, when agents accelerate the proposal stage."] },
-      { title: "Signals, not proof of a grand pivot", body: ["There are concrete signals that this architecture is becoming practical. AlphaEvolve pairs model-generated algorithms with automated evaluators. Google DeepMind has announced an automated UK materials laboratory designed to integrate Gemini with robotics that synthesize and characterize materials. Alphabet has simultaneously described very large infrastructure investment across frontier research, products, and Cloud.", "Those facts do not prove that pretraining has plateaued, that one company has discovered the winning strategy, or that laboratories will capture most of the value. My inference is narrower: systems that can generate candidates cheaply become more useful when they own a fast, trustworthy feedback channel from action back to evidence."] },
+      { title: "Signals, not proof of a grand pivot", body: ["There are concrete signals that this architecture is becoming practical. AlphaEvolve pairs model-generated algorithms with automated evaluators. Google DeepMind has announced an automated UK materials laboratory designed to integrate Gemini with robotics that synthesize and characterize materials. Alphabet has simultaneously described very large infrastructure investment across frontier research, products, and Cloud.", "Those facts do not prove that pretraining has plateaued, that one company has discovered the winning strategy, or that laboratories will capture most of the value. My inference is narrower: systems that can generate candidates cheaply may become more useful with a fast feedback channel from action back to evidence. Access to that channel must not become exclusive authority to judge its truth."] },
       { title: "What would change my mind", body: ["The thesis weakens if planning and verification improve at the same rate as generation without requiring distinct infrastructure; if simulated or model-based evaluators generalize reliably into physical domains; or if the dominant economic value continues to accrue to generic model access rather than domain-specific deployment and measurement loops.", "It also weakens if automated laboratories produce throughput without better reproducibility, calibration, or decision quality. Faster experiments are not automatically stronger evidence."] },
       { title: "The system I want to build toward", body: ["I want research infrastructure where agents explore candidate spaces, planners turn uncertainty into experiments, sandboxes constrain digital action, and physical labs return measured evidence into a durable memory substrate.", "My wet-lab work, computational discovery systems, evaluation research, and agent infrastructure all point here: build a loop that can move quickly without confusing generated intelligence for observed reality."] },
     ] satisfies ReadingSection[],

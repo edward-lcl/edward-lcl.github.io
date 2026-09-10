@@ -45,5 +45,8 @@ const { paper, next } = Astro.props;
   {paper.slug === "factor-ut"
     ? <FactorPipeline slot="visual" />
     : <EvidenceSketch slot="visual" slug={paper.slug} />}
-  <ResearchAltitudes slot="depth" items={paper.altitudes} />
+  <div slot="depth">
+    <ResearchAltitudes items={paper.altitudes} />
+    <p class="shell research-connection">This digest carries the measured claim. <a href="/questions/inside-the-loop/#section-4">Inside the loop</a> develops the wider question; the framework does not expand the result’s scope.</p>
+  </div>
 </ReadingPage>

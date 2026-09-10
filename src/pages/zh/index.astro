@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { acceptedPapers, additionalPapers, links, selectedSystems } from "../../data/site";
+import { acceptedPapers, additionalPapers, links, selectedSystems, sitePositioning } from "../../data/site";
 
+const positioning = sitePositioning.zh;
 const visibleSystems = selectedSystems.filter((system) => !("public" in system) || system.public !== false);
 const allPapers = [...acceptedPapers, ...additionalPapers];
 const paperCount = allPapers.length;
@@ -35,8 +36,8 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
 ---
 
 <Layout
-  title="Edward Lue Chee Lip — 人工智能研究与系统"
-  description="Edward Lue Chee Lip：来自特立尼达和多巴哥的人工智能研究者与系统构建者，研究记忆、评估、智能体控制与科学发现。"
+  title={positioning.title}
+  description={positioning.description}
   lang="zh-CN"
 >
   <div class="zh-page">
@@ -56,11 +57,11 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
       <section id="top" class="hero shell zh-hero">
         <div class="hero-main reveal">
           <p class="overline"><span class="status-dot"></span>Edward 的中文概览 · 深入内容以英文为准</p>
-          <h1>我研究智能系统如何<span>记忆、推理与失败。</span></h1>
+          <h1>{positioning.hero}<span>{positioning.heroEmphasis}</span></h1>
           <p class="hero-lead">
-            我来自特立尼达和多巴哥，是一名人工智能研究者与系统构建者。
-            我研究智能系统在层与层之间丢失信息、控制与证据的位置，并构建让这些丢失可以被检验的基础设施。
+            {positioning.lead}
           </p>
+          <p class="hero-question">{positioning.question} <a href="#notebook">从循环内部看 →</a></p>
           <div class="hero-actions">
             <a class="primary-link" href="#research">查看研究 <span>↓</span></a>
             <a href={links.email}>联系我 <span>↗</span></a>
@@ -69,7 +70,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           <div class="desk-note" data-note-carousel aria-label="轮播页边笔记">
             <div>
               <span class="desk-note-index">页边笔记 <b data-note-index>01</b>/03</span>
-              <p data-field-note>我追随重要的问题，而不是整齐的分类。</p>
+              <p data-field-note>{positioning.notes[0]}</p>
             </div>
             <div class="note-dots" aria-label="选择页边笔记">
               <button class="active" type="button" data-note-dot="0" aria-label="显示笔记 1" aria-pressed="true"></button>
@@ -100,8 +101,9 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             <nav aria-label="页面索引">
               <a href="#research"><span>01</span>研究</a>
               <a href="#systems"><span>02</span>作品</a>
-              <a href="#about"><span>03</span>关于我</a>
-              <a href="#direction"><span>04</span>方向</a>
+              <a href="#notebook"><span>03</span>研究笔记</a>
+              <a href="#about"><span>04</span>关于我</a>
+              <a href="#direction"><span>05</span>方向</a>
             </nav>
           </div>
           <div class="personal-links">
@@ -124,7 +126,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
             <p class="overline">代表研究</p>
             <h2>部分已录用研究</h2>
           </div>
-          <p>2026 年共有 {paperCount} 篇研讨会论文被 {venueList} 录用，其中 {firstAuthorCount} 篇第一作者。每篇都有英文简明摘要：智能系统应当如何被记忆、监督、测试、校准与信任。</p>
+          <p>2026 年共有 {paperCount} 篇研讨会论文被 {venueList} 录用，其中 {firstAuthorCount} 篇第一作者。这些工作的联系在于边界：记忆缺失的路径、监督丢失的上下文、评估遗漏的条件。英文摘要保留各自的测量范围与证据。</p>
         </div>
 
         <div class="paper-grid">
@@ -177,19 +179,41 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         </div>
         <div class="research-footnote reveal">
           <p>每个条目都会打开英文简明摘要；最新一篇在公开工件上线前刻意保持精简。公开工件可用时会从摘要页链接。</p>
-          <p>这些论文只是更大工作集的可见边缘。</p>
+          <p>可靠的测量，不一定测到了我们以为的构念；分数不等于被测量的事物。</p>
         </div>
+      </section>
+
+      <section id="notebook" class="section shell">
+        <div class="section-heading reveal">
+          <div><p class="overline">连接这些工作的论点</p><h2>从循环内部看</h2></div>
+          <p>模型、运行框架、评估、制度与时间不是同一层。它们相互作用：输出成为证据，证据推动行动，行动改变世界，世界再进入下一轮学习。</p>
+        </div>
+        <div class="theme-grid">
+          <a class="theme-card reveal" href="/questions/a-zero-needs-adjudication/">
+            <span class="theme-number">01</span><h3>先解释一个零。</h3>
+            <p>Terminal Bench 与智能体评估让我反复遇到这个问题：失败可能来自能力、环境、任务定义或验证器。能被智能体操纵的验证器，甚至会成为它求解的一部分。必须沿着轨迹与来源作出判定。</p><span class="theme-arrow">↗</span>
+          </a>
+          <a class="theme-card reveal" href={sitePositioning.frameworkUrl}>
+            <span class="theme-number">02</span><h3>系统比模型更大。</h3>
+            <p>Recall Debt 追问记忆中的关系能否被重建；Factor-UT 追问拆分后重新组合的行为能否被监督。更大的假设是：递归改进也发生在人、机器与制度之间，而不只发生在模型权重内部。</p><span class="theme-arrow">↗</span>
+          </a>
+          <a class="theme-card reveal" href="/questions/verification-must-touch-reality/">
+            <span class="theme-number">03</span><h3>谁有能力说“不”？</h3>
+            <p>人类并不共享一个价值函数。多元性可能是一种容错机制，但复制同一种智能不等于独立。不同模型、不同判断与可追溯证据，仍需能否定成功宣称的外部验证。</p><span class="theme-arrow">↗</span>
+          </a>
+        </div>
+        <p class="notes-footnote">我把这个尚未完成的方向称为“分布式可纠正性”：优化者不应独占验证权。这是工作假设，不能由某一篇论文直接推出。测量结论、工程经验与制度层面的推论需要分开阅读。以上链接为英文笔记。</p>
       </section>
 
       <section id="about" class="section shell about-section">
         <div class="about-heading reveal">
           <p class="overline">关于我</p>
-          <h2>这些问题，<br /><span>来自这条路径。</span></h2>
+          <h2>沿着层级，<br /><span>纵向调试。</span></h2>
         </div>
         <div class="about-copy reveal">
           <p class="about-lead">
-            我不是沿着一条笔直的计算机科学道路进入 AI。我会跟随真正重要的问题，
-            学习它所在的领域，再构建缺失的那一层。
+            我沿着系统的层级纵向调试。看似模型的问题，可能出在运行框架；看似检索的问题，
+            可能出在记忆结构。我会跟着失败跨过边界，再构建缺失的那一层。
           </p>
           <p>
             这条路径经过科罗拉多州立大学的发酵科学与湿实验室研究、特立尼达的工业自动化、
@@ -242,8 +266,8 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           <div class="now-copy reveal">
             <p class="now-lead">我已入学西交利物浦大学智能系统专业（2026 年秋季入读一年级），同时构建跨越评估、记忆、AI 控制与科学发现的研究和基础设施。</p>
             <p>
-              项目会改变，长期方向不会：让计划更有认识论基础，让行动更有边界，
-              让验证更接近后果真正发生的那一层。
+              我目前的假设是：要让智能系统保持可纠正，观察、判断与质疑的能力就不能完全归于同一个主体。
+              智能更强，仍需要有人、有仪器、有独立机制能够指出它错在哪里。这个问题把我的工作从智能体架构带向制度。
             </p>
             <div class="now-actions">
               <a class="primary-link" href="/" lang="en">English site <span>→</span></a>
@@ -268,6 +292,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
     </footer>
 
     <script>
+      import { sitePositioning } from "../../data/site";
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reducedMotion) {
         document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
@@ -282,11 +307,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
       }
 
-      const notes = [
-        "我追随重要的问题，而不是整齐的分类。",
-        "我更愿意公开机器的结构，而不是把信号打磨得完美。",
-        "最有趣的工作通常穿过不止一个抽象层。",
-      ];
+      const notes = sitePositioning.zh.notes;
       const noteText = document.querySelector("[data-field-note]");
       const noteIndex = document.querySelector("[data-note-index]");
       const noteCarousel = document.querySelector("[data-note-carousel]");

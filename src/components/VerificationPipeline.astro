@@ -3,7 +3,7 @@ const modes = {
   digital: {
     label: "Software system",
     stages: [
-      ["Fan out", "independent planners · scouts · critics"],
+      ["Fan out", "different planners · scouts · critics"],
       ["Synthesize", "constraints · disagreement · acceptance gate"],
       ["Act", "bounded agent in an isolated sandbox"],
       ["Verify", "tests · static analysis · external reviewer"],
@@ -20,7 +20,7 @@ const modes = {
       ["Verify", "assay · microscope · spectrometer · test rig"],
       ["Remember", "measurement · provenance · revised hypothesis"],
     ],
-    verifier: "Reality gets an independent vote—and can falsify the model.",
+    verifier: "Measurements can falsify a proposal; controls and calibration still matter.",
   },
 };
 ---
@@ -29,7 +29,7 @@ const modes = {
   <header class="verification-heading shell">
     <div>
       <p class="overline">The abundance / bottleneck split</p>
-      <h2 id="verification-pipeline-title">Stack intelligence.<br /><span>Externalize truth.</span></h2>
+      <h2 id="verification-pipeline-title">Generate possibilities.<br /><span>Keep verification independent.</span></h2>
     </div>
     <div class="verification-mode" aria-label="Pipeline mode">
       <button class="active" type="button" data-pipeline-mode="digital" aria-pressed="true">Software</button>
@@ -43,7 +43,7 @@ const modes = {
       <div aria-hidden="true">
         <i>agent 01</i><i>agent 02</i><i>agent 03</i><i>agent N</i>
       </div>
-      <p>Parallel inference makes candidate generation cheap.</p>
+      <p>More candidates need not mean more independent ideas.</p>
     </div>
 
     <ol class="pipeline-stages">
@@ -70,7 +70,7 @@ const modes = {
     <div class="pipeline-return" aria-hidden="true"><i></i><span>measured evidence returns to orientation</span><b>↶</b></div>
   </div>
 
-  <figcaption class="shell">The proposal layer can scale with compute. The plan and the verifier determine whether that scale becomes knowledge.</figcaption>
+  <figcaption class="shell">Different agents can share the same blind spot. Independence requires distinct evidence and the authority to reject a result; a separate process alone is not enough.</figcaption>
 
   <script define:vars={{ modes }}>
     document.querySelectorAll("[data-verification-pipeline]").forEach((pipeline) => {

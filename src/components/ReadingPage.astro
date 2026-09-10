@@ -74,7 +74,7 @@ const pageSchema = {
     name: "Edward Lue Chee Lip",
     url: new URL("/", Astro.site).href,
   },
-  ...(isScholarlyArticle ? { datePublished: "2026-08-01" } : {}),
+  // Acceptance text is not an exact publication date; omit rather than invent one.
 };
 ---
 
@@ -87,7 +87,7 @@ const pageSchema = {
       <p class="header-status"><span></span> Field notes / {kind}</p>
       <nav aria-label="Reading navigation">
         <a href={backHref}>← {backLabel}</a>
-        <a href="/questions/systems-are-strange-loops/">Framework</a>
+        <a href="/questions/inside-the-loop/">Framework</a>
         <a href={sourceUrl || "mailto:eluecheelip@gmail.com"} target={sourceUrl ? "_blank" : undefined} rel={sourceUrl ? "noopener" : undefined}>{sourceUrl ? `${sourceLabel || "Source"} ↗` : "Discuss ↗"}</a>
       </nav>
     </div>
@@ -153,6 +153,7 @@ const pageSchema = {
             <p class="section-number">0{index + 1}</p>
             <h2>{section.title}</h2>
             {section.body.map((paragraph) => <p>{paragraph}</p>)}
+            {section.links && <nav class="section-sources" aria-label={`Related evidence for ${section.title}`}>{section.links.map((link) => <a href={link.url}>{link.label} →</a>)}</nav>}
             {section.points && (
               <ul>
                 {section.points.map((point) => <li>{point}</li>)}
