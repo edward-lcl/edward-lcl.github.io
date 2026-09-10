@@ -3305,37 +3305,6 @@ a.system-card .system-link {
   transform: translateY(0);
 }
 
-.zh-page h1,
-.zh-page h2,
-.zh-page h3,
-.zh-page .personal-note,
-.zh-page .about-lead,
-.zh-page .now-lead {
-  font-family: var(--sans);
-}
-
-.zh-page h1,
-.zh-page h2,
-.zh-page h3 {
-  font-weight: 720;
-}
-
-.zh-page .hero h1 {
-  max-width: 9ch;
-  letter-spacing: -0.07em;
-  line-height: 1.04;
-}
-
-.zh-page .paper-copy h3 {
-  font-family: var(--serif);
-  font-weight: 500;
-}
-
-.zh-page .desk-note p,
-.zh-page .now-marginalia {
-  font-family: var(--sans);
-}
-
 /* CV: the boring artifact, print-first */
 .cv-page {
   max-width: 54rem;
@@ -4402,10 +4371,7 @@ a.system-card .system-link {
     flex-wrap: wrap;
   }
 
-  .zh-page .hero h1 {
-    max-width: 9ch;
-    font-size: clamp(3.25rem, 15vw, 5rem);
-  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4437,3 +4403,10 @@ a.system-card .system-link {
 .section-sources a, .research-connection a { text-decoration: underline; text-underline-offset: 0.2em; }
 .research-connection { padding-top: 1.5rem; padding-bottom: 1.5rem; line-height: 1.7; }
 .loop-center .loop-source { margin-top: 0.6rem; color: var(--ink-accent-soft); font-size: 0.65rem; line-height: 1.4; text-decoration: underline; }
+
+.author-portrait { margin: 1.2rem 0; display: flex; align-items: end; gap: 1rem; }
+.author-portrait img { width: 128px; height: 128px; object-fit: cover; border-radius: 3px; }
+.author-portrait figcaption { max-width: 9rem; font: .7rem/1.6 var(--sans); color: var(--muted); }
+.artifact-links { display: flex; flex-wrap: wrap; gap: .65rem 1.2rem; margin-block: 1.3rem; font: .85rem/1.6 var(--sans); }
+.artifact-links a { border-bottom: 1px solid currentColor; padding-block: .35rem; }
+.reading-references a { display: block; }

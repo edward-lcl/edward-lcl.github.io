@@ -27,6 +27,7 @@ const { paper, next } = Astro.props;
   evidenceNote={paper.evidenceNote}
   sections={paper.sections}
   sourceUrl={paper.sourceUrl}
+  resources={"resources" in paper ? paper.resources : undefined}
   role={paper.role}
   authors={"authors" in paper ? paper.authors : undefined}
   publicationDate={paper.publicationDate}

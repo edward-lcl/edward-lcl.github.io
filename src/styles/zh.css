@@ -1,0 +1,53 @@
+/* Chinese has its own measures and rhythm. Latin paper titles retain Newsreader. */
+html:lang(zh-CN) {
+  --zh-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  font-family: var(--zh-sans);
+  line-break: strict;
+  word-break: normal;
+}
+.zh-page { font-family: var(--zh-sans); }
+.zh-page :is(h1, h2, h3, .personal-note, .about-lead, .now-lead, .desk-note p, .now-marginalia) {
+  font-family: var(--zh-sans);
+  letter-spacing: 0;
+  font-style: normal;
+}
+.zh-page :is(h1, h2, h3) { font-weight: 600; line-height: 1.4; }
+.zh-page .hero h1 { max-width: 12em; font-size: clamp(2.3rem, 3.7vw, 3.6rem); line-height: 1.45; letter-spacing: 0; }
+.zh-page :is(.hero-lead, .hero-question, .section-heading > p, .about-copy > p, .now-copy > p, .theme-card p, .system-card > p) {
+  line-height: 1.85;
+  max-width: 36em;
+  text-wrap: pretty;
+}
+.zh-page :is(.overline, .card-label, .desk-note-index, .proof-label, .collab-label, .system-kind, .method-kicker, .accepted-pill, .personal-index > p) {
+  font-family: var(--zh-sans);
+  letter-spacing: .025em;
+  font-size: .78rem;
+}
+.zh-page :is(.personal-note, .about-lead, .now-lead) { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.85; }
+.zh-page :is(.personal-aside, .notes-footnote, .research-footnote, .paper-question, .footer-inner p) { line-height: 1.85; }
+.zh-page .paper-copy h3 { font-family: var(--serif); font-weight: 500; line-height: 1.12; letter-spacing: -.02em; }
+.zh-page .paper-subtitle { line-height: 1.5; }
+.zh-page .theme-card h3 { font-size: 1.55rem; }
+.zh-page .paper-bottom { gap: .8rem; flex-wrap: wrap; }
+.zh-page .paper-bottom span { font-family: var(--zh-sans); letter-spacing: 0; }
+.zh-page .method-spine h3 { font-size: 1.65rem; }
+.zh-page .method-spine strong { font-size: .85rem; }
+.zh-page .method-spine li { font-family: var(--zh-sans); }
+.zh-page .now-title h2, .zh-page .about-heading h2 { font-size: clamp(2rem, 3.6vw, 3.5rem); }
+.zh-page .now-marginalia { line-height: 1.85; }
+@media (max-width: 640px) {
+  .zh-page .hero h1 { max-width: none; font-size: clamp(1.85rem, 7.5vw, 2.6rem); line-height: 1.5; letter-spacing: 0; }
+  .zh-page .hero { padding-top: 3rem; }
+  .zh-page .hero-lead { font-size: 1.05rem; }
+  .zh-page .section-heading h2 { font-size: 2rem; }
+  .zh-page .theme-card h3 { font-size: 1.4rem; }
+  .zh-page .personal-note { font-size: 1.2rem; }
+}
+.zh-page .hero h1 span { display: block; }
+.zh-page .paper-question { font-family: var(--zh-sans); font-style: normal; font-size: 1.05rem; }
+.zh-page .overline { text-transform: none; }
+.zh-page .proof-note em { font-style: normal; }
+.zh-page .research-footnote p { font-family: var(--zh-sans); font-style: normal; }
+.zh-page .personal-note { font-size: 1.15rem; line-height: 1.85; text-wrap: pretty; }
+.zh-page :is(.notes-footnote, .research-footnote, .footer-note) { font-family: var(--zh-sans); letter-spacing: 0; font-size: .85rem; }
+.zh-page .paper-topline > span:last-child { text-transform: none; letter-spacing: .025em; font-size: .7rem; }

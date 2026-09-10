@@ -1,55 +1,48 @@
 import { access, readFile, readdir } from "node:fs/promises";
-import { dirname, extname, join, normalize, resolve } from "node:path";
+import { extname, join, resolve } from "node:path";
 
 const distRoot = resolve("dist");
-
+const origin = "https://edward-lcl.github.io";
 async function filesUnder(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
-  const files = [];
-  for (const entry of entries) {
+  return (await Promise.all(entries.map(async entry => {
     const path = join(directory, entry.name);
-    if (entry.isDirectory()) files.push(...await filesUnder(path));
-    else if (extname(entry.name) === ".html") files.push(path);
-  }
-  return files;
+    return entry.isDirectory() ? filesUnder(path) : extname(path) === ".html" ? [path] : [];
+  }))).flat();
 }
-
-function internalTarget(fromFile, href) {
-  const clean = href.split("#", 1)[0].split("?", 1)[0];
-  if (!clean) return null;
-  const rawTarget = clean.startsWith("/")
-    ? resolve(distRoot, `.${clean}`)
-    : resolve(dirname(fromFile), clean);
-  if (extname(rawTarget)) return normalize(rawTarget);
-  return normalize(join(rawTarget, "index.html"));
-}
-
-const missing = [];
-const external = new Set();
 const htmlFiles = await filesUnder(distRoot);
-
-for (const file of htmlFiles) {
-  const html = await readFile(file, "utf8");
-  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
-  for (const href of hrefs) {
-    if (/^(mailto:|tel:|javascript:)/i.test(href)) continue;
-    if (/^https?:\/\//i.test(href)) {
-      external.add(href);
-      continue;
-    }
-    const target = internalTarget(file, href);
-    if (!target) continue;
+const pages = new Map(await Promise.all(htmlFiles.map(async file => [file, await readFile(file, "utf8")])));
+const ids = new Map([...pages].map(([file, html]) => [file, new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]))]));
+const failures = [];
+const external = new Set();
+let fragments = 0;
+let assets = 0;
+for (const [file, html] of pages) {
+  const route = file.slice(distRoot.length).replace(/index\.html$/, "");
+  for (const match of html.matchAll(/\b(href|src)="([^"]+)"/g)) {
+    const raw = match[2].replaceAll("&amp;", "&");
+    const url = new URL(raw, origin + route);
+    if (!["http:", "https:"].includes(url.protocol)) continue;
+    if (url.origin !== origin) { external.add(url.href); continue; }
+    let target;
     try {
+      const path = decodeURIComponent(url.pathname);
+      target = resolve(distRoot, `.${path}`);
+      if (!extname(target)) target = join(target, "index.html");
       await access(target);
-    } catch {
-      missing.push(`${file.replace(`${distRoot}/`, "")} -> ${href}`);
+      if (match[1] === "src") assets++;
+      if (url.hash && pages.has(target)) {
+        fragments++;
+        const fragment = decodeURIComponent(url.hash.slice(1));
+        if (!ids.get(target).has(fragment)) throw new Error(`missing fragment #${fragment}`);
+      }
+    } catch (error) {
+      failures.push(`${route} -> ${raw}: ${error.code || error.message}`);
     }
   }
 }
-
-if (missing.length) {
-  console.error("Internal link check failed:\n" + missing.map((item) => `- ${item}`).join("\n"));
+if (failures.length) {
+  console.error("Internal link check failed:\n" + failures.join("\n"));
   process.exit(1);
 }
-
-console.log(`Internal link check passed (${htmlFiles.length} pages, ${external.size} external destinations recorded).`);
+console.log(`Internal links, fragments and assets passed (${pages.size} pages, ${fragments} fragment references, ${assets} asset references; ${external.size} external destinations recorded, not network-tested).`);

@@ -12,6 +12,7 @@ interface Props {
   sections: readonly ReadingSection[];
   sourceUrl?: string | null;
   sourceLabel?: string;
+  resources?: readonly { label: string; url: string }[];
   role?: string;
   authors?: string;
   publicationDate?: string;
@@ -41,6 +42,7 @@ const {
   sections,
   sourceUrl,
   sourceLabel,
+  resources,
   role,
   authors,
   publicationDate,
@@ -102,6 +104,9 @@ const pageSchema = {
       </div>
       <aside class="reading-lede">
         <p>{lede}</p>
+        {(resources?.length || sourceUrl) && <nav class="artifact-links" aria-label="Public research artifacts">
+          {(resources ?? [{ label: sourceLabel || (sourceUrl?.includes("arxiv.org") ? "Paper · arXiv" : "Implementation"), url: sourceUrl! }]).map((resource) => <a href={resource.url} target="_blank" rel="noopener">{resource.label} ↗</a>)}
+        </nav>}
         {status && <span class="reading-status">{status}</span>}
         {(role || authors || publicationDate || artifactState || readTime) && (
           <dl class="reading-meta-grid">

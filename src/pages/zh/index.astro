@@ -11,19 +11,19 @@ const venueList = [...new Set(allPapers.map((paper) => paper.series))].sort().jo
 const zhSystemCopy = {
   "eval-evidence": {
     kind: "评估基础设施",
-    description: "让模型、Harness、预算、验证器、工件与缺失信息随评估分数一起流转的机器可检验证据包。",
+    description: "分数之外，还要留下模型版本、运行框架（harness）、预算、验证器和原始输出；缺了什么，也一并记录。",
   },
   "circuit-compass": {
     kind: "生物医学决策支持",
-    description: "把生物学矛盾拆成竞争机制、公开数据分析、反方审查与下一步实验。",
+    description: "针对相互矛盾的生物学结果，比较可能的机制、核对公开数据，再提出能区分这些解释的实验。实现目前未公开。",
   },
   "brewery-control-systems": {
     kind: "工业系统",
-    description: "在特立尼达完成的啤酒厂自动化控制、仪表与合规监测 P&ID / AutoCAD 系统。",
+    description: "在特立尼达参与啤酒厂自动化、仪表和合规监测，用 P&ID 与 AutoCAD 把控制逻辑落实到设备。",
   },
   "pop2-protein-expression": {
     kind: "湿实验系统",
-    description: "带领十人本科团队，把湿实验迭代、AI 辅助参数搜索与可追溯证据界面连接起来。",
+    description: "带领十人本科团队做蛋白表达实验，用 AI 辅助搜索参数，并记录每轮实验的依据与结果。",
   },
 } as const;
 
@@ -44,9 +44,9 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
     <header class="site-header">
       <div class="shell nav-inner">
         <a class="site-name" href="#top"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
-        <p class="header-status"><span></span> 特立尼达 · 智能系统 · 开放研究</p>
+        <p class="header-status"><span></span> 苏州 · 智能系统 · 研究笔记</p>
         <nav class="header-actions" aria-label="主导航">
-          <a class="cv-quick-link" href="/cv/">CV <span aria-hidden="true">↗</span></a>
+          <a class="cv-quick-link" href="/cv/">简历 <span aria-hidden="true">↗</span></a>
           <a href={links.email}>联系</a>
           <a href="/" lang="en">English</a>
         </nav>
@@ -56,18 +56,18 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
     <main id="main">
       <section id="top" class="hero shell zh-hero">
         <div class="hero-main reveal">
-          <p class="overline"><span class="status-dot"></span>Edward 的中文概览 · 深入内容以英文为准</p>
+          <p class="overline"><span class="status-dot"></span>Edward 的研究笔记</p>
           <h1>{positioning.hero}<span>{positioning.heroEmphasis}</span></h1>
           <p class="hero-lead">
             {positioning.lead}
           </p>
-          <p class="hero-question">{positioning.question} <a href="#notebook">从循环内部看 →</a></p>
+          <p class="hero-question">{positioning.question} <a href="#notebook">读研究思路 →</a></p>
           <div class="hero-actions">
             <a class="primary-link" href="#research">查看研究 <span>↓</span></a>
             <a href={links.email}>联系我 <span>↗</span></a>
           </div>
 
-          <div class="desk-note" data-note-carousel aria-label="轮播页边笔记">
+          <div class="desk-note" data-note-carousel aria-label="页边笔记">
             <div>
               <span class="desk-note-index">页边笔记 <b data-note-index>01</b>/03</span>
               <p data-field-note>{positioning.notes[0]}</p>
@@ -80,22 +80,13 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           </div>
         </div>
 
-        <aside class="personal-card reveal" aria-label="研究坐标">
-          <p class="card-label">研究坐标</p>
-          <div class="route-sketch" aria-hidden="true">
-            <svg viewBox="0 0 360 104" role="img">
-              <path class="route-path" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
-              <path class="route-shadow" d="M20 72 C 88 12, 164 96, 232 42 S 316 26, 340 15" />
-              <circle cx="20" cy="72" r="5" />
-              <circle cx="340" cy="15" r="5" />
-            </svg>
-            <div><span>特立尼达和多巴哥</span><em>同一个问题，跨越层级</em><span>XJTLU</span></div>
-          </div>
-          <p class="personal-note">
-            来自特立尼达和多巴哥；已入学西交利物浦大学人工智能
-            <span>（智能系统）</span>专业，2026 年秋季开始一年级。
+        <aside class="personal-card reveal" aria-label="此刻">
+          <p class="card-label">此刻</p>
+<figure class="author-portrait"><img src="/edward-github-avatar.png" width="460" height="460" alt="Edward 的插画风格头像，来自他的 GitHub 个人主页" /><figcaption><a href={links.github}>公开 GitHub 头像 ↗</a></figcaption></figure>
+        <p class="personal-note">
+            我来自特立尼达和多巴哥，现在住在苏州，就读于西交利物浦大学人工智能<span>（智能系统）</span>专业。
           </p>
-          <p class="personal-aside">地点会变化，主线不会：追随难题、公开证据，并构建系统缺失的那一层。</p>
+          <p class="personal-aside">做过湿实验，也做过工业控制。我习惯先问：这个信号是怎么测出来的？</p>
           <div class="personal-index">
             <p>快速索引</p>
             <nav aria-label="页面索引">
@@ -108,7 +99,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           </div>
           <div class="personal-links">
             <a href={links.github} target="_blank" rel="noopener">GitHub ↗</a>
-            <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+
           </div>
         </aside>
 
@@ -116,7 +107,7 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           <p><span class="proof-label">已录用</span><strong>{paperCount} 篇研讨会论文 · {firstAuthorCount} 篇第一作者<br />{venueList}</strong></p>
           <p><span class="proof-label">研究方向</span><strong>记忆 · 评估 · 智能体 · AI 控制</strong></p>
           <p><span class="proof-label">公开证据</span><strong>论文 · 代码 · 实验 · 系统笔记</strong></p>
-          <p class="proof-note">成果很重要。<br /><em>问题更重要。</em></p>
+          <p class="proof-note">读结果，<br /><em>也看它的边界。</em></p>
         </div>
       </section>
 
@@ -124,9 +115,9 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         <div class="section-heading reveal">
           <div>
             <p class="overline">代表研究</p>
-            <h2>部分已录用研究</h2>
+            <h2>研究与证据</h2>
           </div>
-          <p>2026 年共有 {paperCount} 篇研讨会论文被 {venueList} 录用，其中 {firstAuthorCount} 篇第一作者。这些工作的联系在于边界：记忆缺失的路径、监督丢失的上下文、评估遗漏的条件。英文摘要保留各自的测量范围与证据。</p>
+          <p>2026 年共有 {paperCount} 篇研讨会论文被 {venueList} 录用，其中 {firstAuthorCount} 篇第一作者。这些论文问的是不同问题：记忆为何失效，监督需要哪些信息，评估到底测到了什么。下方解读分别说明实验结果、局限和我的贡献。</p>
         </div>
 
         <div class="paper-grid">
@@ -140,22 +131,22 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
                 <div class="paper-topline">
                   <span class="paper-index">{String(index + 1).padStart(2, "0")} / {String(acceptedPapers.length).padStart(2, "0")}</span>
                   <span class="accepted-pill">已录用</span>
-                  <span>{paper.venue}</span>
+                  <span lang="en">{paper.venue}</span>
                 </div>
                 <div class="paper-copy">
-                  <h3>{paper.title}</h3>
-                  <p class="paper-subtitle">{paper.subtitle}</p>
+                  <h3 lang="en">{paper.title}</h3>
+                  <p class="paper-subtitle" lang="en">{paper.subtitle}</p>
                   <p class="paper-question">
-                    {paper.id === "01" && "遗忘也许不是检索错误，而是架构选择。"}
-                    {paper.id === "02" && "小模型何时学会专家反馈，何时只学会两者之间的偏差？"}
-                    {paper.id === "03" && "移除哪一种信息，才会真正击穿智能体的能力？"}
-                    {paper.id === "04" && "较弱的可信模型，能否安全监督更强但不可信的规划者？"}
+                    {paper.id === "01" && "检索器找不到答案，是搜索不够好，还是记忆里已经丢了关系？"}
+                    {paper.id === "02" && "专家的反馈，真的能教会小模型吗？先检查迁移是否发生，再谈规模。"}
+                    {paper.id === "03" && "拿掉一类信息后，智能体在哪一步开始失败？"}
+                    {paper.id === "04" && "只看计划够不够？可信模型需要看到什么，才能发现不可信模型的恶意行为？"}
                     {paper.id === "05" && "模型识别的是帕金森病，还是采集数据的医院？"}
                   </p>
                 </div>
                 <div class="paper-bottom">
-                  <span>{paper.note.replace("Accepted · ", "")}</span>
-                  <span aria-hidden="true">阅读英文摘要 →</span>
+                  <span>{paper.role === "First author" ? "第一作者" : "合著"} · {paper.note.includes("poster") ? "海报展示" : "已录用"}</span>
+                  <span aria-hidden="true">研究解读（英文） →</span>
                 </div>
               </Tag>
             );
@@ -168,8 +159,8 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
               const Tag = paper.url ? "a" : "article";
               return (
                 <Tag class="collab-row" href={paper.url || undefined}>
-                  <span class="collab-venue">{paper.venue}</span>
-                  <span class="collab-title"><strong>{paper.title}</strong> — {paper.subtitle}</span>
+                  <span class="collab-venue" lang="en">{paper.venue}</span>
+                  <span class="collab-title" lang="en"><strong>{paper.title}</strong> — {paper.subtitle}</span>
                   <span class="collab-role">合著</span>
                   <span class="collab-arrow" aria-hidden="true">{paper.url ? "→" : ""}</span>
                 </Tag>
@@ -178,46 +169,44 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
           </div>
         </div>
         <div class="research-footnote reveal">
-          <p>每个条目都会打开英文简明摘要；最新一篇在公开工件上线前刻意保持精简。公开工件可用时会从摘要页链接。</p>
-          <p>可靠的测量，不一定测到了我们以为的构念；分数不等于被测量的事物。</p>
+          <p>链接进入英文研究解读，已公开的论文和代码可从那里继续查阅。尚无公开材料的条目只列已确认的信息。</p>
+          <p>测量结果稳定，并不说明测到了目标能力。这是构念效度的问题：我们声称在测什么，实际又测到了什么？</p>
         </div>
       </section>
 
       <section id="notebook" class="section shell">
         <div class="section-heading reveal">
-          <div><p class="overline">连接这些工作的论点</p><h2>从循环内部看</h2></div>
-          <p>模型、运行框架、评估、制度与时间不是同一层。它们相互作用：输出成为证据，证据推动行动，行动改变世界，世界再进入下一轮学习。</p>
+          <div><p class="overline">研究笔记</p><h2>问题不止在模型里</h2></div>
+          <p>运行框架负责组织上下文、调用工具、安排执行流程；评估决定什么算成功。模型在这样的环境里行动，而它的输出又可能改变环境。下面三篇笔记沿着这条线展开。</p>
         </div>
         <div class="theme-grid">
           <a class="theme-card reveal" href="/questions/a-zero-needs-adjudication/">
-            <span class="theme-number">01</span><h3>先解释一个零。</h3>
-            <p>Terminal Bench 与智能体评估让我反复遇到这个问题：失败可能来自能力、环境、任务定义或验证器。能被智能体操纵的验证器，甚至会成为它求解的一部分。必须沿着轨迹与来源作出判定。</p><span class="theme-arrow">↗</span>
+            <span class="theme-number">01</span><h3>零分，说明了什么？</h3>
+            <p>做 Terminal Bench 相关评估时，我反复遇到一个问题：失败出在模型、环境、任务定义，还是验证器？只看分数分不清。需要回到执行记录，检查每一步究竟发生了什么。</p><span class="theme-arrow">↗</span>
           </a>
           <a class="theme-card reveal" href={sitePositioning.frameworkUrl}>
-            <span class="theme-number">02</span><h3>系统比模型更大。</h3>
-            <p>Recall Debt 追问记忆中的关系能否被重建；Factor-UT 追问拆分后重新组合的行为能否被监督。更大的假设是：递归改进也发生在人、机器与制度之间，而不只发生在模型权重内部。</p><span class="theme-arrow">↗</span>
+            <span class="theme-number">02</span><h3>接下来，谁会用这个答案？</h3>
+            <p>一次输出可能变成下一次行动的依据。记忆保留了什么，评估奖励了什么，谁有权采用结果——这些选择会影响下一轮系统。这里讨论的是研究思路，不是某篇论文已证明的结论。</p><span class="theme-arrow">↗</span>
           </a>
           <a class="theme-card reveal" href="/questions/verification-must-touch-reality/">
             <span class="theme-number">03</span><h3>谁有能力说“不”？</h3>
-            <p>人类并不共享一个价值函数。多元性可能是一种容错机制，但复制同一种智能不等于独立。不同模型、不同判断与可追溯证据，仍需能否定成功宣称的外部验证。</p><span class="theme-arrow">↗</span>
+            <p>多找几个模型，不一定得到独立判断。如果它们读的是同一份材料、犯的是同一种错，彼此同意又说明什么？软件测试和物理测量都需要能推翻结果，也都需要检查自身是否可靠。</p><span class="theme-arrow">↗</span>
           </a>
         </div>
-        <p class="notes-footnote">我把这个尚未完成的方向称为“分布式可纠正性”：优化者不应独占验证权。这是工作假设，不能由某一篇论文直接推出。测量结论、工程经验与制度层面的推论需要分开阅读。以上链接为英文笔记。</p>
+        <p class="notes-footnote">我暂时把这个方向称为“分布式可纠正性”（distributed corrigibility）：做出结果的一方，不应独自决定结果是否成立。纠错需要独立的证据、判断和质疑渠道。这是待检验的设想。以上三篇为英文笔记。</p>
       </section>
 
       <section id="about" class="section shell about-section">
         <div class="about-heading reveal">
           <p class="overline">关于我</p>
-          <h2>沿着层级，<br /><span>纵向调试。</span></h2>
+          <h2>先找原因，<br /><span>再看边界。</span></h2>
         </div>
         <div class="about-copy reveal">
           <p class="about-lead">
-            我沿着系统的层级纵向调试。看似模型的问题，可能出在运行框架；看似检索的问题，
-            可能出在记忆结构。我会跟着失败跨过边界，再构建缺失的那一层。
+            模型答错了，未必只是模型的问题。我会先看它拿到了哪些信息，再查运行框架如何处理这些信息、测试如何判定对错。原因可能在另一层。
           </p>
           <p>
-            这条路径经过科罗拉多州立大学的发酵科学与湿实验室研究、特立尼达的工业自动化、
-            创业，最后进入人工智能研究。贯穿其中的是对噪声证据的尊重，以及让系统在演示之外真正工作的要求。
+            在科罗拉多州立大学做发酵科学与湿实验、在特立尼达做工业自动化，后来创业、做 AI 研究，工作对象变了，习惯没有：读数来自仪器，结果依赖条件。先把这些弄清楚，才知道能相信什么。
           </p>
         </div>
         <ol class="path-list reveal" aria-label="Edward 的经历">
@@ -229,16 +218,16 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
 
       <section id="systems" class="section shell systems-section">
         <div class="section-heading reveal">
-          <div><p class="overline">部分作品</p><h2>我构建的系统</h2></div>
-          <p>从研究基础设施到生物医学工具，这里只选择最能说明我工作方式的几个项目。</p>
+          <div><p class="overline">系统实践</p><h2>我构建的系统</h2></div>
+          <p>下面几个项目记录了这套方法怎样落到代码、实验和设备上。</p>
         </div>
         <div class="systems-grid">
           {zhSystems.map((system, index) => (
             <a class="system-card reveal" href={system.url || links.github}>
               <span class="system-index">0{index + 1}</span>
-              <div class="system-title"><span class="system-kind">{system.kind}</span><h3>{system.name}</h3></div>
+              <div class="system-title"><span class="system-kind">{system.kind}</span><h3 lang="en">{system.name}</h3></div>
               <p>{system.description}</p>
-              <span class="system-link">阅读英文笔记 →</span>
+              <span class="system-link">项目笔记（英文） →</span>
             </a>
           ))}
         </div>
@@ -246,14 +235,14 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         <a class="method-spine reveal" href="/questions/build-the-missing-layer/">
           <div>
             <span class="method-kicker">工作方法</span>
-            <h3>这个循环本身就是证据系统。</h3>
+            <h3>每走一步，都留下判断的依据。</h3>
           </div>
           <ol aria-label="Edward 的六阶段工作循环">
-            {["观察", "定向", "计划", "行动", "验证", "记忆"].map((step, index) => (
+            {["观察", "判断", "计划", "行动", "核验", "记录"].map((step, index) => (
               <li><span>0{index + 1}</span>{step}</li>
             ))}
           </ol>
-          <strong>打开模型 →</strong>
+          <strong>查看工作方法（英文） →</strong>
         </a>
       </section>
 
@@ -261,27 +250,26 @@ const zhSystems = ["eval-evidence", "circuit-compass", "brewery-control-systems"
         <div class="shell now-inner">
           <div class="now-title reveal">
             <p class="overline">工作方向</p>
-            <h2>可以被检验的<br /><span>智能。</span></h2>
+            <h2>做对了，<br /><span>怎么知道？</span></h2>
           </div>
           <div class="now-copy reveal">
-            <p class="now-lead">我已入学西交利物浦大学智能系统专业（2026 年秋季入读一年级），同时构建跨越评估、记忆、AI 控制与科学发现的研究和基础设施。</p>
+            <p class="now-lead">我现在在苏州读书，继续研究 AI 记忆、评估与控制，也开发支撑这些研究的工具。</p>
             <p>
-              我目前的假设是：要让智能系统保持可纠正，观察、判断与质疑的能力就不能完全归于同一个主体。
-              智能更强，仍需要有人、有仪器、有独立机制能够指出它错在哪里。这个问题把我的工作从智能体架构带向制度。
+              我想继续追问：如果一个系统越来越强，谁还能发现它的错误？这既涉及模型和测试，也涉及谁来核验、谁能提出异议，以及异议能否改变决定。制度层面的讨论是研究方向，还不是实验结论。
             </p>
             <div class="now-actions">
-              <a class="primary-link" href="/" lang="en">English site <span>→</span></a>
+              <a class="primary-link" href="/" lang="en">英文主页 <span>→</span></a>
               <a href={links.email}>联系我 <span>↗</span></a>
             </div>
           </div>
-          <p class="now-marginalia reveal">能力越充足，越需要有边界的行动、<br /><span>可检验的证据与可追责的后果。</span></p>
+          <p class="now-marginalia reveal">答案可以先保留。<br /><span>证据要能找回来，结论要允许改。</span></p>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
       <div class="shell footer-inner">
-        <div><p class="footer-title">Edward Lue Chee Lip</p><p>人工智能研究者与系统构建者。<br />来自特立尼达和多巴哥，跨越系统与尺度工作。</p><p class="footer-note">这是一本工作笔记，不是一份简历。</p></div>
+        <div><p class="footer-title">Edward Lue Chee Lip</p><p>来自特立尼达和多巴哥，现居苏州。<br />研究智能系统，也动手做实验和工具。</p><p class="footer-note">这里记录问题、结果，以及还没弄清楚的事。</p></div>
         <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
         <div class="footer-links">
           <a href={links.github} target="_blank" rel="noopener">GitHub</a>
