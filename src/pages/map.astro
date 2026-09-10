@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { acceptedPapers, additionalPapers, selectedSystems, researchArcs } from "../data/site";
+const groups = [
+  {title:"Start here", description:"The overview, my background, and the notebook index.", entries:[
+    {title:"Home",url:"/",detail:"Research, projects, and a little about me"},
+    {title:"中文首页",url:"/zh/",detail:"研究、项目与个人介绍"},
+    {title:"CV",url:"/cv/",detail:"Publications and experience · printable"},
+    {title:"Field notes",url:"/notes/",detail:"Writing organized by question"}
+  ]},
+  {title:"Research",description:"The experiments, my contribution, and the limits of each result.",entries:[
+    ...[...acceptedPapers,...additionalPapers].map(p=>({title:p.title,url:p.url,detail:p.note})),
+    {title:"Factor(U,T) · 中文解读",url:"/zh/research/factor-ut/",detail:"只看计划，够吗？"}
+  ]},
+  {title:"Projects",description:"What I built and how the work connects to the research.",entries:[
+    ...selectedSystems.filter(p=>!("public" in p) || p.public!==false).map(p=>({title:p.name,url:p.url,detail:p.kind})),
+    {title:"Try Eval Evidence",url:"/work/eval-evidence-walkthrough/",detail:"A reproducible synthetic walkthrough"}
+  ]},
+  {title:"Notebook",description:"Personal essays, working ideas, and questions I am still testing.",entries:researchArcs.map(p=>({title:p.title,url:p.url,detail:"revised" in p ? `Text revised ${p.revised}`:"Working note"}))}
+];
+---
+<Layout title="Site map — Edward Lue Chee Lip" description="A guide to every research page, project, and notebook essay on Edward’s personal site.">
+  <header class="site-header"><div class="shell nav-inner"><a class="site-name" href="/">Edward Lue Chee Lip</a><nav aria-label="Site map navigation"><a href="/">Home</a><a href="/notes/">Notebook</a><a href="/cv/">CV</a></nav></div></header>
+  <main id="main" class="shell map-page">
+    <header class="map-hero"><p class="overline">A guide to the site</p><h1>Find a thread.<br /><span>Follow it somewhere.</span></h1><p>Start with a result, a project, or a question. The connections matter, but each page should also make sense on its own.</p></header>
+    <nav class="map-jumps" aria-label="Site map sections">{groups.map((g,i)=><a href={`#map-${i}`}>{g.title}<span>{g.entries.length}</span></a>)}</nav>
+    {groups.map((g,i)=><section id={`map-${i}`} class="map-group"><header><p class="overline">0{i+1}</p><h2>{g.title}</h2><p>{g.description}</p></header><ul>{g.entries.map(e=><li><a href={e.url}><strong>{e.title}</strong><span>{e.detail}</span><b aria-hidden="true">↗</b></a></li>)}</ul></section>)}
+    <p class="map-dates">Dates describe different things: a notebook’s revision date tracks its text; a paper’s acceptance or publication status describes the research record; “Last checked” records the evidence review. A visual refresh does not reset those dates.</p>
+  </main>
+</Layout>
+<style>
+  .map-page { padding-block:4rem; }
+  .map-hero { max-width:900px; }
+  h1 { font:500 clamp(2.6rem,5vw,4.8rem)/1.05 var(--serif); letter-spacing:-.05em; margin:1rem 0 1.5rem; }
+  h1 span { color:#2444af; }
+  .map-hero > p:last-child { max-width:60ch; font-size:1.1rem; line-height:1.7; color:#4e5969; }
+  .map-jumps { display:flex; flex-wrap:wrap; gap:.75rem; margin-block:2rem 3rem; }
+  .map-jumps a { display:flex; gap:1.5rem; padding:.85rem 1rem; background:#e9eef7; border:1px solid #8190a5; border-radius:6px; color:#2444af; }
+  .map-jumps span { font-family:var(--mono); }
+  .map-group { display:grid; grid-template-columns:1fr 2fr; gap:3rem; padding-block:3rem; border-top:1px solid #a5aebb; scroll-margin-top:6rem; }
+  h2 { font:500 2.4rem/1.1 var(--serif); margin:.7rem 0 1rem; }
+  .map-group header > p:last-child { color:#4e5969; line-height:1.65; max-width:30ch; }
+  ul { padding:0; margin:0; list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.8rem; align-content:start; }
+  li a { display:block; position:relative; padding:1.2rem 2.1rem 1.2rem 1.2rem; height:100%; background:white; border:1px solid #a5aebb; border-radius:6px; }
+  li a:hover { border-color:#2444af; background:#eef2fa; }
+  li strong { display:block; font:500 1.3rem/1.3 var(--serif); }
+  li span { display:block; margin-top:.7rem; font-size:.8rem; line-height:1.5; color:#4e5969; }
+  li b { position:absolute; right:.8rem; top:1.2rem; color:#2444af; }
+  a:focus-visible { outline:3px solid #2444af; outline-offset:4px; }
+  .map-dates { color:#4e5969; line-height:1.7; border-left:3px solid #2444af; padding-left:1.2rem; max-width:85ch; }
+  @media(max-width:850px) { .map-group { grid-template-columns:1fr; gap:1.5rem; } }
+  @media(max-width:500px) { ul { grid-template-columns:1fr; } }
+</style>

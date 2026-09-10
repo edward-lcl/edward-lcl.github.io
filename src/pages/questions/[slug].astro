@@ -1,4 +1,5 @@
 ---
+import NotebookDiagram from "../../components/NotebookDiagram.astro";
 import ReadingPage from "../../components/ReadingPage.astro";
 import OperatingLoop from "../../components/OperatingLoop.astro";
 import StrangeLoop from "../../components/StrangeLoop.astro";
@@ -9,7 +10,8 @@ import { researchArcs } from "../../data/site";
 export function getStaticPaths() {
   return researchArcs.map((question, index) => {
     const latest = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
-    const sibling = latest.find((arc) => arc.slug !== question.slug);
+    const latestIndex = latest.findIndex((arc) => arc.slug === question.slug);
+    const sibling = latestIndex >= 0 ? latest[(latestIndex + 1) % latest.length] : undefined;
     const next =
       "cluster" in question && question.cluster === "latest" && sibling
         ? sibling
@@ -24,7 +26,7 @@ export function getStaticPaths() {
 const { question, next } = Astro.props;
 const kind = "kind" in question ? question.kind : "Question I keep returning to";
 const status = "status" in question ? question.status : "Living field note";
-const publicationDate = "publicationDate" in question ? question.publicationDate : "Continuously revised";
+const publicationDate = "publicationDate" in question ? question.publicationDate : undefined;
 ---
 
 <ReadingPage
@@ -34,6 +36,8 @@ const publicationDate = "publicationDate" in question ? question.publicationDate
   status={status}
   authors="Edward Lue Chee Lip"
   publicationDate={publicationDate}
+  publicationDateLabel="Published"
+  depthAfterBody
   evidenceNote={"evidenceNote" in question ? question.evidenceNote : undefined}
   lastVerified={"revised" in question ? question.revised : undefined}
   lastVerifiedLabel="Last revised"
@@ -50,4 +54,5 @@ const publicationDate = "publicationDate" in question ? question.publicationDate
   {"visual" in question && question.visual === "verification-pipeline" && <VerificationPipeline slot="visual" />}
   {"visual" in question && question.visual === "instruction-force" && <InstructionForce slot="visual" />}
   {"visual" in question && !["ooda", "verification-pipeline", "instruction-force"].includes(question.visual) && <StrangeLoop slot="visual" compact={question.visual !== "strange-loop"} />}
+  <NotebookDiagram slot="depth" slug={question.slug} />
 </ReadingPage>

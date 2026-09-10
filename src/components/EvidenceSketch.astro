@@ -7,7 +7,7 @@ interface Props {
 const { slug, compact = false } = Astro.props;
 
 const captions: Record<string, string> = {
-  "recall-debt": "Similarity retrieval collapses before bridge-aware retrieval does.",
+  "recall-debt": "On 159 selected MuSiQue chains, resolving the bridge recovers more final documents.",
   "before-you-scale": "A teacher-level advantage can disappear at the distillation boundary.",
   "diagnosing-agent-capabilities": "The same zero decomposes into different information failures.",
   "factor-ut": "Malice is difficult to read in a plan and easier to read in its implementation.",
@@ -18,7 +18,7 @@ const captions: Record<string, string> = {
 <figure class:list={["evidence-sketch", compact && "evidence-sketch-compact"]} data-evidence={slug}>
   {!compact && (
     <header class="evidence-heading shell">
-      <div><p class="overline">One result · visually</p><h2>Evidence before interpretation.</h2></div>
+      <div><p class="overline">One result · visually</p><h2>{slug === "recall-debt" ? "What we measured." : "What the experiment shows."}</h2></div>
       <figcaption>{captions[slug]}</figcaption>
     </header>
   )}
@@ -29,13 +29,13 @@ const captions: Record<string, string> = {
         <div style="--value: 0"><span>BM25</span><i><em></em></i><b>0%</b></div>
         <div style="--value: 0"><span>Dense</span><i><em></em></i><b>0%</b></div>
         <div style="--value: 22.6"><span>Stronger similarity</span><i><em></em></i><b>≤22.6%</b></div>
-        <div class="evidence-accent" style="--value: 61.6"><span>Bridge resolved</span><i><em></em></i><b>61.6%</b></div>
+        <div class="evidence-accent" style="--value: 61.6"><span>Bridge resolved · oracle-assisted</span><i><em></em></i><b>61.6%</b></div>
       </div>
     )}
 
     {slug === "before-you-scale" && (
       <div class="transfer-sketch" aria-label="Privileged supervision helps the teacher in a tractability sweet spot, but the advantage does not transfer to the tested student">
-        <div><span>01</span><strong>Privileged teacher</strong><em>+0.051 F1 on MATH</em></div>
+        <div><span>01</span><strong>Privileged teacher</strong><em>worked solution available</em></div>
         <i aria-hidden="true">→</i>
         <div class="transfer-boundary"><span>02</span><strong>Distillation boundary</strong><em>signal becomes diffuse</em></div>
         <i aria-hidden="true">→</i>
@@ -45,10 +45,15 @@ const captions: Record<string, string> = {
 
     {slug === "diagnosing-agent-capabilities" && (
       <div class="knockout-sketch" aria-label="Four information-axis knockouts: World, Goal, Mechanics, and Feedback">
-        {["World", "Goal", "Mechanics", "Feedback"].map((axis, index) => (
-          <div><span>0{index + 1}</span><strong>{axis}</strong><i aria-hidden="true"></i></div>
+        {[
+          ["World", "Where am I?", "Remove or degrade information about the environment’s state."],
+          ["Goal", "What am I trying to do?", "Remove or degrade information about the target outcome."],
+          ["Mechanics", "How do actions work?", "Remove or degrade information about the rules and effects of actions."],
+          ["Feedback", "What did my action change?", "Remove or degrade the information returned after an action."]
+        ].map(([axis,question,detail], index) => (
+          <div><span>0{index + 1}</span><strong>{axis}</strong>{!compact && <details class="axis-detail"><summary>{question}</summary><p>{detail}</p></details>}<i aria-hidden="true"></i></div>
         ))}
-        <p>Outcome → diagnosis</p>
+        <p>{compact ? "Outcome → diagnosis" : "Change one information channel; compare the resulting behavior."}</p>
       </div>
     )}
 
@@ -65,7 +70,7 @@ const captions: Record<string, string> = {
         <div class="site-audit-row site-audit-warning">
           <span>Pooled protocol · site prior only, no EEG</span>
           <b>0.901</b>
-          <em>balanced accuracy</em>
+          <em>segment balanced accuracy</em>
         </div>
         <div class="site-audit-row">
           <span>Unseen site · supervised ranking (LODO)</span>
@@ -82,10 +87,12 @@ const captions: Record<string, string> = {
           <b>0.643</b>
           <em>balanced accuracy</em>
         </div>
-        <small>Hospital identity can look like disease signal. The split and the threshold are part of the claim.</small>
+        <small>Different metrics answer different questions: ROC-AUC measures ranking; balanced accuracy measures decisions at a threshold. These rows are not one shared performance scale.</small>
       </div>
     )}
   </div>
+
+  {!compact && slug === "recall-debt" && <p class="shell chart-context">Recall@10 · proportion of final documents found in the first ten candidates · 0–100% scale. Selected embedding-disjoint subset, not all MuSiQue questions. The bridge condition uses oracle assistance.</p>}
 
   {compact && <figcaption>{captions[slug]}</figcaption>}
 </figure>

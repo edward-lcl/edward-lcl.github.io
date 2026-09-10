@@ -1,0 +1,19 @@
+---
+const { lang = "en" } = Astro.props;
+const zh = lang === "zh-CN";
+const questions = zh ? [
+  "怎样保留记忆中的关系，让后来的判断还能找到原始依据？",
+  "怎样区分模型失败、环境故障与验证器的问题？",
+  "独立验证者需要哪些证据和权限，才能复核结果并质疑结论？",
+] : [
+  "How can memory preserve the relationships needed to recover the evidence behind a decision?",
+  "How do we distinguish a model failure from an environment or verifier failure?",
+  "What evidence and access does an independent verifier need to reproduce a result and challenge its interpretation?",
+];
+---
+<div class="collaboration-invitation">
+  <h3>{zh ? "可以一起研究的问题" : "Questions to work on together"}</h3>
+  <p>{zh ? "我尤其想围绕记忆、评估和独立验证展开合作。" : "I’m especially interested in collaboration on memory, evaluation, and independent verification."}</p>
+  <ul>{questions.map((question) => <li>{question}</li>)}</ul>
+  <p>{zh ? "欢迎带着问题、反例或公开的实验材料来交流。告诉我你观察到了什么，以及你认为它说明了什么。" : "Bring a question, a counterexample, or a public artifact. Tell me what you observed and what you think it shows."}</p>
+</div>

@@ -18,7 +18,7 @@ const {
 const positioning = lang === "zh-CN" ? sitePositioning.zh : sitePositioning.en;
 const description = suppliedDescription ?? positioning.description;
 const canonical = new URL(Astro.url.pathname, Astro.site || Astro.url.origin);
-const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "/zh/";
+const languagePair = [["/", "/zh/"], ["/research/factor-ut/", "/zh/research/factor-ut/"]].find((pair) => pair.includes(Astro.url.pathname));
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -54,9 +54,9 @@ const personSchema = {
     <meta property="og:image:alt" content={lang === "zh-CN" ? "Edward Lue Chee Lip 的智能系统研究分享图，配有反馈循环示意线。图中文字为英文。" : `${sitePositioning.en.hero} ${sitePositioning.en.heroEmphasis} — Edward Lue Chee Lip`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonical} />
-    {isHomepage && <link rel="alternate" hreflang="en" href="https://edward-lcl.github.io/" />}
-    {isHomepage && <link rel="alternate" hreflang="zh-CN" href="https://edward-lcl.github.io/zh/" />}
-    {isHomepage && <link rel="alternate" hreflang="x-default" href="https://edward-lcl.github.io/" />}
+    {languagePair && <link rel="alternate" hreflang="en" href={new URL(languagePair[0], Astro.site)} />}
+    {languagePair && <link rel="alternate" hreflang="zh-CN" href={new URL(languagePair[1], Astro.site)} />}
+    {languagePair && <link rel="alternate" hreflang="x-default" href={new URL(languagePair[0], Astro.site)} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/jetbrains-mono-var.woff2" as="font" type="font/woff2" crossorigin />

@@ -5,6 +5,19 @@ import { links, publishedElsewhere, researchArcs } from "../../data/site";
 const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.cluster === "latest");
 const framework = researchArcs.find((arc) => arc.slug === "inside-the-loop")!;
 const notebookArcs = researchArcs.filter((arc) => arc.slug !== "inside-the-loop" && !("cluster" in arc && arc.cluster === "latest"));
+const topicDefinitions = [
+  { id: "memory", title: "What does the system remember?", label: "Memory & agents", slugs: ["where-does-the-model-end", "systems-are-strange-loops", "the-shape-of-whats-absent", "handoffs-are-memory"] },
+  { id: "evidence", title: "What would make me believe the result?", label: "Evidence & evaluation", slugs: ["a-zero-needs-adjudication", "verification-must-touch-reality", "red-teaming-as-accountability", "the-tiers-are-not-one-model", "veracity-is-infrastructure"] },
+  { id: "practice", title: "How do I turn a judgment into an action?", label: "Tools & working methods", slugs: ["build-the-missing-layer", "control-has-grammar", "epistemic-grounding-is-the-missing-layer", "the-ontology-is-the-interface", "orientation-precedes-grounding"] },
+  { id: "institutions", title: "Who sets the conditions?", label: "Institutions & incentives", slugs: ["the-frontier-is-funded", "education-is-an-evaluation-problem"] },
+];
+const assigned = topicDefinitions.flatMap((topic) => topic.slugs);
+// A new note must be placed deliberately; do not silently drop it from the index.
+if (new Set(assigned).size !== assigned.length || assigned.length !== notebookArcs.length || notebookArcs.some((arc) => !assigned.includes(arc.slug))) {
+  throw new Error("Notebook topics must include each non-featured note exactly once.");
+}
+const topics = topicDefinitions.map((topic) => ({ ...topic, notes: topic.slugs.map((slug) => notebookArcs.find((arc) => arc.slug === slug)!) }));
+
 ---
 
 <Layout
@@ -29,17 +42,21 @@ const notebookArcs = researchArcs.filter((arc) => arc.slug !== "inside-the-loop"
       <h1>Field notes</h1>
       <p class="notes-lead">
         I follow failures from memory and agents into the verifiers and institutions around them.
-        These notes ask how the resulting feedback loops can stay open to correction.
+        These notes ask how the resulting feedback loops can stay open to correction.{" "}
         <a href="/questions/inside-the-loop/">Start with Inside the loop →</a>
       </p>
     </header>
+
+    <nav class="notebook-topics" aria-label="Browse notebook by topic">
+      {topics.map((topic) => <a href={`#${topic.id}`}>{topic.label}<span>{topic.notes.length}</span></a>)}
+    </nav>
 
     <section class="notes-elsewhere" aria-label="Framework essay">
       <p class="collab-label">The connecting argument · September 2026</p>
       <a class="notes-row" href={framework.url}><span class="notes-index">00</span><span class="notes-copy"><strong>{framework.title}</strong><span>{framework.body}</span></span><span class="notes-arrow" aria-hidden="true">→</span></a>
     </section>
     <section class="notes-elsewhere" aria-label="New writing">
-      <p class="collab-label">New writing · August 2026</p>
+      <p class="collab-label">Recent writing</p>
       <ol class="notes-list">
         {latestWriting.map((arc) => (
           <li>
@@ -56,20 +73,22 @@ const notebookArcs = researchArcs.filter((arc) => arc.slug !== "inside-the-loop"
       </ol>
     </section>
 
-    <ol class="notes-list">
-      {notebookArcs.map((arc) => (
-        <li>
-          <a class="notes-row" href={arc.url}>
-            <span class="notes-index">{arc.index}</span>
-            <span class="notes-copy">
-              <strong>{arc.title}</strong>
-              <span>{arc.body}</span>
-            </span>
-            <span class="notes-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-      ))}
-    </ol>
+    {topics.map((topic) => (
+      <section id={topic.id} class="notebook-topic" aria-labelledby={`${topic.id}-title`}>
+        <header><p class="collab-label">{topic.label}</p><h2 id={`${topic.id}-title`}>{topic.title}</h2></header>
+        <ol class="notes-list">
+          {topic.notes.map((arc, index) => (
+            <li><a class="notes-row" href={arc.url}>
+              <span class="notes-index">{String(index + 1).padStart(2, "0")}</span>
+              <span class="notes-copy"><strong>{arc.title}</strong><span>{arc.body}</span></span>
+              <span class="notes-arrow" aria-hidden="true">→</span>
+            </a></li>
+          ))}
+        </ol>
+      </section>
+    ))}
+
+    <p class="notes-footnote">Try it yourself: <a href="/work/eval-evidence-walkthrough/">change a file, then check the evidence →</a> A synthetic walkthrough with commands and captured output.</p>
 
     <section class="notes-elsewhere" aria-label="Published elsewhere">
       <p class="collab-label">Published elsewhere</p>
@@ -102,7 +121,7 @@ const notebookArcs = researchArcs.filter((arc) => arc.slug !== "inside-the-loop"
         <p>A public notebook about intelligent systems,<br />their instruments, and the worlds around them.</p>
       </div>
       <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
-      <div class="footer-links"><a href="/">Home</a><a href="/zh/">中文</a></div>
+      <div class="footer-links"><a href="/map/">Site map</a><a href="/">Home</a><a href="/zh/">中文</a></div>
     </div>
   </footer>
 </Layout>

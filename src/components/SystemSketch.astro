@@ -36,3 +36,24 @@ const { slug } = Astro.props;
     <figcaption id="circuit-system-caption" class="shell">The system accelerates hypothesis generation. Authority remains with the experiment that can disagree.</figcaption>
   </figure>
 )}
+
+{["brewery-control-systems", "pop2-protein-expression"].includes(slug) && (
+  <figure class="system-sketch" aria-labelledby="project-process-caption">
+    <div class="shell system-sketch-heading">
+      <p class="overline">How the work connects</p>
+      <h2>{slug === "brewery-control-systems" ? "From physical equipment to a readable system." : "From a suggestion to something we can test."}</h2>
+    </div>
+    <div class="shell system-sketch-canvas project-process">
+      {(slug === "brewery-control-systems" ? [
+        ["01 · Equipment", "Pipes, valves, sensors", "The physical components and the relationships the drawing needs to represent."],
+        ["02 · My work", "Draw the connections", "Piping and instrumentation diagrams in AutoCAD; support for CCTV–PLC monitoring."],
+        ["03 · Use", "A shared reference", "A representation engineers and operators can inspect alongside the installation."]
+      ] : [
+        ["01 · Explore", "Literature and suggestions", "The team reviews possible parameters, with AI helping organize ideas."],
+        ["02 · My work", "Coordinate the experiment", "A shared workflow connects choices, protocols, and the ten-person team."],
+        ["03 · Check", "Return to the bench", "Measured expression informs the next decision. Suggestions remain separate from results."]
+      ]).map(([step,title,description]) => <article><span>{step}</span><strong>{title}</strong><p>{description}</p></article>)}
+    </div>
+    <figcaption id="project-process-caption" class="shell">{slug === "brewery-control-systems" ? "A schematic of my role, not a reproduction of private operating drawings." : "A schematic of the research workflow, not a claim about expression yield."}</figcaption>
+  </figure>
+)}

@@ -1,0 +1,146 @@
+{
+  "source_commit": "6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c",
+  "source_commit_note": "Required installation pin; this script does not authenticate the installed source.",
+  "python": "3.14.7",
+  "package_version": "0.2.0rc1",
+  "jsonschema_version": "4.26.0",
+  "synthetic": true,
+  "changed_file": "outputs/scores.json",
+  "before": {
+    "accuracy": 0.75,
+    "n": 4
+  },
+  "after": {
+    "accuracy": 1.0,
+    "n": 4
+  },
+  "baseline_unchanged": true,
+  "steps": [
+    {
+      "step": "create synthetic fixture",
+      "exit_code": 0,
+      "stdout": {
+        "format": "generic",
+        "next": "eval-evidence check <workspace>/run",
+        "root": "<workspace>/run",
+        "synthetic": true
+      },
+      "stderr": ""
+    },
+    {
+      "step": "check current evidence",
+      "exit_code": 0,
+      "stdout": {
+        "bundle_schema_version": "eval-evidence.bundle/v0.1",
+        "checked_runs": 1,
+        "discovered_runs": 1,
+        "policy_passed": true,
+        "root": "/private<workspace>/run",
+        "runs": [
+          {
+            "adapter": "generic",
+            "bundle_digest": "13c06a8b06a90b4ae58c4fae6e36252f05105a9aac761a9834a4bd1e7d69c081",
+            "compat_warnings": [],
+            "errors": [],
+            "instrument_coverage": {
+              "available_fraction": 0.3,
+              "field_count": 20,
+              "status_counts": {
+                "derived": 0,
+                "observed": 0,
+                "operator_asserted": 6,
+                "provider_asserted": 0,
+                "unavailable": 14
+              }
+            },
+            "policy_errors": [],
+            "root": "/private<workspace>/run",
+            "run_id": "synthetic-run-001",
+            "task_id": "synthetic-arithmetic",
+            "unavailable_heavy": true,
+            "valid": true
+          }
+        ],
+        "scope": "schema, bundle digest, and local referenced-file identity; no model execution, trusted-runner signature, or physical-truth claim",
+        "summary": {
+          "compat_warnings": 0,
+          "failed": 0,
+          "ok": 1,
+          "policy_failed": 0,
+          "referenced_file_fail": 0,
+          "unavailable_heavy": 1
+        },
+        "tool_version": "0.2.0rc1",
+        "truncated": false,
+        "valid": true
+      },
+      "stderr": ""
+    },
+    {
+      "step": "save baseline",
+      "exit_code": 0,
+      "stdout": {
+        "written": [
+          {
+            "adapter": "generic",
+            "bundle_digest": "13c06a8b06a90b4ae58c4fae6e36252f05105a9aac761a9834a4bd1e7d69c081",
+            "output": "<workspace>/evidence.json",
+            "root": "/private<workspace>/run"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "step": "verify unchanged files",
+      "exit_code": 0,
+      "stdout": {
+        "bundle": "<workspace>/evidence.json",
+        "bundle_digest": {
+          "algorithm": "sha256",
+          "value": "13c06a8b06a90b4ae58c4fae6e36252f05105a9aac761a9834a4bd1e7d69c081"
+        },
+        "errors": [],
+        "referenced_files_checked": true,
+        "scope": "content/schema identity only; not trusted attestation",
+        "valid": true
+      },
+      "stderr": ""
+    },
+    {
+      "step": "verify bundle only after mutation",
+      "exit_code": 0,
+      "stdout": {
+        "bundle": "<workspace>/evidence.json",
+        "bundle_digest": {
+          "algorithm": "sha256",
+          "value": "13c06a8b06a90b4ae58c4fae6e36252f05105a9aac761a9834a4bd1e7d69c081"
+        },
+        "errors": [],
+        "referenced_files_checked": false,
+        "scope": "content/schema identity only; not trusted attestation",
+        "valid": true
+      },
+      "stderr": ""
+    },
+    {
+      "step": "verify referenced files after mutation",
+      "exit_code": 1,
+      "stdout": {
+        "bundle": "<workspace>/evidence.json",
+        "bundle_digest": {
+          "algorithm": "sha256",
+          "value": "13c06a8b06a90b4ae58c4fae6e36252f05105a9aac761a9834a4bd1e7d69c081"
+        },
+        "errors": [
+          "Referenced file size mismatch for outputs/scores.json",
+          "Referenced file digest mismatch for outputs/scores.json"
+        ],
+        "referenced_files_checked": true,
+        "scope": "content/schema identity only; not trusted attestation",
+        "valid": false
+      },
+      "stderr": ""
+    }
+  ]
+}

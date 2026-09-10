@@ -1,0 +1,21 @@
+{
+  "checked": "2026-09-11",
+  "transformation": "None; original image bytes copied unchanged.",
+  "artifacts": [
+    {
+      "file": "eval-envelope.png",
+      "source": "https://raw.githubusercontent.com/edward-lcl/eval-evidence/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/figures/eval-evidence-envelope-anatomy.png",
+      "sha256": "7e8d40d496c9d17ebea4ecb3eb1fead70b6b85e78119b701bdbf3fd6e5e82105"
+    },
+    {
+      "file": "eval-envelope-mobile.png",
+      "source": "https://raw.githubusercontent.com/edward-lcl/eval-evidence/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/figures/eval-evidence-envelope-anatomy-mobile.png",
+      "sha256": "ddd0ba01db0ce2f1c77a045e4ae36f64297c476bee2ace98a657d8a4bf243b7f"
+    },
+    {
+      "file": "hidden-cot-length-tiers.png",
+      "source": "https://arxiv.org/html/2608.29956v1/prism-uploads/figure4_length_matched_hcds.png",
+      "sha256": "c961968392ef3539b3312557f654f64289bb8bb32a7e73529da760e5ca89db56"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+---
+import ReadingPage from "../../components/ReadingPage.astro";
+import receipt from "../../../public/artifacts/eval-evidence/receipt.json";
+const source = `https://github.com/edward-lcl/eval-evidence/tree/${receipt.source_commit}`;
+const sections = [
+  { title: "Start with a claim small enough to check", body: [
+    "The claim is that verification can detect a changed referenced file relative to a saved evidence bundle. We will not run a model, reproduce a benchmark score, or decide whether a reported answer is true.",
+    "This uses Eval Evidence’s public, deterministic synthetic demo. The demo starts with accuracy 0.75 and n = 4. These are fixture values, not research findings. The walkthrough changes the score file to accuracy 1.0 while preserving the saved bundle."
+  ] },
+  { title: "Install the exact source and run the example", body: [
+    `The source is pinned to ${receipt.source_commit}, which identifies itself as ${receipt.package_version}. It is a development candidate, not a claim of a stable final release. This receipt was produced with Python ${receipt.python} and jsonschema ${receipt.jsonschema_version}.`,
+    "Use Python 3.11–3.14 and curl. Download the two files below into a fresh working directory, then run these commands. Installation needs internet access; the demonstration itself makes no model calls or uploads. The script creates a new temporary workspace and leaves its synthetic files there for inspection."
+  ], links: [{ label: "Download requirements.txt", url: "/artifacts/eval-evidence/requirements.txt" }, { label: "Download reproduce.py", url: "/artifacts/eval-evidence/reproduce.py" }, { label: "Source archive SHA-256", url: "/artifacts/eval-evidence/source-sha256.txt" }], code: "python3 -m venv .venv\n. .venv/bin/activate\ncurl -fL --max-time 60 -o eval-evidence.tar.gz \"https://codeload.github.com/edward-lcl/eval-evidence/tar.gz/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c\"\npython -m pip install -r requirements.txt ./eval-evidence.tar.gz\npython reproduce.py > receipt.json" },
+  { title: "Save the baseline before changing anything", body: [
+    "The script runs the following command sequence inside its new workspace. Check reports on the current state; bundle saves a baseline; verify with --run-root compares that baseline against the selected local files. The original file check passed with exit code 0.",
+    "The optional missing debug file remains explicitly unavailable. A successful integrity check does not mean that every potentially useful piece of evidence was recorded."
+  ], code: "python -m eval_evidence demo -o run\npython -m eval_evidence check run\npython -m eval_evidence bundle run -o evidence.json\npython -m eval_evidence verify evidence.json --run-root run" },
+  { title: "Change one file, then ask two different questions", body: [
+    "The script changes only outputs/scores.json from {accuracy: 0.75, n: 4} to {accuracy: 1.0, n: 4}. It leaves evidence.json unchanged and checks its SHA-256 before and after. Then it invokes verify twice.",
+    "Without --run-root, verification still returns exit 0: it checks the bundle’s schema and internal digest, not the current source files. With --run-root, it returns exit 1 and identifies both a file-size mismatch and a file-digest mismatch for outputs/scores.json. That expected failure is the result we wanted to reproduce."
+  ], code: "python -m eval_evidence verify evidence.json\n# exit 0; referenced_files_checked: false\n\npython -m eval_evidence verify evidence.json --run-root run\n# exit 1; referenced_files_checked: true\n# Referenced file size mismatch for outputs/scores.json\n# Referenced file digest mismatch for outputs/scores.json" },
+  { title: "Inspect the receipt, and keep the boundary", body: [
+    "The linked receipt contains the captured JSON output and exit status for each step. Only temporary workspace paths were replaced with <workspace>; the inputs and saved bundle were not normalized or edited for the check. Your temporary path will differ.",
+    "This proves a byte difference against this saved baseline. It does not prove which score is correct, who changed the file, whether the verifier measures the intended task, or who created the bundle. An unsigned bundle can be altered and its digest recomputed. Keeping a trusted baseline is a separate responsibility.",
+    "That distinction is the point of the walkthrough: keep reported outcomes, provenance, retained bytes and trust claims separate enough that another person can check exactly what is being asserted."
+  ], links: [{ label: "Captured receipt.json", url: "/artifacts/eval-evidence/receipt.json" }, { label: "Pinned public implementation", url: source }, { label: "Trust model at this commit", url: `https://github.com/edward-lcl/eval-evidence/blob/${receipt.source_commit}/docs/TRUST_MODEL.md` }] },
+];
+---
+<ReadingPage kind="Artifact walkthrough" title="Change the file. Check the evidence."
+  lede="A short, reproducible example of what an evidence bundle can detect—and what it cannot."
+  status="Synthetic demonstration · locally reproduced" evidenceNote="No model was run. The score values are synthetic. Success here establishes a referenced-byte check against a saved baseline, not evaluation correctness or trusted authorship."
+  sections={sections} sourceUrl={source} sourceLabel="Pinned source" readTime="5 min read + local run"
+  lastVerified="10 Sep 2026" lastVerifiedLabel="Reproduced"
+  backHref="/work/eval-evidence/" backLabel="Eval Evidence" nextHref="/questions/a-zero-needs-adjudication/" nextLabel="Why a zero needs adjudication">
+  <figure slot="visual" class="walkthrough-receipt shell">
+    <figcaption>Observed in this synthetic run</figcaption>
+    <table><thead><tr><th scope="col">Check</th><th scope="col">Exit</th><th scope="col">What it tells us</th></tr></thead><tbody>
+      <tr><th scope="row">Unchanged referenced files</th><td>0</td><td>Match the saved baseline</td></tr>
+      <tr><th scope="row">After mutation · bundle only</th><td>0</td><td>Bundle still internally consistent</td></tr>
+      <tr><th scope="row">After mutation · with run root</th><td>1</td><td>Referenced score file has changed</td></tr>
+    </tbody></table>
+    <p>The second pass is as important as the failure: the command’s scope determines what it can tell you.</p>
+  </figure>
+</ReadingPage>

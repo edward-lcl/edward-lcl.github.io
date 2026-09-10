@@ -29,3 +29,13 @@ The Chinese homepage was reread independently of the English after rewriting. Th
 - feedback loop → 反馈循环. Institution → 制度 for rules and authority, 机构 for organizations. Distributed corrigibility is explicitly a provisional concept, not established Chinese terminology.
 
 Usage consulted: [Alibaba AgentRun terminology](https://next.api.aliyun.com/document/AgentRun), [Alibaba runtime documentation](https://www.alibabacloud.com/help/zh/agentrun/code-creation-agent), [China Industrial Internet Research Institute on harness](https://www.china-aii.com/jgdt/202507015.jhtml), [construct validity terminology](https://cse.neea.edu.cn/html1/report/16104/3-1.htm).
+
+## Added for the research digest and collaboration invitation
+
+| English semantic intent | Proposed Chinese | Review focus |
+| --- | --- | --- |
+| Is the plan alone enough for oversight? | 只看计划，够吗？ | Short title without overstating the answer |
+| Trust is an assumption of the protocol | “可信”是控制协议中的假设，不是说模型永远不会出错。 | Distinguish trust from infallibility |
+| Monitoring discrimination is not safety probability | 0.96 不等于“96% 的行为是安全的”。 | Accessible AUROC explanation |
+| Distinguish failure causes | 怎样区分模型失败、环境故障与验证器的问题？ | Natural invitation for technical collaboration |
+| Invite concrete evidence and interpretation | 告诉我你观察到了什么，以及你认为它说明了什么。 | Personal voice without a recruitment claim |

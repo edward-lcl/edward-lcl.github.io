@@ -1,0 +1,257 @@
+[
+  {
+    "url": "https://abc.xyz/investor/events/event-details/default.aspx",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "url": "https://arxiv.org/abs/2305.19223",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2305.19223"
+  },
+  {
+    "url": "https://arxiv.org/abs/2402.08567",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2402.08567"
+  },
+  {
+    "url": "https://arxiv.org/abs/2403.02817",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2403.02817"
+  },
+  {
+    "url": "https://arxiv.org/abs/2410.07283",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2410.07283"
+  },
+  {
+    "url": "https://arxiv.org/abs/2506.07962",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2506.07962"
+  },
+  {
+    "url": "https://arxiv.org/abs/2512.14745",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2512.14745"
+  },
+  {
+    "url": "https://arxiv.org/abs/2512.14745v1",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2512.14745v1"
+  },
+  {
+    "url": "https://arxiv.org/abs/2606.08960",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2606.08960"
+  },
+  {
+    "url": "https://arxiv.org/abs/2608.29956",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2608.29956"
+  },
+  {
+    "url": "https://arxiv.org/abs/2608.29956v1",
+    "status": 200,
+    "final": "https://arxiv.org/abs/2608.29956v1"
+  },
+  {
+    "url": "https://arxiv.org/html/2512.14745v1",
+    "status": 200,
+    "final": "https://arxiv.org/html/2512.14745v1"
+  },
+  {
+    "url": "https://arxiv.org/html/2608.29956v1",
+    "status": 200,
+    "final": "https://arxiv.org/html/2608.29956v1"
+  },
+  {
+    "url": "https://datatracker.ietf.org/doc/html/rfc2119",
+    "status": 200,
+    "final": "https://datatracker.ietf.org/doc/html/rfc2119"
+  },
+  {
+    "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+    "status": 200,
+    "final": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+  },
+  {
+    "url": "https://deepmind.google/blog/strengthening-our-partnership-with-the-uk-government-to-support-prosperity-and-security-in-the-ai-era/",
+    "status": 200,
+    "final": "https://deepmind.google/blog/strengthening-our-partnership-with-the-uk-government-to-support-prosperity-and-security-in-the-ai-era/"
+  },
+  {
+    "url": "https://edward-lcl.github.io/",
+    "status": 200,
+    "final": "https://edward-lcl.github.io/"
+  },
+  {
+    "url": "https://entity-veracity.super-intelligent.ai",
+    "status": 200,
+    "final": "https://entity-veracity.super-intelligent.ai"
+  },
+  {
+    "url": "https://forum.effectivealtruism.org/posts/xBjgTH3tXmeECERGR/the-alignment-problem-is-upstream-of-the-model",
+    "status": 200,
+    "final": "https://forum.effectivealtruism.org/posts/xBjgTH3tXmeECERGR/the-alignment-problem-is-upstream-of-the-model"
+  },
+  {
+    "url": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP",
+    "status": 200,
+    "final": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP"
+  },
+  {
+    "url": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP/blob/1b6d85969125c6cf260f0b4e2bb5b0b55eed5c79/paper.tex",
+    "status": 200,
+    "final": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP/blob/1b6d85969125c6cf260f0b4e2bb5b0b55eed5c79/paper.tex"
+  },
+  {
+    "url": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP/tree/1b6d85969125c6cf260f0b4e2bb5b0b55eed5c79",
+    "status": 200,
+    "final": "https://github.com/KaaustaaubShankar/BreakingAgentsIntoPOMDP/tree/1b6d85969125c6cf260f0b4e2bb5b0b55eed5c79"
+  },
+  {
+    "url": "https://github.com/a4maan/detecting-hct",
+    "status": 200,
+    "final": "https://github.com/a4maan/detecting-hct"
+  },
+  {
+    "url": "https://github.com/edward-lcl",
+    "status": 200,
+    "final": "https://github.com/edward-lcl"
+  },
+  {
+    "url": "https://github.com/edward-lcl/UiS-POP2-v2",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/UiS-POP2-v2"
+  },
+  {
+    "url": "https://github.com/edward-lcl/UiS-POP2-v2/tree/6b7dc747fad2d3f966e947c86a2deb79e69e166f",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/UiS-POP2-v2/tree/6b7dc747fad2d3f966e947c86a2deb79e69e166f"
+  },
+  {
+    "url": "https://github.com/edward-lcl/eval-evidence",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/eval-evidence"
+  },
+  {
+    "url": "https://github.com/edward-lcl/eval-evidence/blob/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/docs/TRUST_MODEL.md",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/eval-evidence/blob/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/docs/TRUST_MODEL.md"
+  },
+  {
+    "url": "https://github.com/edward-lcl/eval-evidence/tree/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/eval-evidence/tree/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c"
+  },
+  {
+    "url": "https://github.com/edward-lcl/eval-evidence/tree/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/figures",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/eval-evidence/tree/6d4a25b5f288f9646f30e0d1c9f5923cc6c1ec8c/figures"
+  },
+  {
+    "url": "https://github.com/edward-lcl/factor-ut-untrusted-decomposer",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/factor-ut-untrusted-decomposer"
+  },
+  {
+    "url": "https://github.com/edward-lcl/factor-ut-untrusted-decomposer/tree/AAAI-TrustAgent-submission",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/factor-ut-untrusted-decomposer/tree/AAAI-TrustAgent-submission"
+  },
+  {
+    "url": "https://github.com/edward-lcl/feedback-distillation",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/feedback-distillation"
+  },
+  {
+    "url": "https://github.com/edward-lcl/feedback-distillation/blob/b80a1d0df7235c72a68c031f6985d747d56f3bca/paper/slfd_colm_er_final.pdf",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/feedback-distillation/blob/b80a1d0df7235c72a68c031f6985d747d56f3bca/paper/slfd_colm_er_final.pdf"
+  },
+  {
+    "url": "https://github.com/edward-lcl/feedback-distillation/tree/b80a1d0df7235c72a68c031f6985d747d56f3bca",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/feedback-distillation/tree/b80a1d0df7235c72a68c031f6985d747d56f3bca"
+  },
+  {
+    "url": "https://github.com/edward-lcl/harness-map/blob/be175a0ae84bc92cdf8b703ac9660386c4e56a79/harness_map/probe/differ.py",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/harness-map/blob/be175a0ae84bc92cdf8b703ac9660386c4e56a79/harness_map/probe/differ.py"
+  },
+  {
+    "url": "https://github.com/edward-lcl/harness-map/tree/be175a0ae84bc92cdf8b703ac9660386c4e56a79",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/harness-map/tree/be175a0ae84bc92cdf8b703ac9660386c4e56a79"
+  },
+  {
+    "url": "https://github.com/edward-lcl/harness-map/tree/be175a0ae84bc92cdf8b703ac9660386c4e56a79/probe/results",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/harness-map/tree/be175a0ae84bc92cdf8b703ac9660386c4e56a79/probe/results"
+  },
+  {
+    "url": "https://github.com/edward-lcl/sjji-eeg",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/sjji-eeg"
+  },
+  {
+    "url": "https://github.com/edward-lcl/sjji-eeg/blob/0fbe8027bc78808aea3553d68cfc565332799963/paper/figures/fig1_confound.png",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/sjji-eeg/blob/0fbe8027bc78808aea3553d68cfc565332799963/paper/figures/fig1_confound.png"
+  },
+  {
+    "url": "https://github.com/edward-lcl/sjji-eeg/tree/0fbe8027bc78808aea3553d68cfc565332799963",
+    "status": 200,
+    "final": "https://github.com/edward-lcl/sjji-eeg/tree/0fbe8027bc78808aea3553d68cfc565332799963"
+  },
+  {
+    "url": "https://github.com/few-sh/terminal-wrench",
+    "status": 200,
+    "final": "https://github.com/few-sh/terminal-wrench"
+  },
+  {
+    "url": "https://global.oup.com/academic/product/investigations-9780195121056",
+    "status": 202,
+    "final": "https://global.oup.com/academic/product/investigations-9780195121056"
+  },
+  {
+    "url": "https://link.springer.com/book/10.1007/978-3-319-42337-1",
+    "status": 200,
+    "final": "https://link.springer.com/book/10.1007/978-3-319-42337-1?error=cookies_not_supported&code=4f54eab8-fbd9-4036-9aa0-8c26e5fa5e60"
+  },
+  {
+    "url": "https://linkedin.com/in/edward-lue-chee-lip",
+    "status": 200,
+    "final": "https://linkedin.com/in/edward-lue-chee-lip"
+  },
+  {
+    "url": "https://medium.com/@eluecheelip/how-ai-exposed-the-lie-inside-education-87fe8baecbc8",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://www.airuniversity.af.edu/Portals/10/AUPress/Books/B_0151_Boyd_Discourse_Winning_Losing.pdf",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://www.lesswrong.com/posts/6ZnznCaTcbGYsCmqu/the-rise-of-parasitic-ai",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "url": "https://www.lesswrong.com/posts/CJGKkTjWLGCwhkjGY/socratic-ducking-ooda-loops-frame-by-frame-debugging",
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  {
+    "url": "https://www.palantir.com/platforms/foundry/foundry-ontology/",
+    "status": 200,
+    "final": "https://www.palantir.com/platforms/ontology"
+  },
+  {
+    "url": "https://www.routledge.com/The-Creative-Mind-Myths-and-Mechanisms/Boden/p/book/9780415314534",
+    "status": 200,
+    "final": "https://www.routledge.com/The-Creative-Mind-Myths-and-Mechanisms/Boden/p/book/9780415314534"
+  },
+  {
+    "url": "https://x.com/MushuDev",
+    "status": 200,
+    "final": "https://x.com/MushuDev"
+  }
+]

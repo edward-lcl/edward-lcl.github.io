@@ -1,0 +1,65 @@
+---
+interface Props { slug: string }
+const { slug } = Astro.props;
+const diagrams: Record<string, { title: string; note: string; steps: [string,string][] }> = {
+  "a-zero-needs-adjudication": {
+    title: "A zero is the start of the diagnosis.",
+    note: "Possible explanations to investigate, not a classification of a particular run. More than one can apply.",
+    steps: [["Task", "Was the request clear and solvable?"], ["Environment", "Did the tools and infrastructure work?"], ["Agent", "What does the trajectory show it could not do?"], ["Verifier", "Did the check measure the intended outcome?"]]
+  },
+  "where-does-the-model-end": {
+    title: "Name the pieces behind the result.",
+    note: "A schematic of the assembled system. The contribution of each component needs a controlled comparison.",
+    steps: [["Model", "Weights and post-training"], ["Context", "Instructions, memory, retrieved evidence"], ["Execution", "Tools, retries, budget, environment"], ["Evaluation", "Verifier and aggregation"]]
+  },
+  "red-teaming-as-accountability": {
+    title: "Make a failure useful to someone else.",
+    note: "A working research process, not a guarantee that a repaired system is safe.",
+    steps: [["Find", "A concrete failure under a recorded setup"], ["Explain", "A trajectory and the boundary it crossed"], ["Repair", "A change that addresses the failure"], ["Recheck", "A separate test, including what could still go wrong"]]
+  },
+  "handoffs-are-memory": {
+    title: "What should the next session inherit?",
+    note: "A handoff is a starting point with evidence to revisit. It does not replace the underlying record.",
+    steps: [["Current state", "What is done, what is unfinished"], ["Decisions", "What we chose and why"], ["Evidence", "Files and observations behind the account"], ["Next check", "What remains uncertain and how to investigate it"]]
+  },
+  "epistemic-grounding-is-the-missing-layer": {
+    title: "Keep the claim attached to its support.",
+    note: "A proposed record structure. Whether it improves decisions is an empirical question.",
+    steps: [["Claim", "What is being asserted?"], ["Support", "Which observation or source supports it?"], ["Uncertainty", "What is inferred, missing, or disputed?"], ["Action", "What decision depends on accepting it?"]]
+  },
+  "the-ontology-is-the-interface": {
+    title: "An action passes through a vocabulary.",
+    note: "Illustrative architecture. A schema alone does not enforce permissions or make its representation correct.",
+    steps: [["Records", "Source data and its provenance"], ["Objects", "Named entities, properties, relationships"], ["Permissions", "Which actor may invoke which action"], ["Consequences", "A change that can be inspected and challenged"]]
+  },
+  "the-shape-of-whats-absent": {
+    title: "Observation is not yet an explanation.",
+    note: "The comparison can establish a difference under recorded conditions, without identifying its internal cause.",
+    steps: [["Baseline", "A recorded prompt, system, and setup"], ["Comparison", "Repeat or change one condition"], ["Observation", "Describe what changed in the output"], ["Interpretation", "Separate possible causes from what was measured"]]
+  },
+  "one-untrusted-agent-is-enough": {
+    title: "Check what crosses the boundary.",
+    note: "A threat-model schematic. Different studies test different routes; this does not establish one universal attack.",
+    steps: [["Source", "A message, document, or tool result"], ["Transfer", "Content moves into another agent’s context"], ["Authority", "Is content being treated as an instruction?"], ["Action", "What can the receiving agent now change?"]]
+  }
+};
+const diagram = diagrams[slug];
+---
+{diagram && <figure class="notebook-diagram shell" aria-labelledby="notebook-diagram-title">
+  <header><p class="overline">Keep this distinction in view</p><h2 id="notebook-diagram-title">{diagram.title}</h2></header>
+  <ol>{diagram.steps.map(([title,detail],index)=><li><span aria-hidden="true">0{index+1}</span><h3>{title}</h3><p>{detail}</p></li>)}</ol>
+  <figcaption>{diagram.note}</figcaption>
+</figure>}
+<style>
+  .notebook-diagram { padding-block:2.5rem 3.5rem; border-top:2px solid #2444af; }
+  header { max-width:760px; }
+  h2 { font:500 clamp(1.8rem,3vw,2.7rem)/1.15 var(--serif); letter-spacing:-.035em; margin:.8rem 0 1.8rem; }
+  ol { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); padding:0; margin:0; gap:1px; background:#8896ab; border:1px solid #8896ab; border-radius:8px; overflow:hidden; list-style:none; }
+  li { background:#edf1f8; padding:1.4rem; }
+  li > span { font:.75rem/1 var(--mono); color:#2444af; }
+  h3 { font:500 1.4rem/1.2 var(--serif); margin:1rem 0 .7rem; }
+  li p { color:#414d60; font-size:.9rem; line-height:1.65; margin:0; }
+  figcaption { color:#4e5969; font-size:.82rem; line-height:1.65; max-width:90ch; margin-top:1rem; }
+  @media(max-width:850px) { ol { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media(max-width:480px) { ol { grid-template-columns:1fr; } }
+</style>

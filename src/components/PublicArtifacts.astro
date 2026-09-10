@@ -1,0 +1,30 @@
+---
+import { artifacts } from '../data/artifacts';
+interface Props { slug: string }
+const { slug } = Astro.props;
+const artifact = artifacts[slug];
+---
+{artifact && <section class="public-artifacts shell" aria-labelledby="public-artifacts-title">
+  <p class="overline">Source material · availability checked 11 September 2026</p>
+  <h2 id="public-artifacts-title">{artifact.title}</h2>
+  <p class="artifact-context">{artifact.context}</p>
+  {artifact.image && <figure>
+    <a href={artifact.image.src} aria-label="Open the original figure at full resolution"><picture>
+      {artifact.image.mobile && <source media="(max-width:600px)" srcset={artifact.image.mobile} />}
+      <img src={artifact.image.src} alt={artifact.image.alt} width={artifact.image.width} height={artifact.image.height} loading="lazy" decoding="async" />
+    </picture></a>
+    <figcaption>{artifact.image.credit} <a href={artifact.image.src}>Full-resolution figure ↗</a></figcaption>
+  </figure>}
+  {artifact.links.length > 0 && <nav aria-label="Source artifacts">{artifact.links.map(link=><a href={link.url}>{link.label} ↗</a>)}</nav>}
+</section>}
+<style>
+.public-artifacts { padding-block:3rem; border-top:1px solid #a5aebb; }
+h2 { font:500 clamp(1.8rem,3vw,2.8rem)/1.15 var(--serif); margin:.9rem 0 1.2rem; letter-spacing:-.035em; }
+.artifact-context { max-width:85ch; color:#414d60; line-height:1.75; }
+figure { margin:2rem 0; }
+img { display:block; width:100%; height:auto; border:1px solid #a5aebb; border-radius:6px; }
+figcaption { margin-top:.9rem; color:#4e5969; font-size:.8rem; line-height:1.7; }
+a { color:#2444af; text-decoration:underline; text-underline-offset:3px; }
+nav { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.5rem; }
+nav a { display:inline-flex; align-items:center; min-height:44px; padding:.75rem 1rem; background:#edf1f8; border:1px solid #8190a5; border-radius:5px; }
+</style>

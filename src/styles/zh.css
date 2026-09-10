@@ -51,3 +51,30 @@ html:lang(zh-CN) {
 .zh-page .personal-note { font-size: 1.15rem; line-height: 1.85; text-wrap: pretty; }
 .zh-page :is(.notes-footnote, .research-footnote, .footer-note) { font-family: var(--zh-sans); letter-spacing: 0; font-size: .85rem; }
 .zh-page .paper-topline > span:last-child { text-transform: none; letter-spacing: .025em; font-size: .7rem; }
+.zh-page .reading-title h1 { max-width: 13em; font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 1.4; letter-spacing: 0; }
+.zh-page :is(.reading-lede > p, .reading-subtitle) { font-family: var(--zh-sans); font-size: 1.2rem; line-height: 1.85; }
+.zh-page .reading-article p, .zh-page .reading-article li { font-family: var(--zh-sans); line-height: 1.9; }
+.zh-page .reading-section h2 { font-size: clamp(1.55rem, 2.5vw, 2.15rem); line-height: 1.5; }
+.zh-page :is(.reading-meta-grid dt, .reading-meta-grid dd, .reading-status, .evidence-note, .reading-index, .reading-next) { font-family: var(--zh-sans); letter-spacing: 0; line-height: 1.8; }
+.zh-protocol { padding-block: 3rem; border-block: 1px solid var(--line); }
+.zh-protocol h2 { font-size: clamp(1.6rem, 3vw, 2.5rem); }
+.zh-protocol-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; margin: 2rem 0; }
+.zh-protocol-steps li { padding: 1.2rem; border: 1px solid var(--line); }
+.zh-protocol-steps span { display: block; color: var(--muted); font: .75rem var(--mono); margin-bottom: 1rem; }
+.zh-protocol-steps p { line-height: 1.8; margin: .5rem 0 0; font-size: .9rem; }
+.zh-protocol table { border-collapse: collapse; width: 100%; max-width: 36rem; margin-top: 2rem; text-align: left; }
+.zh-protocol caption { text-align: left; padding-bottom: 1rem; }
+.zh-protocol th, .zh-protocol td { padding: .8rem; border-bottom: 1px solid var(--line); }
+@media (max-width: 700px) { .zh-protocol-steps { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+.zh-page .collaboration-invitation h3 { font-family: var(--zh-sans); font-size: 1.25rem; letter-spacing: 0; }
+.zh-page .collaboration-invitation li, .zh-page .collaboration-invitation p { line-height: 1.85; }
+.zh-page .reading-meta-grid dt { font-size: .72rem; }
+.zh-page .reading-meta-grid dd { font-size: .84rem; }
+.zh-page .reading-status { font-size: .72rem; text-transform: none; }
+.zh-page .reading-subtitle { font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
+
+/* Match the English evidence panels without imposing Latin type rhythm. */
+.zh-protocol-steps li { background:#edf1f8; border-color:#8190a5; border-radius:6px; }
+.zh-protocol-steps span { color:#2444af; }
+.zh-protocol th { background:#e9eef7; color:#1b1d21; }
+.zh-protocol th, .zh-protocol td { border-color:#a5aebb; }

@@ -1,4 +1,5 @@
 ---
+import CollaborationInvitation from "../components/CollaborationInvitation.astro";
 import Layout from "../layouts/Layout.astro";
 import EvidenceSketch from "../components/EvidenceSketch.astro";
 import { acceptedPapers, additionalPapers, links, researchArcs, selectedSystems, sitePositioning } from "../data/site";
@@ -68,7 +69,7 @@ const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.clust
 
       <aside class="personal-card reveal" aria-label="Research coordinates">
         <p class="card-label">Research coordinates</p>
-<figure class="author-portrait"><img src="/edward-github-avatar.png" width="460" height="460" alt="Edward’s illustrated profile portrait, from his public GitHub account" /><figcaption><a href={links.github}>Public GitHub avatar ↗</a></figcaption></figure>
+<figure class="author-portrait"><div class="portrait-window"><img src="/edward-with-dog-reframed.webp" width="768" height="768" alt="Edward smiling with a small black dog beside his face" /></div></figure>
         <p class="personal-note">
           From Trinidad and Tobago. Now in Suzhou, studying Artificial Intelligence
           <span> (Intelligent Systems) at XJTLU.</span>
@@ -317,8 +318,9 @@ const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.clust
             ways to observe, judge, and contest them. More intelligence helps only if its errors can
             still be found. That question now takes me from agent architecture to institutions.
           </p>
+          <CollaborationInvitation />
           <div class="now-actions">
-            <a class="primary-link" href={links.email}>Start a conversation <span>↗</span></a>
+            <a class="primary-link" href={links.email}>Share a question <span>↗</span></a>
             <a href="/zh/" lang="zh-CN">中文页面 <span>→</span></a>
           </div>
         </div>
@@ -335,7 +337,7 @@ const latestWriting = researchArcs.filter((arc) => "cluster" in arc && arc.clust
         <p class="footer-note">Built as a notebook, not a résumé.</p>
       </div>
       <a class="footer-email" href={links.email}>eluecheelip@gmail.com</a>
-      <div class="footer-links">
+      <div class="footer-links"><a href="/map/">Site map</a>
         <a href={links.github} target="_blank" rel="noopener">GitHub</a>
         <a href="/cv/">CV</a>
         <a href={links.linkedin} target="_blank" rel="noopener">LinkedIn</a>

@@ -1,0 +1,158 @@
+{
+  "source_commit": "be175a0ae84bc92cdf8b703ac9660386c4e56a79",
+  "selection": "Latest fully successful committed 44-probe run per model; archived responses only, no new model calls.",
+  "files": {
+    "haiku-4-5": "probe/results/claude-haiku-4-5__2026-04-18-b10f7ecb66a5__20260418T193004Z.jsonl",
+    "sonnet-4-6": "probe/results/claude-sonnet-4-6__2026-04-18-b10f7ecb66a5__20260418T200003Z.jsonl",
+    "opus-4-7": "probe/results/claude-opus-4-7__2026-04-18-b10f7ecb66a5__20260418T195958Z.jsonl"
+  },
+  "comparisons": [
+    {
+      "pair": [
+        "haiku-4-5",
+        "sonnet-4-6"
+      ],
+      "category_mean": 0.878,
+      "categories": {
+        "capability": {
+          "compared": 7,
+          "flagged": 1,
+          "rate": 0.143
+        },
+        "identity": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "persona": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "refusal": {
+          "compared": 8,
+          "flagged": 8,
+          "rate": 1.0
+        },
+        "safety_adjacent": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "style": {
+          "compared": 7,
+          "flagged": 7,
+          "rate": 1.0
+        },
+        "tool_calling": {
+          "compared": 4,
+          "flagged": 4,
+          "rate": 1.0
+        }
+      },
+      "flag_types": {
+        "response_changed": 25,
+        "identity_change": 8,
+        "length_delta": 5
+      }
+    },
+    {
+      "pair": [
+        "haiku-4-5",
+        "opus-4-7"
+      ],
+      "category_mean": 0.792,
+      "categories": {
+        "capability": {
+          "compared": 7,
+          "flagged": 0,
+          "rate": 0.0
+        },
+        "identity": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "persona": {
+          "compared": 6,
+          "flagged": 5,
+          "rate": 0.833
+        },
+        "refusal": {
+          "compared": 8,
+          "flagged": 8,
+          "rate": 1.0
+        },
+        "safety_adjacent": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "style": {
+          "compared": 7,
+          "flagged": 5,
+          "rate": 0.714
+        },
+        "tool_calling": {
+          "compared": 4,
+          "flagged": 4,
+          "rate": 1.0
+        }
+      },
+      "flag_types": {
+        "identity_change": 9,
+        "length_delta": 2,
+        "response_changed": 23
+      }
+    },
+    {
+      "pair": [
+        "sonnet-4-6",
+        "opus-4-7"
+      ],
+      "category_mean": 0.798,
+      "categories": {
+        "capability": {
+          "compared": 7,
+          "flagged": 1,
+          "rate": 0.143
+        },
+        "identity": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "persona": {
+          "compared": 6,
+          "flagged": 5,
+          "rate": 0.833
+        },
+        "refusal": {
+          "compared": 8,
+          "flagged": 8,
+          "rate": 1.0
+        },
+        "safety_adjacent": {
+          "compared": 6,
+          "flagged": 6,
+          "rate": 1.0
+        },
+        "style": {
+          "compared": 7,
+          "flagged": 6,
+          "rate": 0.857
+        },
+        "tool_calling": {
+          "compared": 4,
+          "flagged": 3,
+          "rate": 0.75
+        }
+      },
+      "flag_types": {
+        "length_delta": 2,
+        "identity_change": 11,
+        "response_changed": 22
+      }
+    }
+  ]
+}

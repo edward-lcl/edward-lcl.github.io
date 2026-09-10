@@ -1,49 +1,44 @@
 ---
 import ReadingPage from "../../components/ReadingPage.astro";
+import PublicArtifacts from "../../components/PublicArtifacts.astro";
 import { additionalPapers } from "../../data/site";
-
 const paper = additionalPapers.find((entry) => entry.slug === "hidden-cot");
 if (!paper) throw new Error("hidden-cot paper record missing");
-
 const sections = [
-  {
-    title: "What the paper asks",
-    body: [
-      "Can hidden chain-of-thought — reasoning a model performs but does not verbalize — be detected from the outside? The paper introduces the Hidden CoT Detection Score (HCDS), which combines linguistic, behavioral, and mechanistic indicators, and tests anchor-suppression interventions on Qwen3-4B across GSM8K and StrategyQA.",
-    ],
-  },
-  {
-    title: "Why it sits in this notebook",
-    body: [
-      "What a system verbalizes is not necessarily what it computes. That is the plan-versus-implementation gap from Factor(U,T) in another form, and it is why unverbalized reasoning is a monitoring problem rather than a curiosity: a monitor that reads only the stated chain of thought is reading a narrated artifact, not the computation.",
-    ],
-  },
-  {
-    title: "Status, and what this page deliberately is not",
-    body: [
-      "Accepted to an ICML 2026 workshop; I am a co-author. This digest is minimal by design: it records the acceptance and the paper's scope, and nothing further. The full digest — with the standard question-to-falsifier ledger and measured results — lands when the public artifact does. Until then, this page makes no claims the artifact cannot yet back.",
-    ],
-  },
+  {title:"What we can observe",body:[
+    "I am a co-author on this work. We compare neutral prompting with explicit reasoning and answer-only conditions. HCDS measures which condition the neutral behavior resembles; it does not reveal a hidden reasoning trace."
+  ]},
+  {title:"Why the controls matter",body:[
+    "The public paper reports positive length-adjusted scores on GSM8K for both Qwen3-4B variants, with similar results across two inference stacks. But unadjusted scores can also be positive on simple arithmetic and factual lookup. Accounting for output length reduces those control scores.",
+    "That is the distinction I want readers to keep: a promising indicator needs tests of what else could produce it. The original robustness figure below examines the score across output-length tiers."
+  ],inlineLinks:[{label:"public paper",url:"https://arxiv.org/abs/2608.29956v1"}]},
+  {title:"What this supports",body:[
+    "The findings are consistent with reasoning-like behavior under the tested conditions. They do not establish direct access to internal reasoning or a universal detector. The score’s scale depends on its feature space, and the mechanistic intervention evidence is mixed."
+  ]}
 ];
 ---
-
 <ReadingPage
   kind={`Research digest · ${paper.venue}`}
   title={paper.title}
   subtitle={paper.subtitle}
-  lede="Reasoning a model performs but does not verbalize is a monitoring problem. This minimal digest records the acceptance and scope; the full digest lands with the public artifact."
+  lede="What can behavior tell us about reasoning a model does not show? This work compares prompting conditions and checks whether the resulting signal survives controls for response length."
   status={paper.note}
-  evidenceNote="Minimal digest by design: acceptance and scope only, pending the public artifact."
+  evidenceNote="Public preprint submitted 30 August 2026. Workshop acceptance remains the previously verified team record; the arXiv release is independently public."
   sections={sections}
   role={paper.role}
   authors={paper.authors}
-  publicationDate="Accepted · 2026"
-  artifactState="Public artifact pending"
-  evidenceClass="Accepted · artifact pending"
-  provenance="Author-team acceptance decision. Public proceedings record and artifact route pending."
-  lastVerified="13 Aug 2026"
-  citationState="Workshop proceedings citation pending."
+  publicationDate="Preprint · 30 August 2026"
+  sourceUrl={paper.sourceUrl}
+  sourceLabel="Paper"
+  resources={[{label:"Paper · arXiv",url:paper.sourceUrl},{label:"Code",url:"https://github.com/a4maan/detecting-hct"}]}
+  artifactState="Paper and code public"
+  evidenceClass="Public preprint · workshop acceptance previously recorded"
+  provenance="arXiv:2608.29956v1 and its linked public repository. Author list updated from the public paper."
+  lastVerified="11 Sep 2026"
+  lastVerifiedLabel="Public artifacts checked"
+  citationState="arXiv:2608.29956 · workshop proceedings citation not verified."
   readTime="2 min read"
   backHref="/#research"
   backLabel="accepted papers"
-/>
+  depthAfterBody
+><PublicArtifacts slot="depth" slug="hidden-cot" /></ReadingPage>

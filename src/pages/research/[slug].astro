@@ -1,5 +1,7 @@
 ---
+import PublicArtifacts from "../../components/PublicArtifacts.astro";
 import ReadingPage from "../../components/ReadingPage.astro";
+import RecallExplorer from "../../components/RecallExplorer.astro";
 import EvidenceSketch from "../../components/EvidenceSketch.astro";
 import FactorPipeline from "../../components/FactorPipeline.astro";
 import ResearchAltitudes from "../../components/ResearchAltitudes.astro";
@@ -19,6 +21,7 @@ const { paper, next } = Astro.props;
 ---
 
 <ReadingPage
+  depthAfterBody
   kind={`Research digest · ${paper.venue}`}
   title={paper.title}
   subtitle={paper.subtitle}
@@ -27,7 +30,8 @@ const { paper, next } = Astro.props;
   evidenceNote={paper.evidenceNote}
   sections={paper.sections}
   sourceUrl={paper.sourceUrl}
-  resources={"resources" in paper ? paper.resources : undefined}
+  sourceLabel={paper.sourceUrl?.includes("arxiv.org") ? "Paper" : "Code"}
+  resources={"resources" in paper ? [...paper.resources, ...(paper.slug === "factor-ut" ? [{ label: "中文解读", url: "/zh/research/factor-ut/" }] : [])] : undefined}
   role={paper.role}
   authors={"authors" in paper ? paper.authors : undefined}
   publicationDate={paper.publicationDate}
@@ -45,9 +49,10 @@ const { paper, next } = Astro.props;
 >
   {paper.slug === "factor-ut"
     ? <FactorPipeline slot="visual" />
-    : <EvidenceSketch slot="visual" slug={paper.slug} />}
+    : <div slot="visual">{paper.slug === "recall-debt" && <RecallExplorer />}<EvidenceSketch slug={paper.slug} /></div>}
   <div slot="depth">
+    <PublicArtifacts slug={paper.slug} />
     <ResearchAltitudes items={paper.altitudes} />
-    <p class="shell research-connection">This digest carries the measured claim. <a href="/questions/inside-the-loop/#section-4">Inside the loop</a> develops the wider question; the framework does not expand the result’s scope.</p>
+    <p class="shell research-connection">I connect these research questions in <a href="/questions/inside-the-loop/#section-4">Inside the loop</a>, where I write about the wider direction of my work.</p>
   </div>
 </ReadingPage>

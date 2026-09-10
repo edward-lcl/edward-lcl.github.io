@@ -4,6 +4,8 @@ import type { ReadingSection } from "../data/site";
 
 interface Props {
   kind: string;
+  depthAfterBody?: boolean;
+  lang?: "en" | "zh-CN";
   title: string;
   subtitle?: string;
   lede: string;
@@ -16,6 +18,7 @@ interface Props {
   role?: string;
   authors?: string;
   publicationDate?: string;
+  publicationDateLabel?: string;
   artifactState?: string;
   contribution?: string;
   evidenceClass?: string;
@@ -34,6 +37,8 @@ interface Props {
 
 const {
   kind,
+  depthAfterBody = false,
+  lang = "en",
   title,
   subtitle,
   lede,
@@ -46,6 +51,7 @@ const {
   role,
   authors,
   publicationDate,
+  publicationDateLabel,
   artifactState,
   contribution,
   evidenceClass,
@@ -62,7 +68,28 @@ const {
   nextLabel,
 } = Astro.props;
 
-const isScholarlyArticle = kind.startsWith("Research digest");
+const zh = lang === "zh-CN";
+// Render authored link labels as elements while keeping all prose escaped.
+function inlineParts(text: string, links: ReadingSection["inlineLinks"] = []) {
+  const parts: { text: string; url?: string }[] = [];
+  let remaining = text;
+  while (remaining) {
+    const match = links
+      .filter((link) => link.label.length > 0)
+      .map((link) => ({ ...link, index: remaining.indexOf(link.label) }))
+      .filter((link) => link.index >= 0)
+      .sort((a, b) => a.index - b.index || b.label.length - a.label.length)[0];
+    if (!match) {
+      parts.push({ text: remaining });
+      break;
+    }
+    if (match.index > 0) parts.push({ text: remaining.slice(0, match.index) });
+    parts.push({ text: match.label, url: match.url });
+    remaining = remaining.slice(match.index + match.label.length);
+  }
+  return parts;
+}
+const isScholarlyArticle = kind.startsWith("Research digest") || kind.startsWith("研究解读");
 const pageSchema = {
   "@context": "https://schema.org",
   "@type": isScholarlyArticle ? "ScholarlyArticle" : "Article",
@@ -70,7 +97,7 @@ const pageSchema = {
   ...(subtitle ? { alternativeHeadline: subtitle } : {}),
   description: lede,
   url: Astro.url.href,
-  inLanguage: "en",
+  inLanguage: lang,
   author: {
     "@type": "Person",
     name: "Edward Lue Chee Lip",
@@ -80,17 +107,18 @@ const pageSchema = {
 };
 ---
 
-<Layout title={`${title} — Edward Lue Chee Lip`} description={lede}>
+<Layout title={`${title} — Edward Lue Chee Lip`} description={lede} lang={lang}>
+  <div class:list={[zh && "zh-page"]}>
   <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
   <div class="reading-progress" aria-hidden="true"><span></span></div>
   <header class="site-header reading-header">
     <div class="shell nav-inner">
-      <a class="site-name" href="/"><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
-      <p class="header-status"><span></span> Field notes / {kind}</p>
-      <nav aria-label="Reading navigation">
+      <a class="site-name" href={zh ? "/zh/" : "/"}><span class="site-name-long">Edward Lue Chee Lip</span><span class="site-name-short">Edward</span></a>
+      <p class="header-status"><span></span> {zh ? "研究笔记" : "Field notes"} / {kind}</p>
+      <nav aria-label={zh ? "阅读导航" : "Reading navigation"}>
         <a href={backHref}>← {backLabel}</a>
-        <a href="/questions/inside-the-loop/">Framework</a>
-        <a href={sourceUrl || "mailto:eluecheelip@gmail.com"} target={sourceUrl ? "_blank" : undefined} rel={sourceUrl ? "noopener" : undefined}>{sourceUrl ? `${sourceLabel || "Source"} ↗` : "Discuss ↗"}</a>
+        <a href="/questions/inside-the-loop/">{zh ? "研究框架（英文）" : "Framework"}</a>
+        <a href={sourceUrl || "mailto:eluecheelip@gmail.com"} target={sourceUrl ? "_blank" : undefined} rel={sourceUrl ? "noopener" : undefined}>{sourceUrl ? `${sourceLabel || (zh ? "来源" : "Source")} ↗` : (zh ? "联系讨论 ↗" : "Discuss ↗")}</a>
       </nav>
     </div>
   </header>
@@ -104,22 +132,22 @@ const pageSchema = {
       </div>
       <aside class="reading-lede">
         <p>{lede}</p>
-        {(resources?.length || sourceUrl) && <nav class="artifact-links" aria-label="Public research artifacts">
+        {(resources?.length || sourceUrl) && <nav class="artifact-links" aria-label={zh ? "公开论文与代码" : "Public research artifacts"}>
           {(resources ?? [{ label: sourceLabel || (sourceUrl?.includes("arxiv.org") ? "Paper · arXiv" : "Implementation"), url: sourceUrl! }]).map((resource) => <a href={resource.url} target="_blank" rel="noopener">{resource.label} ↗</a>)}
         </nav>}
         {status && <span class="reading-status">{status}</span>}
         {(role || authors || publicationDate || artifactState || readTime) && (
           <dl class="reading-meta-grid">
-            {role && <div><dt>Edward’s role</dt><dd>{role}</dd></div>}
-            {publicationDate && <div><dt>Status</dt><dd>{publicationDate}</dd></div>}
-            {authors && <div class="meta-wide"><dt>Authors</dt><dd>{authors}</dd></div>}
-            {artifactState && <div><dt>Artifacts</dt><dd>{artifactState}</dd></div>}
-            {readTime && <div><dt>Reading time</dt><dd>{readTime}</dd></div>}
-            {contribution && <div class="meta-wide"><dt>Contribution</dt><dd>{contribution}</dd></div>}
-            {evidenceClass && <div><dt>Claim state</dt><dd>{evidenceClass}</dd></div>}
+            {role && <div><dt>{zh ? "我的角色" : "My role"}</dt><dd>{role}</dd></div>}
+            {publicationDate && <div><dt>{publicationDateLabel || (zh ? "发表状态" : "Publication status")}</dt><dd>{publicationDate}</dd></div>}
+            {authors && <div class="meta-wide"><dt>{zh ? "作者" : "Authors"}</dt><dd>{authors}</dd></div>}
+            {artifactState && <div><dt>{zh ? "公开材料" : "Artifacts"}</dt><dd>{artifactState}</dd></div>}
+            {readTime && <div><dt>{zh ? "阅读时间" : "Reading time"}</dt><dd>{readTime}</dd></div>}
+            {contribution && <div class="meta-wide"><dt>{zh ? "我的贡献" : "My contribution"}</dt><dd>{contribution}</dd></div>}
+            {evidenceClass && <div><dt>{zh ? "证据范围" : "Evidence"}</dt><dd>{evidenceClass.replace(/^E\d+ · /, "")}</dd></div>}
             {lastVerified && <div><dt>{lastVerifiedLabel}</dt><dd>{lastVerified}</dd></div>}
-            {provenance && <div class="meta-wide"><dt>Provenance</dt><dd>{provenance}</dd></div>}
-            {citationState && <div class="meta-wide"><dt>Citation</dt><dd>{citationState}</dd></div>}
+            {provenance && <div class="meta-wide"><dt>{zh ? "依据" : "Provenance"}</dt><dd>{provenance}</dd></div>}
+            {citationState && <div class="meta-wide"><dt>{zh ? "引用信息" : "Citation"}</dt><dd>{citationState}</dd></div>}
           </dl>
         )}
       </aside>
@@ -133,11 +161,11 @@ const pageSchema = {
     )}
 
     <slot name="visual" />
-    <slot name="depth" />
+    {!depthAfterBody && <slot name="depth" />}
 
     <div class="reading-body shell">
-      <aside class="reading-index" aria-label="On this page">
-        <p class="card-label">On this page</p>
+      <aside class="reading-index" aria-label={zh ? "本页目录" : "On this page"}>
+        <p class="card-label">{zh ? "本页目录" : "On this page"}</p>
         <ol>
           {sections.map((section, index) => (
             <li><a href={`#section-${index + 1}`}><span>0{index + 1}</span>{section.title}</a></li>
@@ -146,7 +174,7 @@ const pageSchema = {
         {evidenceNote && <p class="evidence-note">{evidenceNote}</p>}
         {references && references.length > 0 && (
           <div class="reading-references">
-            <p>References</p>
+            <p>{zh ? "参考资料" : "References"}</p>
             {references.map((reference) => <a href={reference.url} target="_blank" rel="noopener">{reference.label} ↗</a>)}
           </div>
         )}
@@ -157,8 +185,9 @@ const pageSchema = {
           <section id={`section-${index + 1}`} class="reading-section">
             <p class="section-number">0{index + 1}</p>
             <h2>{section.title}</h2>
-            {section.body.map((paragraph) => <p>{paragraph}</p>)}
-            {section.links && <nav class="section-sources" aria-label={`Related evidence for ${section.title}`}>{section.links.map((link) => <a href={link.url}>{link.label} →</a>)}</nav>}
+            {section.body.map((paragraph) => <p>{inlineParts(paragraph, section.inlineLinks).map((part) => part.url ? <a href={part.url}>{part.text}</a> : part.text)}</p>)}
+            {section.code && <pre class="reading-code"><code>{section.code}</code></pre>}
+            {section.links && <nav class="section-sources" aria-label={`${zh ? "相关依据：" : "Related evidence for "}${section.title}`}>{section.links.map((link) => <a href={link.url}>{link.label} →</a>)}</nav>}
             {section.points && (
               <ul>
                 {section.points.map((point) => <li>{point}</li>)}
@@ -170,17 +199,19 @@ const pageSchema = {
       </article>
     </div>
 
-    <nav class="reading-next shell" aria-label="Continue reading">
-      <a href={backHref}><span>Back to</span>{backLabel} ←</a>
-      {nextHref && <a href={nextHref}><span>Continue to</span>{nextLabel} →</a>}
+    {depthAfterBody && <slot name="depth" />}
+
+    <nav class="reading-next shell" aria-label={zh ? "继续阅读" : "Continue reading"}>
+      <a href={backHref}><span>{zh ? "返回" : "Back to"}</span>{backLabel} ←</a>
+      {nextHref && <a href={nextHref}><span>{zh ? "继续阅读" : "Continue to"}</span>{nextLabel} →</a>}
     </nav>
   </main>
 
   <footer class="site-footer reading-footer">
     <div class="shell footer-inner">
-      <div><p class="footer-title">Edward Lue Chee Lip</p><p>A public notebook about intelligent systems,<br />their instruments, and the worlds around them.</p></div>
+      <div><p class="footer-title">Edward Lue Chee Lip</p><p>{zh ? "记录智能系统、测量方法，以及还没弄清楚的问题。" : "A public notebook about intelligent systems, their instruments, and the worlds around them."}</p></div>
       <a class="footer-email" href="mailto:eluecheelip@gmail.com">eluecheelip@gmail.com</a>
-      <div class="footer-links"><a href="/">Home</a><a href="/zh/">中文</a></div>
+      <div class="footer-links"><a href="/map/">{zh ? "全站导航" : "Site map"}</a><a href="/">{zh ? "English" : "Home"}</a><a href="/zh/">中文</a></div>
     </div>
   </footer>
 
@@ -194,4 +225,5 @@ const pageSchema = {
     updateProgress();
     window.addEventListener("scroll", updateProgress, { passive: true });
   </script>
+  </div>
 </Layout>
