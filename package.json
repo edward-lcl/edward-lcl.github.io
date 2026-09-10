@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "test": "node --test",
     "check:privacy": "node scripts/privacy-scan.mjs",
     "check:links": "node scripts/link-check.mjs",
     "check": "npm run check:privacy && astro build && npm run check:links",

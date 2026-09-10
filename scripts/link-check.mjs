@@ -14,7 +14,7 @@ async function filesUnder(directory) {
   return files;
 }
 
-function internalTarget(fromFile, href) {
+export function internalTarget(fromFile, href) {
   const clean = href.split("#", 1)[0].split("?", 1)[0];
   if (!clean) return null;
   const rawTarget = clean.startsWith("/")
@@ -24,32 +24,34 @@ function internalTarget(fromFile, href) {
   return normalize(join(rawTarget, "index.html"));
 }
 
-const missing = [];
-const external = new Set();
-const htmlFiles = await filesUnder(distRoot);
+if (import.meta.main) {
+  const missing = [];
+  const external = new Set();
+  const htmlFiles = await filesUnder(distRoot);
 
-for (const file of htmlFiles) {
-  const html = await readFile(file, "utf8");
-  const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
-  for (const href of hrefs) {
-    if (/^(mailto:|tel:|javascript:)/i.test(href)) continue;
-    if (/^https?:\/\//i.test(href)) {
-      external.add(href);
-      continue;
-    }
-    const target = internalTarget(file, href);
-    if (!target) continue;
-    try {
-      await access(target);
-    } catch {
-      missing.push(`${file.replace(`${distRoot}/`, "")} -> ${href}`);
+  for (const file of htmlFiles) {
+    const html = await readFile(file, "utf8");
+    const hrefs = [...html.matchAll(/href="([^"]+)"/g)].map((match) => match[1]);
+    for (const href of hrefs) {
+      if (/^(mailto:|tel:|javascript:)/i.test(href)) continue;
+      if (/^https?:\/\//i.test(href)) {
+        external.add(href);
+        continue;
+      }
+      const target = internalTarget(file, href);
+      if (!target) continue;
+      try {
+        await access(target);
+      } catch {
+        missing.push(`${file.replace(`${distRoot}/`, "")} -> ${href}`);
+      }
     }
   }
-}
 
-if (missing.length) {
-  console.error("Internal link check failed:\n" + missing.map((item) => `- ${item}`).join("\n"));
-  process.exit(1);
-}
+  if (missing.length) {
+    console.error("Internal link check failed:\n" + missing.map((item) => `- ${item}`).join("\n"));
+    process.exit(1);
+  }
 
-console.log(`Internal link check passed (${htmlFiles.length} pages, ${external.size} external destinations recorded).`);
+  console.log(`Internal link check passed (${htmlFiles.length} pages, ${external.size} external destinations recorded).`);
+}
