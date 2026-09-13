@@ -64,11 +64,11 @@ export const acceptedPapers = [
       ],
       [
         "Claim",
-        "Some apparent forgetting is structural: the retrieval schema contains no traversable path to the needed evidence."
+        "On the selected MuSiQue chains, resolving an intermediate bridge improved retrieval of the final document over the tested direct-retrieval methods."
       ],
       [
         "System boundary",
-        "Document retrieval and candidate selection—not the downstream model’s ability to answer from supplied evidence."
+        "Document retrieval and candidate selection, evaluated separately from the downstream model’s ability to answer from supplied evidence."
       ],
       [
         "Intervention",
