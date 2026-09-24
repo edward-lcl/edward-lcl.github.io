@@ -2178,6 +2178,6 @@ export const additionalPapers = [
 export const links = {
   github: "https://github.com/edward-lcl",
   linkedin: "https://linkedin.com/in/edward-lue-chee-lip",
-  x: "https://x.com/MushuDev",
+  x: "https://x.com/edward_lcl",
   email: "mailto:eluecheelip@gmail.com",
 };
