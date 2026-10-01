@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { links, researchArcs } from "../data/site";
+interface Props { chinese?: boolean }
+const { chinese = false } = Astro.props;
+const t = chinese ? {
+  intro: "我研究 AI 智能体的评估、验证与控制，也开发让实验更容易检查和复现的工具。",
+  about: "来自特立尼达和多巴哥。就读于西交利物浦大学人工智能（智能系统）专业。",
+  work: "精选项目", notes: "近期笔记", all: "全部研究与项目", allNotes: "全部笔记", cv: "简历", contact: "联系", read: "解读", code: "代码", paper: "论文", related: "相关笔记", demo: "示例",
+  projects: [
+    { title: "Terminal-Bench：任务难度与验证器审计", body: "当智能体都未能完成一道任务时，如何区分真正的难度、任务缺陷和评估工具的问题？", status: "NeurIPS 2026 Verify-Agents 研讨会：海报已录用。AAMAS 2027：已投稿，尚未录用。" },
+    { title: "Factor(U,T)", body: "研究可信监控器能否仅凭不可信模型的计划发现恶意意图，以及缺少实现细节会丢失什么信号。", status: "AAAI 2026 TrustAgent 研讨会 · 已录用" },
+    { title: "Eval Evidence", body: "把评估分数与配置、运行记录和文件哈希一起保存，便于检查来源、复现过程和发现文件变化。", status: "开源工具 · 可复现的合成示例" },
+  ],
+} : {
+  intro: "I study how to evaluate and supervise AI agents, and build tools that make experiments easier to inspect and reproduce.",
+  about: "From Trinidad & Tobago. Studying Artificial Intelligence (Intelligent Systems) at XJTLU.",
+  work: "Selected work", notes: "Recent notes", all: "All research & projects", allNotes: "All notes", cv: "CV", contact: "Contact", read: "Digest", code: "Code", paper: "Paper", related: "Related note", demo: "Walkthrough",
+  projects: [
+    { title: "Terminal-Bench: hardness & verifier audit", body: "When every agent fails a task, how do we distinguish genuine difficulty from a broken task or a problem with the evaluation?", status: "NeurIPS 2026 Verify-Agents workshop: poster accepted. AAMAS 2027: submitted, not accepted." },
+    { title: "Factor(U,T)", body: "Testing whether a trusted monitor can detect malicious intent in an untrusted model’s plan, and what it misses without the implementation.", status: "AAAI 2026 TrustAgent workshop · accepted" },
+    { title: "Eval Evidence", body: "An open-source tool that keeps evaluation scores with their configuration, run artifacts, and file hashes so the record can be checked.", status: "Open source · reproducible synthetic demo" },
+  ],
+};
+const projectLinks = [
+  [{ label: t.related, url: "/questions/a-zero-needs-adjudication/" }],
+  [{ label: t.read, url: chinese ? "/zh/research/factor-ut/" : "/research/factor-ut/" }, {label: t.paper, url: "https://arxiv.org/abs/2512.14745"}, {label: t.code, url: "https://github.com/edward-lcl/factor-ut-untrusted-decomposer"}],
+  [{ label: t.read, url: "/work/eval-evidence/" }, { label: t.demo, url: "/work/eval-evidence-walkthrough/" }, { label: t.code, url: "https://github.com/edward-lcl/eval-evidence" }],
+];
+const notes = researchArcs.filter(arc => "cluster" in arc && arc.cluster === "latest");
+---
+<Layout title="Edward Lue Chee Lip" description={t.intro} lang={chinese ? "zh-CN" : "en"}>
+  <div class="overview">
+    <header class="overview-nav">
+      <a href="/" class="home-name">Edward</a>
+      <nav aria-label={chinese ? "主导航" : "Primary navigation"}>
+        <a href="/map/">{chinese ? "索引" : "Index"}</a>
+        <a href="/cv/">{t.cv}</a>
+        <a href={chinese ? "/" : "/zh/"} lang={chinese ? "en" : "zh-CN"}>{chinese ? "English" : "中文"}</a>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="intro" aria-labelledby="name">
+        <h1 id="name">Edward Lue Chee Lip</h1>
+        <p class="lead">{t.intro}</p>
+        <p class="background">{t.about}</p>
+      </section>
+      <section id="research" class="work" aria-labelledby="work-heading">
+        <div class="section-top"><h2 id="work-heading">{t.work}</h2><a href="/map/#map-1">{t.all} <span aria-hidden="true">↗</span></a></div>
+        {t.projects.map((project, i) => <article class="project" id={i === 2 ? "systems" : undefined}>
+          <span class="project-number" aria-hidden="true">0{i+1}</span>
+          <div><h3>{project.title}</h3><p>{project.body}</p><p class="project-status">{project.status}</p><div class="project-links">{projectLinks[i].map(link => <a href={link.url}>{link.label} <span aria-hidden="true">↗</span></a>)}</div></div>
+        </article>)}
+      </section>
+      <section id="notebook" class="notes" aria-labelledby="notes-heading">
+        <div class="section-top"><h2 id="notes-heading">{t.notes}</h2><a href="/notes/">{t.allNotes} <span aria-hidden="true">↗</span></a></div>
+        <ul>{notes.map(note => <li><a href={note.url}>{note.title}</a><span>{"revised" in note ? note.revised : note.publicationDate}{chinese ? " · 英文" : ""}</span></li>)}</ul>
+      </section>
+    </main>
+    <footer class="contact" aria-label={t.contact}>
+      <a href={links.email}>Email</a><a href={links.github}>GitHub</a><a href={links.x}>X</a><a href={links.linkedin}>LinkedIn</a><a href="/cv/">{t.cv}</a>
+    </footer>
+  </div>
+</Layout>
+<style>
+  .overview { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+  .overview-nav { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:30px 0; border-bottom:1px solid var(--line); }
+  .home-name { font:500 1.35rem var(--serif); }
+  nav { display:flex; gap:24px; font-size:.85rem; }
+  a { text-decoration:none; color:var(--blue-dark); }
+  a:hover { text-decoration:underline; text-underline-offset:4px; }
+  a:focus-visible { outline:2px solid var(--blue-dark); outline-offset:5px; }
+  .intro { padding:64px 0 50px; }
+  h1 { margin:0 0 20px; font:500 clamp(2.5rem,5.5vw,3.7rem)/1.1 var(--serif); letter-spacing:-.035em; }
+  .lead { font:400 1.25rem/1.65 var(--sans); max-width:640px; margin:0 0 16px; }
+  .background { color:var(--muted); font-size:.88rem; line-height:1.6; max-width:620px; margin:0; }
+  .section-top { display:flex; justify-content:space-between; align-items:baseline; gap:20px; padding-bottom:16px; border-bottom:1px solid var(--line); }
+  h2 { font:600 .82rem/1.5 var(--sans); letter-spacing:.06em; text-transform:uppercase; margin:0; }
+  .section-top a { font-size:.8rem; }
+  .project { display:grid; grid-template-columns:32px 1fr; gap:18px; padding:27px 0; border-bottom:1px solid var(--line); }
+  .project-number { color:var(--muted); font:400 .7rem/2 var(--mono); padding-top:3px; }
+  h3 { font:500 1.6rem/1.25 var(--serif); margin:0 0 10px; letter-spacing:-.015em; }
+  .project p { color:#41464e; font-size:.94rem; line-height:1.65; margin:0 0 10px; max-width:630px; }
+  .project .project-status { font-size:.78rem; line-height:1.7; color:var(--muted); }
+  .project-links { display:flex; gap:20px; flex-wrap:wrap; font-size:.8rem; margin-top:12px; }
+  .notes { padding-top:44px; }
+  ul { list-style:none; padding:0; margin:0; }
+  li { display:flex; justify-content:space-between; gap:24px; padding:16px 0; border-bottom:1px solid var(--line); align-items:baseline; }
+  li a { color:var(--text); font:500 1.14rem/1.4 var(--serif); }
+  li span { flex-shrink:0; color:var(--muted); font-size:.72rem; }
+  .contact { display:flex; gap:25px; flex-wrap:wrap; padding:34px 0 44px; font-size:.82rem; }
+  @media(max-width:560px) {
+    .overview { padding:0 22px; }
+    .overview-nav { padding:23px 0; }
+    nav { gap:18px; }
+    .intro { padding:42px 0 34px; }
+    .lead { font-size:1.08rem; }
+    .section-top { align-items:flex-start; gap:12px; }
+    .section-top a { max-width:48%; text-align:right; line-height:1.5; }
+    .project { grid-template-columns:22px 1fr; gap:10px; padding:24px 0; }
+    h3 { font-size:1.4rem; }
+    li { display:block; }
+    li span { display:block; margin-top:6px; }
+    .contact { gap:22px; }
+  }
+</style>

@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { acceptedPapers, additionalPapers, links } from "../../data/site";
 
-const statusDate = "13 Aug 2026";
+const revisionDate = "1 Oct 2026";
 
 // Publications derive from the same record the notebook runs on — one fact, one place.
 // Order comes from cvPriority on the record itself; papers without one sort last, in record order.
@@ -25,6 +25,7 @@ const publications = allPapers
     status: paper.note,
     role: paper.role,
     link: cvLinkFor(paper),
+    checked: "lastVerified" in paper ? paper.lastVerified : undefined,
   }));
 
 const experience = [
@@ -35,7 +36,7 @@ const experience = [
     bullets: [
       "Implementation, SOP development, and experiment coverage across 4–5 concurrent research groups without dedicated engineering — agentic chains, eval harnesses, prompt scaffolds, statistical analysis, and submission support, based on what each group needs to ship.",
       "Led a four-person team through Factor-UT’s evaluation design (AUROC, attack success rate, audit thresholds on BigCodeBench / Inspect AI) and full write-up; the papers themselves are listed above.",
-      "Mentor and stand-in lead when groups need one: stepped into the sandbagging-detection project mid-stream and carried it to submission after the original lead was sidelined by injury.",
+      "Stepped into the sandbagging-detection project mid-stream as stand-in lead and carried it through submission.",
     ],
   },
   {
@@ -111,7 +112,7 @@ const skills = [
         for a capital-intensive industrial operator.
       </p>
       <p class="cv-contact">
-        Trinidad &amp; Tobago · Suzhou · XJTLU
+        From Trinidad &amp; Tobago · XJTLU
         · <a href={links.email}>eluecheelip@gmail.com</a>
         · <a href={links.github}>github/edward-lcl</a>
         · <a href={links.linkedin}>linkedin/edward-lue-chee-lip</a>
@@ -130,12 +131,18 @@ const skills = [
               <p class="cv-pub-venue">
                 {pub.venue} · {pub.status}
                 {pub.link && <> · <a href={pub.link.url}>{pub.link.label} ↗</a></>}
+                {pub.checked && <> · status checked {pub.checked}</>}
               </p>
             </div>
             <span class:list={["cv-role", pub.role === "First author" && "cv-role-first"]}>{pub.role}</span>
           </article>
         ))}
       </div>
+    </section>
+
+    <section class="cv-section">
+      <h2>Current research</h2>
+      <p><strong>Terminal-Bench: hardness and verifier audit.</strong> Distinguishing genuine task difficulty from task defects and evaluation failures. Poster accepted at the NeurIPS 2026 Verify-Agents workshop; submitted to AAMAS 2027, not accepted. <a href="/questions/a-zero-needs-adjudication/">Related note ↗</a></p>
     </section>
 
     <section class="cv-section">
@@ -178,8 +185,8 @@ const skills = [
     </section>
 
     <p class="cv-footnote">
-      Publication statuses last checked {statusDate}. The living version of this record — with per-paper
-      provenance — is <a href="https://edward-lcl.github.io/">edward-lcl.github.io</a>.
+      CV edited {revisionDate}. Research status and evidence are documented in the linked digests.
+      The living record is <a href="https://edward-lcl.github.io/">edward-lcl.github.io</a>.
     </p>
   </main>
 
